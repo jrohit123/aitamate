@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import officeBuildingImg from "@/assets/office-building.jpg";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -76,8 +77,17 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-card">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-20 bg-gradient-card relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 opacity-5">
+        <img 
+          src={officeBuildingImg} 
+          alt="Professional office building representing business excellence"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-foreground">Get in</span>{" "}

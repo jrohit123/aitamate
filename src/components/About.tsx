@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, Target, Lightbulb, TrendingUp } from "lucide-react";
+import officeBuildingImg from "@/assets/office-building.jpg";
 
 const About = () => {
   const values = [
@@ -88,6 +89,48 @@ const About = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Professional Image Section */}
+        <div className="mt-20 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative order-2 lg:order-1">
+            <div className="relative rounded-2xl overflow-hidden shadow-large group">
+              <img 
+                src={officeBuildingImg} 
+                alt="Modern office building representing professional excellence and innovation"
+                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-primary/10 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 text-white">
+                <div className="text-sm font-medium opacity-90 mb-1">Excellence in AI</div>
+                <div className="text-xl font-bold">Professional Solutions</div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="order-1 lg:order-2">
+            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Professional Excellence Meets AI Innovation
+            </h3>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              Located in the heart of Mumbai's business district, our team operates from state-of-the-art facilities 
+              equipped with the latest AI development tools and collaborative spaces designed for innovation.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-muted-foreground">Mumbai-based AI specialists</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-muted-foreground">Global client portfolio</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <span className="text-muted-foreground">Enterprise-grade security</span>
+              </div>
+            </div>
           </div>
         </div>
 

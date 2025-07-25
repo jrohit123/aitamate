@@ -1,9 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Zap } from "lucide-react";
+import modernWorkspace from "@/assets/modern-workspace.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-accent/30 to-primary/10 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src={modernWorkspace} 
+          alt="Modern AI-powered workspace with professionals collaborating" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-accent/60 to-primary/40"></div>
+      </div>
+      
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"></div>

@@ -1,6 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Search, Code, GraduationCap, ArrowRight, CheckCircle } from "lucide-react";
+import circuitBoard from "@/assets/circuit-board.jpg";
+import codeMonitor from "@/assets/code-monitor.jpg";
+import aiRobot from "@/assets/ai-robot.jpg";
 
 const Services = () => {
   const services = [
@@ -8,6 +11,7 @@ const Services = () => {
       icon: Search,
       title: "AI Process Audits",
       description: "Comprehensive analysis of your current operations to identify AI automation opportunities and optimization potential.",
+      image: circuitBoard,
       features: [
         "Current state assessment",
         "AI readiness evaluation", 
@@ -20,6 +24,7 @@ const Services = () => {
       icon: Code,
       title: "Custom AI Development",
       description: "Bespoke AI solutions tailored to your specific business needs, from chatbots to predictive analytics systems.",
+      image: codeMonitor,
       features: [
         "Custom AI models",
         "Integration services",
@@ -32,6 +37,7 @@ const Services = () => {
       icon: GraduationCap,
       title: "Executive AI Training",
       description: "Strategic training programs designed for leadership teams to understand and leverage AI for competitive advantage.",
+      image: aiRobot,
       features: [
         "C-level workshops",
         "Strategic planning",
@@ -61,12 +67,24 @@ const Services = () => {
             return (
               <Card 
                 key={index} 
-                className="relative group hover:shadow-large transition-all duration-300 transform hover:-translate-y-2 bg-white/80 backdrop-blur-sm border-primary/10"
+                className="relative group hover:shadow-large transition-all duration-300 transform hover:-translate-y-2 bg-white/80 backdrop-blur-sm border-primary/10 overflow-hidden"
               >
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mb-4 group-hover:animate-pulse-glow transition-all duration-300">
-                    <IconComponent className="w-8 h-8 text-white" />
+                {/* Service Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4">
+                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
                   </div>
+                </div>
+                
+                <CardHeader className="text-center pb-4">
                   <CardTitle className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {service.title}
                   </CardTitle>
