@@ -47,15 +47,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-white/80">
                 <Mail className="w-4 h-4" />
-                <span>hello@aitamate.com</span>
+                <span>rj@aitamate.com</span>
               </div>
               <div className="flex items-center gap-3 text-white/80">
                 <Phone className="w-4 h-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91-9223315977</span>
               </div>
               <div className="flex items-center gap-3 text-white/80">
                 <MapPin className="w-4 h-4" />
-                <span>San Francisco, CA</span>
+                <span>4th floor, D-Wing, Modi Business Park, Kasarvadavli, Ghodbunder road, Thane (W) - 400615</span>
               </div>
             </div>
           </div>

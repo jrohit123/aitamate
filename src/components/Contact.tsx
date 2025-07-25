@@ -58,19 +58,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      details: "hello@aitamate.com",
-      action: "mailto:hello@aitamate.com"
+      details: "rj@aitamate.com",
+      action: "mailto:rj@aitamate.com"
     },
     {
       icon: Phone,
       title: "Phone",
-      details: "+1 (555) 123-4567",
-      action: "tel:+15551234567"
+      details: "+91-9223315977",
+      action: "tel:+919223315977"
     },
     {
       icon: MapPin,
       title: "Office",
-      details: "San Francisco, CA",
+      details: "Thane (W), Mumbai - 400615",
       action: "#"
     }
   ];
