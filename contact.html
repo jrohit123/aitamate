@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — aitamate Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<style>
+:root{
+  --navy:#0A1628;--blue:#1A6FD4;--blue-lt:#2E8CF0;--blue-pale:#EBF4FF;
+  --blue-mid:#1a4a8a;--white:#fff;--bg:#F7F9FC;--muted:#5A6A7E;
+  --border:#DDE4EE;--border-blue:rgba(26,111,212,.2);--text:#0A1628;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+
+nav{position:fixed;top:0;width:100%;z-index:999;height:66px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--navy);}
+.nav-cta{background:var(--blue);color:#fff;padding:10px 22px;border-radius:7px;font-size:.875rem;font-weight:600;text-decoration:none;transition:all .2s;}
+.nav-cta:hover{background:var(--blue-lt);}
+
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.sec-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;color:var(--navy);line-height:1.2;letter-spacing:-.6px;margin-bottom:12px;}
+
+/* HERO */
+.page-hero{padding:130px 6% 72px;background:linear-gradient(160deg,#f0f6ff 0%,#f7f9fc 55%,#eef4fb 100%);text-align:center;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(26,111,212,.09) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{position:relative;z-index:1;max-width:620px;margin:0 auto;}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2.1rem,5vw,3.1rem);font-weight:900;line-height:1.12;letter-spacing:-1.2px;color:var(--navy);margin-bottom:16px;}
+.page-hero h1 em{font-style:normal;color:var(--blue);}
+.page-hero p{font-size:1rem;color:var(--muted);line-height:1.75;}
+
+/* MAIN CONTACT LAYOUT */
+.contact-main{padding:80px 6%;background:var(--white);}
+.contact-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:start;}
+
+/* LEFT SIDEBAR */
+.contact-sidebar h2{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:-.3px;}
+.contact-sidebar p{font-size:.88rem;color:var(--muted);line-height:1.72;margin-bottom:40px;}
+.contact-methods{display:flex;flex-direction:column;gap:16px;margin-bottom:36px;}
+.cm-item{display:flex;align-items:flex-start;gap:14px;}
+.cm-icon{width:38px;height:38px;border-radius:9px;background:var(--blue-pale);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:.85rem;flex-shrink:0;margin-top:2px;}
+.cm-item h4{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.cm-item a, .cm-item p{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;line-height:1.5;}
+.cm-item a:hover{color:var(--blue);}
+
+/* WHAT TO EXPECT */
+.expect-title{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--navy);margin-bottom:14px;}
+.expect-list{display:flex;flex-direction:column;gap:10px;}
+.exp-item{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted);}
+.exp-item i{color:var(--blue);font-size:.7rem;flex-shrink:0;}
+
+/* FORM */
+.contact-form-wrap{background:var(--bg);border:1.5px solid var(--border);border-radius:18px;padding:44px 40px;}
+.contact-form-wrap h3{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.contact-form-wrap .form-sub{font-size:.85rem;color:var(--muted);margin-bottom:32px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.form-group label{font-size:.78rem;font-weight:600;color:var(--navy);letter-spacing:.2px;}
+.form-group input,
+.form-group select,
+.form-group textarea{padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:.875rem;font-family:'Inter',sans-serif;color:var(--text);background:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,111,212,.08);}
+.form-group textarea{resize:vertical;min-height:110px;}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235A6A7E' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+.multi-select-wrap{display:flex;flex-direction:column;gap:2px;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;background:var(--white);}
+.ms-option{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background .15s;}
+.ms-option:not(:last-child){border-bottom:1px solid var(--border);}
+.ms-option:hover{background:var(--blue-pale);}
+.ms-option input[type="checkbox"]{width:15px;height:15px;border:1.5px solid var(--border);border-radius:3px;accent-color:var(--blue);cursor:pointer;flex-shrink:0;}
+.ms-option span{font-size:.85rem;color:var(--text);}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:#AAB4C0;}
+.form-check{display:flex;align-items:flex-start;gap:10px;margin-bottom:24px;}
+.form-check input[type="checkbox"]{width:16px;height:16px;border:1.5px solid var(--border);border-radius:3px;margin-top:2px;cursor:pointer;flex-shrink:0;}
+.form-check label{font-size:.8rem;color:var(--muted);line-height:1.55;}
+.form-check label a{color:var(--blue);text-decoration:none;}
+.btn-submit{width:100%;background:var(--blue);color:#fff;padding:15px 28px;border-radius:8px;font-size:.95rem;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .25s;}
+.btn-submit:hover{background:var(--blue-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,111,212,.3);}
+
+/* INTENT TABS */
+.intent-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.intent-tab{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:7px 16px;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
+.intent-tab:hover,.intent-tab.active{background:var(--blue-pale);border-color:var(--border-blue);color:var(--blue);}
+
+/* PRODUCTS QUICK LINKS */
+.quick-links{padding:64px 6%;background:var(--bg);border-top:1px solid var(--border);}
+.ql-inner{max-width:1060px;margin:0 auto;}
+.ql-inner h2{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:24px;text-align:center;}
+.ql-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ql-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:26px 22px;text-align:center;transition:all .3s;}
+.ql-card:hover{border-color:var(--blue-lt);box-shadow:0 6px 20px rgba(26,111,212,.08);transform:translateY(-2px);}
+.ql-icon{width:44px;height:44px;background:var(--blue-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1rem;margin:0 auto 14px;}
+.ql-card h3{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.ql-card p{font-size:.78rem;color:var(--muted);margin-bottom:16px;line-height:1.5;}
+.ql-card a{font-size:.8rem;font-weight:700;color:var(--blue);text-decoration:none;}
+.ql-card a:hover{color:var(--blue-lt);}
+
+footer{background:var(--navy);padding:56px 6% 0;}
+.footer-top{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;}
+.footer-brand p{font-size:.83rem;color:rgba(255,255,255,.38);line-height:1.7;max-width:230px;margin-top:14px;}
+.footer-social{display:flex;gap:12px;margin-top:20px;}
+.footer-social a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.45);font-size:.8rem;transition:all .2s;text-decoration:none;}
+.footer-social a:hover{background:var(--blue);color:#fff;}
+.footer-col h4{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;}
+.footer-col a{display:block;font-size:.84rem;color:rgba(255,255,255,.48);text-decoration:none;margin-bottom:10px;transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{max-width:1060px;margin:0 auto;padding:20px 0;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-bottom p,.footer-bottom a{font-size:.75rem;color:rgba(255,255,255,.28);text-decoration:none;}
+
+@media(max-width:860px){
+  .contact-inner{grid-template-columns:1fr;}
+  .ql-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  nav .nav-links{display:none;}
+}
+@media(max-width:540px){
+  .form-row{grid-template-columns:1fr;}
+  .contact-form-wrap{padding:28px 22px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+    <img src="src\Logo-transparent_bg.png" alt="aitamate" style="height:36px;"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+    <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--blue);">ai<span style="color:var(--navy);">tamate</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="solutions.html">Solutions</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#form">Request a Demo</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="sec-label" data-aos="fade-down">Get In Touch</p>
+    <h1 data-aos="fade-up" data-aos-delay="80">Let's Talk About <em>What AI Can Do For Your Business.</em></h1>
+    <p data-aos="fade-up" data-aos-delay="160">No hard sell. No jargon. Just a focused conversation about where AI fits in your business — and what the smartest next step looks like.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTACT -->
+<section class="contact-main">
+  <div class="contact-inner">
+
+    <!-- SIDEBAR -->
+    <div data-aos="fade-right">
+      <div class="sec-label">Contact</div>
+      <h2>We'd love to hear from you.</h2>
+      <p>Whether you're ready to get started, exploring your options, or just want to understand how AI could fit into your specific context — reach out and we'll respond within one business day.</p>
+
+      <div class="contact-methods">
+        <div class="cm-item">
+          <div class="cm-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <h4>Email Us</h4>
+            <!-- TODO: Replace with actual email -->
+            <a href="mailto:sales@aitamate.com">sales@aitamate.com</a>
+          </div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div>
+            <h4>Connect on LinkedIn</h4>
+            <!-- TODO: Replace with actual LinkedIn URL -->
+            <a href="http://linkedin.com/company/aitamate" target="_blank" rel="noopener">linkedin.com/company/aitamate</a>
+          </div>
+        </div>
+        <div class="cm-item">
+          <div class="cm-icon"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <h4>Response Time</h4>
+            <p>Within 1 business day — usually sooner.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expect-title">What Happens After You Submit</div>
+      <div class="expect-list">
+        <div class="exp-item"><i class="fa-solid fa-circle-check"></i>We review your enquiry and context</div>
+        <div class="exp-item"><i class="fa-solid fa-circle-check"></i>You'll hear from us within 1 business day</div>
+        <div class="exp-item"><i class="fa-solid fa-circle-check"></i>We schedule a focused 30-min discovery call</div>
+        <div class="exp-item"><i class="fa-solid fa-circle-check"></i>We present a tailored recommendation — no obligation</div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div id="form" data-aos="fade-left" data-aos-delay="100">
+      <div class="contact-form-wrap">
+        <h3>Request a Demo or Discovery Call</h3>
+        <p class="form-sub">Tell us a little about your business and what you're looking to solve. We'll take it from there.</p>
+
+        <!-- INTENT TABS -->
+        <div class="intent-tabs">
+          <div class="intent-tab active" onclick="setTab(this)">Request a Demo</div>
+          <div class="intent-tab" onclick="setTab(this)">Book a Discovery Call</div>
+          <div class="intent-tab" onclick="setTab(this)">Get a Process Audit</div>
+          <div class="intent-tab" onclick="setTab(this)">General Enquiry</div>
+        </div>
+
+        <!-- TODO: Wire up this form to your backend / form service (e.g. Formspree, Netlify Forms, HubSpot) -->
+        <!-- Replace action="#" with your form endpoint -->
+        <form action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input type="text" name="first_name" placeholder="Rahul" required/>
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input type="text" name="last_name" placeholder="Sharma" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Work Email *</label>
+            <input type="email" name="email" placeholder="rahul@company.com" required/>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Company Name *</label>
+              <input type="text" name="company" placeholder="Your Company" required/>
+            </div>
+            <div class="form-group">
+              <label>Team Size</label>
+              <select name="team_size">
+                <option value="" disabled selected>Select range</option>
+                <option>1–10 people</option>
+                <option>11–50 people</option>
+                <option>51–200 people</option>
+                <option>200+ people</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>I'm most interested in <span style="font-weight:400;color:var(--muted);font-size:.72rem;">(select all that apply)</span></label>
+            <div class="multi-select-wrap">
+              <label class="ms-option"><input type="checkbox" name="interest" value="ProValuate"/><span>ProValuate — Hiring Intelligence</span></label>
+              <label class="ms-option"><input type="checkbox" name="interest" value="Momentum"/><span>Momentum — Execution Intelligence</span></label>
+              <label class="ms-option"><input type="checkbox" name="interest" value="Audit"/><span>AI Process Audit</span></label>
+              <label class="ms-option"><input type="checkbox" name="interest" value="Automations"/><span>AI-Enabled Automations</span></label>
+              <label class="ms-option"><input type="checkbox" name="interest" value="Training"/><span>AI Workforce Training</span></label>
+              <label class="ms-option"><input type="checkbox" name="interest" value="Guidance"/><span>Not sure yet — need guidance</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tell us about your biggest operational challenge</label>
+            <textarea name="message" placeholder="e.g. We're struggling with hiring accuracy and first-year attrition is too high..."></textarea>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="consent" name="consent" required/>
+            <label for="consent">I agree to aitamate's <a href="#">Privacy Policy</a> and consent to being contacted about this enquiry.</label>
+          </div>
+          <button type="submit" class="btn-submit">Submit — We'll Be In Touch <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK PRODUCT LINKS -->
+<section class="quick-links" data-aos="fade-up">
+  <div class="ql-inner">
+    <h2>Or jump straight in — both products are ready for immediate sign-up</h2>
+    <div class="ql-grid">
+      <div class="ql-card">
+        <div class="ql-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>ProValuate</h3>
+        <p>Start making smarter, data-backed hiring decisions today.</p>
+        <a href="http://provaluate.aitamate.com" target="_blank" rel="noopener">Sign Up Free <i class="fa-solid fa-arrow-right" style="font-size:.65rem;margin-left:4px;"></i></a>
+      </div>
+      <div class="ql-card">
+        <div class="ql-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Momentum</h3>
+        <p>Install daily execution discipline in your team from day one.</p>
+        <a href="http://momentum.aitamate.com" target="_blank" rel="noopener">Sign Up Free <i class="fa-solid fa-arrow-right" style="font-size:.65rem;margin-left:4px;"></i></a>
+      </div>
+      <div class="ql-card">
+        <div class="ql-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>Not Sure Where to Start?</h3>
+        <p>Let us guide you — book a free 30-minute AI readiness call.</p>
+        <a href="#form">Book a Discovery Call <i class="fa-solid fa-arrow-right" style="font-size:.65rem;margin-left:4px;"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="src\Logo-transparent_bg.png" alt="aitamate" style="height:34px;"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+      <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:900;color:#2E8CF0;">ai<span style="color:#fff;">tamate</span></span>
+      <p>Augmented Intelligence for the businesses that build tomorrow.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Products</h4><a href="http://provaluate.aitamate.com" target="_blank">ProValuate</a><a href="http://momentum.aitamate.com" target="_blank">Momentum</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="solutions.html">Solutions</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 aitamate Solutions. All rights reserved.</p>
+    <div style="display:flex;gap:20px;"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script>
+  AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});
+  function setTab(el){
+    document.querySelectorAll('.intent-tab').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>
