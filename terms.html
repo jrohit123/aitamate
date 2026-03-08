@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<!-- ── PRIMARY SEO ── -->
+<title>Terms of Service — aitamate Solutions</title>
+<meta name="description" content="Read aitamate Solutions' Terms of Service governing your use of aitamate.com, ProValuate, and Momentum. Understand your rights, responsibilities, and our obligations."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.aitamate.com/terms.html"/>
+
+<!-- ── FAVICON ── -->
+<link rel="icon" type="image/x-icon" href="src/favicon.png"/>
+
+<!-- ── FONTS & LIBRARIES ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+<!-- ── SHARED STYLESHEET ── -->
+<link rel="stylesheet" href="src/aitamate.css"/>
+
+<style>
+/* ── LEGAL PAGE STYLES (shared with privacy.html) ── */
+.legal-hero {
+  padding: 130px 6% 60px;
+  background: linear-gradient(160deg,#f0f6ff 0%,#f7f9fc 55%,#eef4fb 100%);
+  position: relative; overflow: hidden;
+}
+.legal-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%,rgba(26,111,212,.09) 0%,transparent 70%);
+  pointer-events: none;
+}
+.legal-hero-inner { position: relative; z-index: 1; max-width: 780px; }
+.legal-hero .breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .75rem; color: var(--muted); margin-bottom: 20px;
+}
+.legal-hero .breadcrumb a { color: var(--blue); text-decoration: none; }
+.legal-hero .breadcrumb a:hover { text-decoration: underline; }
+.legal-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.9rem,4vw,2.8rem);
+  font-weight: 900; color: var(--navy);
+  line-height: 1.15; letter-spacing: -.8px; margin-bottom: 16px;
+}
+.legal-hero .meta {
+  display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;
+}
+.legal-hero .meta span {
+  display: flex; align-items: center; gap: 7px;
+  font-size: .8rem; color: var(--muted);
+}
+.legal-hero .meta i { color: var(--blue); font-size: .75rem; }
+.legal-body { padding: 64px 6% 96px; }
+.legal-inner {
+  max-width: 1060px; margin: 0 auto;
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 64px; align-items: start;
+}
+.legal-toc {
+  position: sticky; top: 90px;
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 24px;
+}
+.legal-toc h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .72rem; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 16px;
+}
+.legal-toc ol { list-style: none; padding: 0; counter-reset: toc; }
+.legal-toc ol li { counter-increment: toc; margin-bottom: 2px; }
+.legal-toc ol li a {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: .78rem; color: var(--muted); text-decoration: none;
+  padding: 6px 8px; border-radius: 6px; transition: all .2s; line-height: 1.4;
+}
+.legal-toc ol li a::before {
+  content: counter(toc) ".";
+  font-weight: 700; color: var(--blue);
+  font-size: .7rem; flex-shrink: 0; padding-top: 1px;
+}
+.legal-toc ol li a:hover { background: var(--blue-pale); color: var(--blue); }
+.legal-content { min-width: 0; }
+.legal-section { margin-bottom: 52px; scroll-margin-top: 90px; }
+.legal-section:last-child { margin-bottom: 0; }
+.section-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .68rem; font-weight: 800;
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 6px; display: block;
+}
+.legal-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem; font-weight: 900;
+  color: var(--navy); margin-bottom: 16px; letter-spacing: -.3px;
+}
+.legal-section p {
+  font-size: .9rem; color: var(--muted);
+  line-height: 1.82; margin-bottom: 14px;
+}
+.legal-section p:last-child { margin-bottom: 0; }
+.legal-section ul, .legal-section ol {
+  padding-left: 20px; margin-bottom: 14px;
+}
+.legal-section li {
+  font-size: .9rem; color: var(--muted);
+  line-height: 1.75; margin-bottom: 6px;
+}
+.legal-section strong { color: var(--navy); font-weight: 600; }
+.legal-section a { color: var(--blue); text-decoration: none; }
+.legal-section a:hover { text-decoration: underline; }
+.info-box {
+  background: var(--blue-pale); border: 1.5px solid var(--border-blue);
+  border-radius: 10px; padding: 18px 20px; margin-bottom: 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.info-box i { color: var(--blue); font-size: .95rem; flex-shrink: 0; margin-top: 2px; }
+.info-box p { margin: 0; font-size: .85rem; color: var(--navy); line-height: 1.65; }
+.warning-box {
+  background: #FFF7ED; border: 1.5px solid #FED7AA;
+  border-radius: 10px; padding: 18px 20px; margin-bottom: 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.warning-box i { color: #EA580C; font-size: .95rem; flex-shrink: 0; margin-top: 2px; }
+.warning-box p { margin: 0; font-size: .85rem; color: #7C2D12; line-height: 1.65; }
+.legal-divider { border: none; border-top: 1.5px solid var(--border); margin: 52px 0; }
+.contact-card {
+  background: var(--navy); border-radius: 14px; padding: 32px 28px;
+}
+.contact-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 12px;
+}
+.contact-card p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.7; margin-bottom: 16px; }
+.contact-card a {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue); color: #fff;
+  padding: 10px 20px; border-radius: 7px;
+  font-size: .85rem; font-weight: 700; text-decoration: none; transition: all .2s;
+}
+.contact-card a:hover { background: var(--blue-lt); }
+@media (max-width: 860px) {
+  .legal-inner { grid-template-columns: 1fr; }
+  .legal-toc { position: static; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html">
+    <img src="src/Logo-transparent_bg.png" alt="aitamate" style="height:36px;"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+    <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--blue);">ai<span style="color:var(--navy);">tamate</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="solutions.html">Solutions</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Request a Demo</a>
+</nav>
+
+<!-- HERO -->
+<div class="legal-hero">
+  <div class="legal-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fa-solid fa-chevron-right" style="font-size:.6rem;"></i>
+      <span>Terms of Service</span>
+    </div>
+    <p class="sec-label">Legal</p>
+    <h1>Terms of Service</h1>
+    <div class="meta">
+      <span><i class="fa-solid fa-calendar"></i> Effective Date: 1 July 2025</span>
+      <span><i class="fa-solid fa-rotate"></i> Last Updated: 1 July 2025</span>
+      <span><i class="fa-solid fa-globe"></i> Applies globally</span>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="legal-body">
+  <div class="legal-inner">
+
+    <!-- TOC -->
+    <aside class="legal-toc" data-aos="fade-right">
+      <h4>Contents</h4>
+      <ol>
+        <li><a href="#t1">Acceptance of Terms</a></li>
+        <li><a href="#t2">Definitions</a></li>
+        <li><a href="#t3">Eligibility</a></li>
+        <li><a href="#t4">Account Registration</a></li>
+        <li><a href="#t5">Subscriptions & Payment</a></li>
+        <li><a href="#t6">Acceptable Use</a></li>
+        <li><a href="#t7">Intellectual Property</a></li>
+        <li><a href="#t8">Your Content & Data</a></li>
+        <li><a href="#t9">Confidentiality</a></li>
+        <li><a href="#t10">Disclaimers</a></li>
+        <li><a href="#t11">Limitation of Liability</a></li>
+        <li><a href="#t12">Indemnification</a></li>
+        <li><a href="#t13">Term & Termination</a></li>
+        <li><a href="#t14">Governing Law & Disputes</a></li>
+        <li><a href="#t15">Changes to These Terms</a></li>
+        <li><a href="#t16">Contact Us</a></li>
+      </ol>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="legal-content" data-aos="fade-up">
+
+      <div class="info-box">
+        <i class="fa-solid fa-circle-info"></i>
+        <p>Please read these Terms of Service carefully before using aitamate's website or products. By accessing or using any aitamate service, you agree to be bound by these terms. If you do not agree, please do not use our services.</p>
+      </div>
+
+      <!-- 1 -->
+      <div class="legal-section" id="t1">
+        <span class="section-num">Section 01</span>
+        <h2>Acceptance of Terms</h2>
+        <p>These Terms of Service ("Terms") constitute a legally binding agreement between you (either as an individual or on behalf of an organisation, referred to as "you" or "User") and <strong>aitamate Solutions</strong> ("aitamate", "we", "us", or "our").</p>
+        <p>These Terms govern your access to and use of:</p>
+        <ul>
+          <li>Our website at <a href="https://www.aitamate.com">aitamate.com</a> and any associated subdomains;</li>
+          <li>The <strong>ProValuate</strong> platform at provaluate.aitamate.com;</li>
+          <li>The <strong>Momentum</strong> platform at momentum.aitamate.com;</li>
+          <li>Any related services, APIs, content, or communications provided by aitamate.</li>
+        </ul>
+        <p>By creating an account, submitting a form, or otherwise accessing any of the above, you confirm that you have read, understood, and agreed to these Terms and our <a href="privacy.html">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="legal-section" id="t2">
+        <span class="section-num">Section 02</span>
+        <h2>Definitions</h2>
+        <ul>
+          <li><strong>"Service(s)"</strong> means the aitamate website, ProValuate, Momentum, and any professional services offered by aitamate.</li>
+          <li><strong>"User" / "you"</strong> means any individual or entity accessing or using the Services.</li>
+          <li><strong>"Account"</strong> means a registered user profile created to access ProValuate or Momentum.</li>
+          <li><strong>"Subscription"</strong> means a paid plan granting access to specific product features for a defined period.</li>
+          <li><strong>"User Data"</strong> means all data, content, or information submitted by you or your organisation through our Services.</li>
+          <li><strong>"Confidential Information"</strong> means any non-public information disclosed by either party in connection with the Services.</li>
+          <li><strong>"Intellectual Property"</strong> means all patents, trademarks, copyrights, trade secrets, and other proprietary rights.</li>
+        </ul>
+      </div>
+
+      <!-- 3 -->
+      <div class="legal-section" id="t3">
+        <span class="section-num">Section 03</span>
+        <h2>Eligibility</h2>
+        <p>To use aitamate's Services, you must:</p>
+        <ul>
+          <li>Be at least <strong>18 years of age</strong>;</li>
+          <li>Have the legal authority to enter into a binding agreement — either as an individual or as an authorised representative of a business entity;</li>
+          <li>Not be located in a country subject to trade sanctions or embargoes under applicable international law.</li>
+        </ul>
+        <p>If you are accessing the Services on behalf of an organisation, you represent and warrant that you have the authority to bind that organisation to these Terms.</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="legal-section" id="t4">
+        <span class="section-num">Section 04</span>
+        <h2>Account Registration &amp; Security</h2>
+        <p>To access ProValuate or Momentum, you must register for an account by providing accurate and complete information. You agree to:</p>
+        <ul>
+          <li>Provide truthful, current, and complete information during registration;</li>
+          <li>Keep your account credentials (username and password) confidential and secure;</li>
+          <li>Notify us immediately at <a href="mailto:sales@aitamate.com">sales@aitamate.com</a> if you suspect any unauthorised access to your account;</li>
+          <li>Accept responsibility for all activities that occur under your account.</li>
+        </ul>
+        <p>aitamate reserves the right to suspend or terminate accounts that contain false information, appear to be created in bad faith, or are associated with a breach of these Terms.</p>
+        <p>You may not share account access with individuals outside your organisation without prior written consent from aitamate.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="legal-section" id="t5">
+        <span class="section-num">Section 05</span>
+        <h2>Subscriptions &amp; Payment</h2>
+        <p><strong>5.1 Subscription Plans.</strong> Access to ProValuate and Momentum features is provided through subscription plans. Details of available plans, pricing, and features are published on the respective product platforms and may be updated from time to time.</p>
+        <p><strong>5.2 Billing.</strong> Subscription fees are billed in advance on a monthly or annual basis, as selected at sign-up. All payments are processed by our authorised third-party payment gateway partner(s). By providing your payment details, you authorise the relevant gateway to charge the applicable fees.</p>
+        <p><strong>5.3 Taxes.</strong> All fees are exclusive of applicable taxes (including GST, VAT, or withholding tax). You are responsible for paying any applicable taxes in your jurisdiction, unless otherwise agreed in writing.</p>
+        <p><strong>5.4 Failed Payments.</strong> If a payment fails, we will notify you and attempt to collect the outstanding amount. Continued failure to pay may result in suspension or termination of your account.</p>
+        <p><strong>5.5 Refund Policy.</strong> Subscription fees are generally non-refundable except where:</p>
+        <ul>
+          <li>Required by applicable consumer protection law;</li>
+          <li>The Service has been unavailable for more than 48 consecutive hours due to reasons within our control (pro-rata credit may apply); or</li>
+          <li>Agreed otherwise in a separate written engagement letter.</li>
+        </ul>
+        <p><strong>5.6 Price Changes.</strong> We reserve the right to change subscription pricing. We will provide at least <strong>30 days' written notice</strong> before any price increase takes effect for existing subscribers.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="legal-section" id="t6">
+        <span class="section-num">Section 06</span>
+        <h2>Acceptable Use</h2>
+        <p>You agree to use aitamate's Services only for lawful business purposes and in accordance with these Terms. You must not:</p>
+        <ul>
+          <li>Use the Services to engage in any illegal, fraudulent, or deceptive activity;</li>
+          <li>Attempt to reverse-engineer, decompile, disassemble, or otherwise extract source code from any aitamate product;</li>
+          <li>Scrape, harvest, or otherwise extract data from the Services using automated tools without our prior written consent;</li>
+          <li>Upload or transmit viruses, malware, or other harmful code;</li>
+          <li>Attempt to gain unauthorised access to any part of our systems, infrastructure, or other users' accounts;</li>
+          <li>Use the Services to discriminate against candidates or employees in violation of applicable employment or anti-discrimination law;</li>
+          <li>Share, resell, or sublicense access to the Services without our prior written authorisation;</li>
+          <li>Use ProValuate or Momentum output as the sole basis for consequential employment decisions, in violation of applicable human resources or AI fairness regulations.</li>
+        </ul>
+        <p>We reserve the right to investigate and take appropriate action — including account suspension and legal action — in response to any suspected breach of this section.</p>
+      </div>
+
+      <!-- 7 -->
+      <div class="legal-section" id="t7">
+        <span class="section-num">Section 07</span>
+        <h2>Intellectual Property</h2>
+        <p><strong>7.1 Aitamate's IP.</strong> All content, software, algorithms, designs, trademarks, trade names, and other intellectual property associated with the Services — including ProValuate and Momentum — are the exclusive property of aitamate Solutions or its licensors. Nothing in these Terms transfers any ownership of aitamate's IP to you.</p>
+        <p><strong>7.2 Limited Licence.</strong> Subject to your compliance with these Terms and payment of applicable fees, aitamate grants you a limited, non-exclusive, non-transferable, revocable licence to access and use the Services for your internal business purposes during your subscription period.</p>
+        <p><strong>7.3 Feedback.</strong> If you provide suggestions, ideas, or feedback about our Services ("Feedback"), you grant aitamate a royalty-free, perpetual, irrevocable licence to use and incorporate such Feedback into our products without any obligation to you.</p>
+        <p><strong>7.4 Brand Usage.</strong> You may not use aitamate's name, logo, or branding in any marketing, press release, or public statement without our prior written approval.</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="legal-section" id="t8">
+        <span class="section-num">Section 08</span>
+        <h2>Your Content &amp; Data</h2>
+        <p><strong>8.1 Ownership.</strong> You retain full ownership of all User Data you submit to our Services. aitamate does not claim any intellectual property rights over your data.</p>
+        <p><strong>8.2 Licence to Process.</strong> By submitting User Data, you grant aitamate a limited licence to store, process, and use that data solely for the purpose of providing and improving the Services to you, in accordance with our <a href="privacy.html">Privacy Policy</a>.</p>
+        <p><strong>8.3 Data Accuracy.</strong> You are responsible for the accuracy, completeness, and legality of User Data you submit. aitamate is not liable for errors or issues arising from inaccurate or unlawfully submitted data.</p>
+        <p><strong>8.4 Data Export.</strong> You may export your User Data at any time during your active subscription. Following account termination, we will retain data for 90 days during which you may request an export, after which it will be permanently deleted.</p>
+        <p><strong>8.5 AI Outputs.</strong> You acknowledge that outputs generated by ProValuate and Momentum (such as candidate risk scores or execution insights) are AI-generated recommendations intended to support — not replace — human decision-making. You are solely responsible for how you use, interpret, and act upon these outputs.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="legal-section" id="t9">
+        <span class="section-num">Section 09</span>
+        <h2>Confidentiality</h2>
+        <p>Each party agrees to keep the other party's Confidential Information strictly confidential and not to disclose it to any third party without prior written consent, except:</p>
+        <ul>
+          <li>To employees, contractors, or agents who need to know it to deliver the Services, and who are bound by equivalent confidentiality obligations;</li>
+          <li>As required by applicable law, court order, or regulatory authority — in which case the disclosing party will give reasonable notice where permitted.</li>
+        </ul>
+        <p>This obligation survives the termination of your account or these Terms for a period of <strong>three (3) years</strong>.</p>
+      </div>
+
+      <!-- 10 -->
+      <div class="legal-section" id="t10">
+        <span class="section-num">Section 10</span>
+        <h2>Disclaimers</h2>
+        <div class="warning-box">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <p>The Services are provided on an <strong>"as is" and "as available" basis</strong>. To the fullest extent permitted by applicable law, aitamate makes no warranties — express or implied — regarding the Services, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+        </div>
+        <p>In particular, aitamate does not warrant that:</p>
+        <ul>
+          <li>The Services will be uninterrupted, error-free, or available at all times;</li>
+          <li>AI-generated outputs (including ProValuate assessments or Momentum insights) will be accurate, complete, or suitable for any particular hiring or management decision;</li>
+          <li>Use of the Services will guarantee specific business outcomes or results.</li>
+        </ul>
+        <p>aitamate's products are decision-support tools. They are not a substitute for professional HR, legal, or management judgement. You remain solely responsible for all employment and business decisions made using our platforms.</p>
+      </div>
+
+      <!-- 11 -->
+      <div class="legal-section" id="t11">
+        <span class="section-num">Section 11</span>
+        <h2>Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law:</p>
+        <ul>
+          <li>aitamate shall not be liable for any <strong>indirect, incidental, consequential, special, or punitive damages</strong> — including loss of profits, data, goodwill, or business opportunities — arising out of or related to your use of the Services, even if advised of the possibility of such damages.</li>
+          <li>aitamate's total cumulative liability for any claims arising under or related to these Terms shall not exceed the <strong>greater of (a) the total fees paid by you to aitamate in the 12 months preceding the claim, or (b) INR 10,000 (ten thousand Indian Rupees)</strong>.</li>
+        </ul>
+        <p>Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability, so some of the above may not apply to you. In such cases, liability is limited to the fullest extent permitted by local law.</p>
+      </div>
+
+      <!-- 12 -->
+      <div class="legal-section" id="t12">
+        <span class="section-num">Section 12</span>
+        <h2>Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless aitamate Solutions, its directors, employees, agents, and licensors from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from or related to:</p>
+        <ul>
+          <li>Your use of the Services in violation of these Terms;</li>
+          <li>Any User Data you submit that infringes the rights of a third party or violates applicable law;</li>
+          <li>Your violation of any applicable law or regulation in connection with your use of the Services;</li>
+          <li>Any employment or business decisions made based on aitamate's AI outputs.</li>
+        </ul>
+      </div>
+
+      <!-- 13 -->
+      <div class="legal-section" id="t13">
+        <span class="section-num">Section 13</span>
+        <h2>Term &amp; Termination</h2>
+        <p><strong>13.1 Term.</strong> These Terms remain in effect from the date you first access any Service until your account is terminated.</p>
+        <p><strong>13.2 Termination by You.</strong> You may cancel your subscription at any time via your account settings or by contacting us at <a href="mailto:sales@aitamate.com">sales@aitamate.com</a>. Cancellation takes effect at the end of the current billing period.</p>
+        <p><strong>13.3 Termination by Aitamate.</strong> We may suspend or terminate your account immediately if:</p>
+        <ul>
+          <li>You breach any provision of these Terms and fail to remedy it within 14 days of written notice;</li>
+          <li>You engage in fraudulent, abusive, or illegal conduct;</li>
+          <li>Required by applicable law or court order.</li>
+        </ul>
+        <p><strong>13.4 Effect of Termination.</strong> Upon termination, your licence to use the Services ceases immediately. Sections relating to intellectual property, confidentiality, disclaimers, limitation of liability, indemnification, and governing law survive termination.</p>
+      </div>
+
+      <!-- 14 -->
+      <div class="legal-section" id="t14">
+        <span class="section-num">Section 14</span>
+        <h2>Governing Law &amp; Dispute Resolution</h2>
+        <p>These Terms are governed by and construed in accordance with the laws of <strong>India</strong>, including the Information Technology Act, 2000, the Indian Contract Act, 1872, and applicable rules thereunder — without regard to conflict of law principles.</p>
+        <p><strong>Dispute Resolution Process:</strong></p>
+        <ol>
+          <li><strong>Informal Resolution</strong> — Before initiating formal proceedings, you agree to contact us at <a href="mailto:legal@aitamate.com">legal@aitamate.com</a> and attempt to resolve the dispute informally for a period of at least 30 days.</li>
+          <li><strong>Arbitration</strong> — If the dispute is not resolved informally, it shall be referred to binding arbitration under the Arbitration and Conciliation Act, 1996 (India). The seat of arbitration shall be Mumbai, India. Proceedings shall be conducted in English.</li>
+          <li><strong>Courts</strong> — For matters not subject to arbitration, the parties submit to the exclusive jurisdiction of the courts of Mumbai, Maharashtra, India.</li>
+        </ol>
+        <p>For users located in the EU or UK, nothing in this section limits your right to bring a claim before your local courts for disputes covered by mandatory consumer protection law.</p>
+      </div>
+
+      <!-- 15 -->
+      <div class="legal-section" id="t15">
+        <span class="section-num">Section 15</span>
+        <h2>Changes to These Terms</h2>
+        <p>We reserve the right to update these Terms at any time. When we make material changes, we will:</p>
+        <ul>
+          <li>Update the "Last Updated" date at the top of this page;</li>
+          <li>Notify active users via email or in-platform notification at least <strong>14 days before</strong> the changes take effect.</li>
+        </ul>
+        <p>Your continued use of the Services after the effective date of updated Terms constitutes your acceptance of the revised Terms. If you do not agree to the updated Terms, you must stop using the Services and may cancel your account before the changes take effect.</p>
+      </div>
+
+      <hr class="legal-divider"/>
+
+      <!-- 16 -->
+      <div class="legal-section" id="t16">
+        <span class="section-num">Section 16</span>
+        <h2>Contact Us</h2>
+        <p>If you have any questions about these Terms or need to raise a legal matter with us, please contact:</p>
+        <div class="contact-card">
+          <h3>Legal Enquiries — aitamate Solutions</h3>
+          <p>For general terms queries, contractual matters, or formal legal notices. We aim to acknowledge all legal correspondence within 5 business days.</p>
+          <a href="mailto:legal@aitamate.com"><i class="fa-solid fa-envelope"></i> legal@aitamate.com</a>
+        </div>
+        <p style="margin-top:18px;">For general support or sales enquiries, please use <a href="mailto:sales@aitamate.com">sales@aitamate.com</a> or visit our <a href="contact.html">Contact page</a>.</p>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="src/Logo-transparent_bg.png" alt="aitamate" style="height:34px;"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+      <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:900;color:#2E8CF0;">ai<span style="color:#fff;">tamate</span></span>
+      <p>Augmented Intelligence for the businesses that build tomorrow.</p>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/aitamate" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Twitter/X"><i class="fa-brands fa-twitter"></i></a>
+        <a href="mailto:sales@aitamate.com" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Products</h4><a href="http://provaluate.aitamate.com" target="_blank" rel="noopener">ProValuate</a><a href="http://momentum.aitamate.com" target="_blank" rel="noopener">Momentum</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="solutions.html">Solutions</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 aitamate Solutions. All rights reserved.</p>
+    <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script>AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});</script>
+</body>
+</html>

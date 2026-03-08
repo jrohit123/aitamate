@@ -3,122 +3,67 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Solutions — aitamate Solutions</title>
-<link rel="icon" type="image/x-icon" href="src\favicon.png" />
+
+<!-- ── PRIMARY SEO ── -->
+<title>AI Solutions & Services - Process Audits, Automation & Training | aitamate</title>
+<meta name="description" content="aitamate offers AI process audits, done-for-you workflow automation, and AI workforce training for businesses of all sizes. Find your highest-ROI automation opportunity today."/>
+<meta name="keywords" content="AI process audit, AI automation services, AI workforce training, business automation consultancy, AI workflow design, SME AI transformation, HR automation, operational efficiency AI, aitamate solutions, AI implementation"/>
+<meta name="author" content="aitamate Solutions"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.aitamate.com/solutions.html"/>
+
+<!-- ── OPEN GRAPH ── -->
+<meta property="og:type"        content="website"/>
+<meta property="og:url"         content="https://www.aitamate.com/solutions.html"/>
+<meta property="og:title"       content="AI Solutions & Services - aitamate"/>
+<meta property="og:description" content="Process audits, done-for-you AI automations, and workforce AI training. We meet you exactly where you are on your AI journey."/>
+<meta property="og:image"       content="https://www.aitamate.com/src/og-solutions.png"/>
+<meta property="og:site_name"   content="aitamate Solutions"/>
+
+<!-- ── TWITTER CARD ── -->
+<meta name="twitter:card"        content="summary_large_image"/>
+<meta name="twitter:title"       content="AI Solutions & Services - aitamate"/>
+<meta name="twitter:description" content="AI process audits, workflow automation, and training. Find your highest-ROI AI opportunity - book a free discovery call."/>
+<meta name="twitter:image"       content="https://www.aitamate.com/src/og-solutions.png"/>
+
+<!-- ── STRUCTURED DATA (Service) ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "AI Consulting & Automation",
+  "provider": {
+    "@type": "Organization",
+    "name": "aitamate Solutions",
+    "url": "https://www.aitamate.com"
+  },
+  "description": "aitamate delivers AI process audits, done-for-you workflow automation, and AI workforce training to help businesses of all sizes adopt AI ethically and practically.",
+  "offers": [
+    { "@type": "Offer", "name": "AI Process Audit",         "description": "Deep-dive workflow mapping and prioritised AI opportunity roadmap." },
+    { "@type": "Offer", "name": "AI-Enabled Automations",   "description": "End-to-end design, build, and integration of AI workflows." },
+    { "@type": "Offer", "name": "AI Workforce Training",    "description": "Leadership literacy, prompt engineering, and bespoke team workshops." }
+  ]
+}
+</script>
+
+<!-- ── FAVICON ── -->
+<link rel="icon" type="image/x-icon" href="src/favicon.png"/>
+
+<!-- ── FONTS & LIBRARIES ── -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
-<style>
-:root{
-  --navy:#0A1628;--blue:#1A6FD4;--blue-lt:#2E8CF0;--blue-pale:#EBF4FF;
-  --blue-mid:#1a4a8a;--white:#fff;--bg:#F7F9FC;--muted:#5A6A7E;
-  --border:#DDE4EE;--border-blue:rgba(26,111,212,.2);--text:#0A1628;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
 
-nav{position:fixed;top:0;width:100%;z-index:999;height:66px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
-.nav-links{display:flex;gap:32px;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s;}
-.nav-links a:hover,.nav-links a.active{color:var(--navy);}
-.nav-cta{background:var(--blue);color:#fff;padding:10px 22px;border-radius:7px;font-size:.875rem;font-weight:600;text-decoration:none;transition:all .2s;}
-.nav-cta:hover{background:var(--blue-lt);box-shadow:0 6px 18px rgba(26,111,212,.3);}
-
-.btn-primary{display:inline-block;background:var(--blue);color:#fff;padding:13px 30px;border-radius:7px;font-size:.9rem;font-weight:700;text-decoration:none;transition:all .25s;}
-.btn-primary:hover{background:var(--blue-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,111,212,.3);}
-.btn-ghost{display:inline-block;background:transparent;color:var(--navy);padding:12px 28px;border-radius:7px;font-size:.9rem;font-weight:600;text-decoration:none;border:1.5px solid var(--border);transition:all .25s;}
-.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
-
-.sec-label{font-size:.72rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
-.sec-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;color:var(--navy);line-height:1.2;letter-spacing:-.6px;margin-bottom:12px;}
-.center{text-align:center;}
-
-/* PAGE HERO */
-.page-hero{padding:130px 6% 80px;background:linear-gradient(160deg,#f0f6ff 0%,#f7f9fc 55%,#eef4fb 100%);text-align:center;position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(26,111,212,.09) 0%,transparent 70%);pointer-events:none;}
-.page-hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
-.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2.1rem,5vw,3.3rem);font-weight:900;line-height:1.12;letter-spacing:-1.2px;color:var(--navy);margin-bottom:18px;}
-.page-hero h1 em{font-style:normal;color:var(--blue);}
-.page-hero p{font-size:1rem;color:var(--muted);line-height:1.75;}
-
-/* SERVICE SECTIONS */
-.service-section{padding:96px 6%;}
-.service-section.alt{background:var(--bg);}
-.svc-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-.svc-inner.reverse{direction:rtl;}
-.svc-inner.reverse > *{direction:ltr;}
-.svc-num{font-family:'Montserrat',sans-serif;font-size:4rem;font-weight:900;color:rgba(26,111,212,.1);line-height:1;margin-bottom:4px;}
-.svc-content h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3vw,2.1rem);font-weight:900;color:var(--navy);line-height:1.2;letter-spacing:-.5px;margin-bottom:12px;}
-.svc-content .tagline{font-size:.9rem;color:var(--blue);font-weight:600;margin-bottom:16px;}
-.svc-content p{font-size:.9rem;color:var(--muted);line-height:1.78;margin-bottom:28px;}
-.svc-includes{margin-bottom:32px;}
-.svc-includes h4{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px;}
-.svc-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.svc-item i{color:var(--blue);font-size:.75rem;margin-top:3px;flex-shrink:0;}
-.svc-item span{font-size:.85rem;color:var(--muted);line-height:1.55;}
-.svc-visual{background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:36px;box-shadow:0 8px 32px rgba(10,22,40,.05);}
-.svc-visual.dark{background:var(--navy);border-color:transparent;}
-.svc-visual-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:20px;}
-.svc-visual-icon.blue{background:var(--blue-pale);color:var(--blue);}
-.svc-visual-icon.white{background:rgba(255,255,255,.1);color:#fff;}
-.svc-visual h3{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:10px;}
-.svc-visual.dark h3{color:#fff;}
-.svc-visual p{font-size:.85rem;color:var(--muted);line-height:1.65;}
-.svc-visual.dark p{color:rgba(255,255,255,.5);}
-.svc-checklist{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
-.sc-row{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:8px;padding:10px 14px;}
-.svc-visual.dark .sc-row{background:rgba(255,255,255,.06);}
-.sc-row i{color:#16A34A;font-size:.75rem;}
-.sc-row span{font-size:.8rem;color:var(--muted);}
-.svc-visual.dark .sc-row span{color:rgba(255,255,255,.5);}
-
-/* PROCESS STRIP */
-.process{padding:80px 6%;background:var(--navy);}
-.process-inner{max-width:1060px;margin:0 auto;text-align:center;}
-.process-inner .sec-title{color:#fff;}
-.process-inner .sec-sub{color:rgba(255,255,255,.5);font-size:.95rem;max-width:480px;margin:0 auto 56px;}
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
-.process-grid::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:rgba(255,255,255,.1);}
-.proc-step{padding:0 16px;text-align:center;}
-.proc-dot{width:56px;height:56px;border-radius:50%;background:rgba(26,111,212,.2);border:1.5px solid rgba(26,111,212,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--blue-lt);font-size:1rem;}
-.proc-step h4{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;margin-bottom:8px;}
-.proc-step p{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.6;}
-
-/* CTA BAND */
-.cta-band{background:var(--bg);padding:80px 6%;text-align:center;border-top:1px solid var(--border);}
-.cta-band h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.7rem,3.5vw,2.2rem);font-weight:900;color:var(--navy);margin-bottom:14px;letter-spacing:-.4px;}
-.cta-band p{color:var(--muted);font-size:.95rem;max-width:480px;margin:0 auto 34px;line-height:1.7;}
-
-footer{background:var(--navy);padding:56px 6% 0;}
-.footer-top{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;}
-.footer-brand p{font-size:.83rem;color:rgba(255,255,255,.38);line-height:1.7;max-width:230px;margin-top:14px;}
-.footer-social{display:flex;gap:12px;margin-top:20px;}
-.footer-social a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.45);font-size:.8rem;transition:all .2s;text-decoration:none;}
-.footer-social a:hover{background:var(--blue);color:#fff;}
-.footer-col h4{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;}
-.footer-col a{display:block;font-size:.84rem;color:rgba(255,255,255,.48);text-decoration:none;margin-bottom:10px;transition:color .2s;}
-.footer-col a:hover{color:#fff;}
-.footer-bottom{max-width:1060px;margin:0 auto;padding:20px 0;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-.footer-bottom p,.footer-bottom a{font-size:.75rem;color:rgba(255,255,255,.28);text-decoration:none;}
-
-@media(max-width:860px){
-  .svc-inner,.svc-inner.reverse{grid-template-columns:1fr;direction:ltr;}
-  .process-grid{grid-template-columns:1fr 1fr;gap:36px;}
-  .process-grid::before{display:none;}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  nav .nav-links{display:none;}
-}
-@media(max-width:540px){.process-grid{grid-template-columns:1fr;}}
-</style>
+<!-- ── SHARED STYLESHEET ── -->
+<link rel="stylesheet" href="src/aitamate.css"/>
 </head>
 <body>
 
 <nav>
   <a href="index.html">
-    <img src="src\Logo-transparent_bg.png" alt="aitamate" style="height:36px;"
+    <img src="src/Logo-transparent_bg.png" alt="aitamate" style="height:36px;"
          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
     <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--blue);">ai<span style="color:var(--navy);">tamate</span></span>
   </a>
@@ -137,27 +82,27 @@ footer{background:var(--navy);padding:56px 6% 0;}
   <div class="page-hero-inner">
     <p class="sec-label" data-aos="fade-down">Our Services</p>
     <h1 data-aos="fade-up" data-aos-delay="80">Not Just Software. A Full <em>AI Transformation Practice.</em></h1>
-    <p data-aos="fade-up" data-aos-delay="160">Whether you need a diagnosis, a deployment, or a trained team — we meet you exactly where you are on your AI journey.</p>
+    <p data-aos="fade-up" data-aos-delay="160">Whether you need a diagnosis, a deployment, or a trained team - we meet you exactly where you are on your AI journey.</p>
   </div>
 </div>
 
 <!-- SERVICE 1: PROCESS AUDIT -->
-<section class="service-section">
+<section class="service-section" id="process-audit">
   <div class="svc-inner">
     <div data-aos="fade-right">
       <div class="svc-num">01</div>
       <div class="svc-content">
-        <div class="sec-label">Discovery</div>
+        <p class="sec-label">Discovery</p>
         <h2>Process Audits for AI Optimisation</h2>
-        <p class="tagline">Find your highest-ROI automation opportunities — before spending a rupee on implementation.</p>
-        <p>Most businesses don't have an AI problem — they have a clarity problem. They know automation is possible but don't know where to start, what to prioritise, or what the real cost of inaction is. Our AI Process Audit answers all three questions in a structured, no-jargon engagement.</p>
+        <span class="tagline">Find your highest-ROI automation opportunities - before spending a rupee on implementation.</span>
+        <p>Most businesses don't have an AI problem - they have a clarity problem. They know automation is possible but don't know where to start, what to prioritise, or what the real cost of inaction is. Our AI Process Audit answers all three questions in a structured, no-jargon engagement.</p>
         <div class="svc-includes">
           <h4>What's Included</h4>
           <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Deep-dive mapping of your current workflows and processes</span></div>
-          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Identification of the top 3–5 highest-impact automation opportunities</span></div>
+          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Identification of the top 3-5 highest-impact automation opportunities</span></div>
           <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>ROI estimation for each identified opportunity</span></div>
           <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Prioritised implementation roadmap with sequenced next steps</span></div>
-          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Executive presentation — board-ready and decision-ready</span></div>
+          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Executive presentation - board-ready and decision-ready</span></div>
         </div>
         <a class="btn-primary" href="contact.html">Book a Process Audit</a>
       </div>
@@ -165,7 +110,7 @@ footer{background:var(--navy);padding:56px 6% 0;}
     <div class="svc-visual" data-aos="fade-left" data-aos-delay="100">
       <div class="svc-visual-icon blue"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
       <h3>What You Walk Away With</h3>
-      <p style="margin-bottom:18px;">A clear, sequenced AI roadmap — not a theoretical report, but an actionable plan your leadership team can execute immediately.</p>
+      <p style="margin-bottom:18px;">A clear, sequenced AI roadmap - not a theoretical report, but an actionable plan your leadership team can execute immediately.</p>
       <div class="svc-checklist">
         <div class="sc-row"><i class="fa-solid fa-check"></i><span>Process map with automation zones highlighted</span></div>
         <div class="sc-row"><i class="fa-solid fa-check"></i><span>Prioritised opportunity matrix with ROI estimates</span></div>
@@ -177,15 +122,15 @@ footer{background:var(--navy);padding:56px 6% 0;}
 </section>
 
 <!-- SERVICE 2: AUTOMATIONS -->
-<section class="service-section alt">
+<section class="service-section alt" id="automations">
   <div class="svc-inner reverse">
     <div data-aos="fade-left">
       <div class="svc-num">02</div>
       <div class="svc-content">
-        <div class="sec-label">Implementation</div>
+        <p class="sec-label">Implementation</p>
         <h2>AI-Enabled Automations</h2>
-        <p class="tagline">Done-for-you AI workflows — designed, built, integrated, and maintained by us.</p>
-        <p>You've identified the opportunity. Now it's time to build. aitamate's implementation service takes your prioritised automation use cases and turns them into live, production-grade AI workflows — without burdening your internal team with technical complexity. We own the implementation so your team can stay focused on the business.</p>
+        <span class="tagline">Done-for-you AI workflows - designed, built, integrated, and maintained by us.</span>
+        <p>You've identified the opportunity. Now it's time to build. aitamate's implementation service takes your prioritised automation use cases and turns them into live, production-grade AI workflows - without burdening your internal team with technical complexity. We own the implementation so your team can stay focused on the business.</p>
         <div class="svc-includes">
           <h4>What's Included</h4>
           <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>End-to-end workflow design and architecture</span></div>
@@ -200,7 +145,7 @@ footer{background:var(--navy);padding:56px 6% 0;}
     <div class="svc-visual dark" data-aos="fade-right" data-aos-delay="100">
       <div class="svc-visual-icon white"><i class="fa-solid fa-gears"></i></div>
       <h3>Common Automation Use Cases</h3>
-      <p style="margin-bottom:18px;">We build across functions — wherever repetitive, rule-based or data-heavy work exists.</p>
+      <p style="margin-bottom:18px;">We build across functions - wherever repetitive, rule-based or data-heavy work exists.</p>
       <div class="svc-checklist">
         <div class="sc-row"><i class="fa-solid fa-check"></i><span>HR: Resume screening, onboarding, payroll prep</span></div>
         <div class="sc-row"><i class="fa-solid fa-check"></i><span>Sales: Lead scoring, follow-up sequences, CRM updates</span></div>
@@ -212,21 +157,21 @@ footer{background:var(--navy);padding:56px 6% 0;}
 </section>
 
 <!-- SERVICE 3: TRAINING -->
-<section class="service-section">
+<section class="service-section" id="training">
   <div class="svc-inner">
     <div data-aos="fade-right">
       <div class="svc-num">03</div>
       <div class="svc-content">
-        <div class="sec-label">Capability Building</div>
+        <p class="sec-label">Capability Building</p>
         <h2>Training for an AI-Enabled Workforce</h2>
-        <p class="tagline">Equip your team to work with AI — not around it.</p>
-        <p>The biggest bottleneck to AI adoption isn't technology — it's people. Fear, confusion, and lack of practical skills slow down even the best-resourced organisations. Our training programmes close that gap at every level of the business: from leadership to frontline, from strategic context to hands-on prompt engineering.</p>
+        <span class="tagline">Equip your team to work with AI - not around it.</span>
+        <p>The biggest bottleneck to AI adoption isn't technology - it's people. Fear, confusion, and lack of practical skills slow down even the best-resourced organisations. Our training programmes close that gap at every level of the business: from leadership to frontline, from strategic context to hands-on prompt engineering.</p>
         <div class="svc-includes">
           <h4>Training Programmes</h4>
-          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>AI Literacy for Leadership — strategic context and decision-making</span></div>
-          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Prompt Engineering Essentials — for managers and individual contributors</span></div>
-          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>AI Workflow Design — for operations and process owners</span></div>
-          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Bespoke team workshops — tailored to your industry and tools</span></div>
+          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>AI Literacy for Leadership - strategic context and decision-making</span></div>
+          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Prompt Engineering Essentials - for managers and individual contributors</span></div>
+          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>AI Workflow Design - for operations and process owners</span></div>
+          <div class="svc-item"><i class="fa-solid fa-circle-check"></i><span>Bespoke team workshops - tailored to your industry and tools</span></div>
         </div>
         <a class="btn-primary" href="contact.html">Enquire About Training</a>
       </div>
@@ -234,7 +179,7 @@ footer{background:var(--navy);padding:56px 6% 0;}
     <div class="svc-visual" data-aos="fade-left" data-aos-delay="100">
       <div class="svc-visual-icon blue"><i class="fa-solid fa-graduation-cap"></i></div>
       <h3>Training Delivery Formats</h3>
-      <p style="margin-bottom:18px;">Flexible delivery designed for busy teams — online, in-person, or hybrid.</p>
+      <p style="margin-bottom:18px;">Flexible delivery designed for busy teams - online, in-person, or hybrid.</p>
       <div class="svc-checklist">
         <div class="sc-row"><i class="fa-solid fa-check"></i><span>Half-day and full-day in-person workshops</span></div>
         <div class="sc-row"><i class="fa-solid fa-check"></i><span>Live virtual sessions with hands-on exercises</span></div>
@@ -250,7 +195,7 @@ footer{background:var(--navy);padding:56px 6% 0;}
   <div class="process-inner">
     <p class="sec-label" style="color:var(--blue-lt);" data-aos="fade-up">How We Engage</p>
     <h2 class="sec-title" data-aos="fade-up" data-aos-delay="80">Our Engagement Process</h2>
-    <p class="sec-sub" data-aos="fade-up" data-aos-delay="140">A clear, structured path from first conversation to full deployment — no ambiguity, no surprises.</p>
+    <p class="sec-sub" data-aos="fade-up" data-aos-delay="140">A clear, structured path from first conversation to full deployment - no ambiguity, no surprises.</p>
     <div class="process-grid">
       <div class="proc-step" data-aos="fade-up" data-aos-delay="60">
         <div class="proc-dot"><i class="fa-solid fa-comments"></i></div>
@@ -265,7 +210,7 @@ footer{background:var(--navy);padding:56px 6% 0;}
       <div class="proc-step" data-aos="fade-up" data-aos-delay="220">
         <div class="proc-dot"><i class="fa-solid fa-rocket"></i></div>
         <h4>Implementation</h4>
-        <p>We execute with your team — building, training, or automating depending on the selected service.</p>
+        <p>We execute with your team - building, training, or automating depending on the selected service.</p>
       </div>
       <div class="proc-step" data-aos="fade-up" data-aos-delay="300">
         <div class="proc-dot"><i class="fa-solid fa-chart-line"></i></div>
@@ -277,32 +222,31 @@ footer{background:var(--navy);padding:56px 6% 0;}
 </section>
 
 <!-- CTA -->
-<div class="cta-band" data-aos="fade-up">
+<div class="cta-band-light" data-aos="fade-up">
   <h2>Not sure which service is right for you?</h2>
-  <p>Start with a free 30-minute discovery call. We'll help you identify exactly where to begin — with no obligation and no pressure.</p>
+  <p>Start with a free 30-minute discovery call. We'll help you identify exactly where to begin - with no obligation and no pressure.</p>
   <a class="btn-primary" href="contact.html">Book a Free Discovery Call</a>
 </div>
 
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <img src="src\Logo-transparent_bg.png" alt="aitamate" style="height:34px;"
+      <img src="src/Logo-transparent_bg.png" alt="aitamate" style="height:34px;"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
       <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:900;color:#2E8CF0;">ai<span style="color:#fff;">tamate</span></span>
-      <p>Augmented Intelligence for the businesses that build tomorrow.</p>
+      <p><span style="color: white;">A</span>ugmented <span style="color: white;">I</span>ntelligence for the businesses that build tomorrow.</p>
       <div class="footer-social">
-        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://linkedin.com/company/aitamate" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:sales@aitamate.com" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
-    <div class="footer-col"><h4>Products</h4><a href="http://provaluate.aitamate.com" target="_blank">ProValuate</a><a href="http://momentum.aitamate.com" target="_blank">Momentum</a></div>
+    <div class="footer-col"><h4>Products</h4><a href="http://provaluate.aitamate.com" target="_blank" rel="noopener">ProValuate</a><a href="http://momentum.aitamate.com" target="_blank" rel="noopener">Momentum</a></div>
     <div class="footer-col"><h4>Company</h4><a href="solutions.html">Solutions</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></div>
-    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 aitamate Solutions. All rights reserved.</p>
-    <div style="display:flex;gap:20px;"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+    <p>© 2026 aitamate Solutions. All rights reserved.</p>
+    <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
   </div>
 </footer>
 <script>AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});</script>
