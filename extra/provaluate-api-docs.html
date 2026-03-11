@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProValuate API — Developer Documentation</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7fc;
+    --surface: #ffffff;
+    --surface2: #eef1f8;
+    --border: #d8dce8;
+    --accent: #1a5fd4;
+    --accent2: #007a8c;
+    --accent3: #c43a0e;
+    --text: #0d1530;
+    --muted: #556080;
+    --code-bg: #1a1f32;
+    --tag-green: #007a8c;
+    --tag-blue: #1a5fd4;
+    --tag-orange: #c47000;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── LAYOUT ─── */
+  .shell {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    background: #ffffff;
+    box-shadow: 2px 0 12px rgba(26,95,212,0.06);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-logo {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo-mark {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+
+  .logo-mark span { color: var(--accent); }
+
+  .logo-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .nav-section {
+    padding: 20px 16px 8px;
+  }
+
+  .nav-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0 8px;
+    margin-bottom: 6px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+
+  .nav-item:hover { color: var(--text); background: var(--surface2); }
+  .nav-item.active { color: var(--accent); background: rgba(79,142,255,0.08); border-color: rgba(79,142,255,0.15); }
+
+  .nav-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,229,176,0.08);
+    border: 1px solid rgba(0,229,176,0.2);
+    color: var(--accent2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .pulse {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .main {
+    flex: 1;
+    max-width: 860px;
+    padding: 60px 56px;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    margin-bottom: 64px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(79,142,255,0.08);
+    border: 1px solid rgba(79,142,255,0.2);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+  }
+
+  h1 .grad {
+    background: linear-gradient(135deg, #1a5fd4 0%, #007a8c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .hero-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--surface);
+  }
+
+  .pill-icon { font-size: 14px; }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    margin-bottom: 56px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-anchor {
+    display: block;
+    position: relative;
+    top: -20px;
+    visibility: hidden;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(79,142,255,0.1);
+    border: 1px solid rgba(79,142,255,0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--text);
+  }
+
+  p { color: #445070; margin-bottom: 14px; }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+  }
+
+  /* ─── BASE URL BLOCK ─── */
+  .base-url {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+
+  .base-url-label {
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .base-url-value { color: var(--accent2); word-break: break-all; }
+
+  /* ─── ENDPOINT CARD ─── */
+  .endpoint-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .endpoint-card:hover { border-color: rgba(79,142,255,0.3); }
+
+  .endpoint-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+  }
+
+  .method {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .method.get { background: rgba(0,229,176,0.1); color: var(--accent2); border: 1px solid rgba(0,229,176,0.2); }
+  .method.post { background: rgba(79,142,255,0.1); color: var(--accent); border: 1px solid rgba(79,142,255,0.2); }
+
+  .endpoint-path {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .endpoint-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  .endpoint-body { padding: 20px; }
+
+  /* ─── CODE BLOCK ─── */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 14px 0;
+    position: relative;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.05);
+  }
+
+  .code-lang {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .copy-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .copy-btn:hover { color: var(--text); border-color: var(--muted); }
+
+  pre {
+    padding: 18px 20px;
+    overflow-x: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+
+  .kw { color: #ff79c6; }
+  .str { color: #f1fa8c; }
+  .key { color: #8be9fd; }
+  .val { color: #50fa7b; }
+  .num { color: #bd93f9; }
+  .cmt { color: #6272a4; font-style: italic; }
+  .url { color: var(--accent2); }
+  .met { color: var(--accent3); }
+
+  /* ─── PARAM TABLE ─── */
+  .param-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .param-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .param-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(200,205,220,0.8);
+    vertical-align: top;
+  }
+
+  .param-table tr:last-child td { border-bottom: none; }
+
+  .param-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent2);
+  }
+
+  .param-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent3);
+    background: rgba(255,107,74,0.08);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  .required-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    background: rgba(255,107,74,0.1);
+    color: var(--accent3);
+    border: 1px solid rgba(255,107,74,0.2);
+    padding: 2px 7px;
+    border-radius: 100px;
+  }
+
+  .optional-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    background: rgba(107,119,153,0.1);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 2px 7px;
+    border-radius: 100px;
+  }
+
+  /* ─── INFO BOX ─── */
+  .info-box {
+    display: flex;
+    gap: 14px;
+    background: rgba(79,142,255,0.05);
+    border: 1px solid rgba(79,142,255,0.2);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+
+  .info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .info-text { font-size: 13.5px; color: #445070; line-height: 1.6; }
+  .info-text strong { color: var(--accent); }
+
+  .warning-box {
+    display: flex;
+    gap: 14px;
+    background: rgba(255,159,67,0.05);
+    border: 1px solid rgba(255,159,67,0.2);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+
+  .warning-box .info-text strong { color: var(--tag-orange); }
+
+  /* ─── AUTH FLOW ─── */
+  .auth-steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+  }
+
+  .auth-steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .auth-steps li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(79,142,255,0.1);
+    border: 1px solid rgba(79,142,255,0.3);
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-content { flex: 1; }
+  .step-title { font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .step-desc { font-size: 13.5px; color: var(--muted); }
+
+  /* ─── RESPONSE TABLE ─── */
+  .status-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .status-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--muted); text-align: left; padding: 8px 14px;
+    border-bottom: 1px solid var(--border); background: var(--surface2);
+  }
+  .status-table td { padding: 10px 14px; border-bottom: 1px solid rgba(200,205,220,0.8); font-size: 13px; }
+  .status-table tr:last-child td { border-bottom: none; }
+
+  .status-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .s200 { background: rgba(0,229,176,0.1); color: var(--accent2); }
+  .s400 { background: rgba(255,159,67,0.1); color: var(--tag-orange); }
+  .s401 { background: rgba(255,107,74,0.1); color: var(--accent3); }
+  .s500 { background: rgba(255,107,74,0.15); color: #ff4040; }
+
+  /* ─── SDK TABS ─── */
+  .sdk-tabs { display: flex; gap: 4px; margin-bottom: -1px; }
+  .sdk-tab {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    background: var(--surface2);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .sdk-tab.active { background: var(--code-bg); color: var(--text); border-color: var(--border); }
+
+  /* ─── RATE LIMIT METER ─── */
+  .limit-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .limit-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+  }
+
+  .limit-card-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .limit-card-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main { padding: 32px 20px; }
+    .limit-cards { grid-template-columns: 1fr 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ─── SIDEBAR ─── -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      
+      <div class="logo-sub" style="margin-top:8px;">API Reference v1.0</div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Getting Started</div>
+      <a href="#overview" class="nav-item active"><span class="nav-dot"></span> Overview</a>
+      <a href="#auth" class="nav-item"><span class="nav-dot"></span> Authentication</a>
+      <a href="#base-url" class="nav-item"><span class="nav-dot"></span> Base URL</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Core Endpoints</div>
+      <a href="#cv-upload" class="nav-item"><span class="nav-dot"></span> Upload Resume</a>
+      <a href="#cv-analyze" class="nav-item"><span class="nav-dot"></span> Analyze Resumes</a>
+      <a href="#jd-list" class="nav-item"><span class="nav-dot"></span> Job Descriptions</a>
+      <a href="#criteria" class="nav-item"><span class="nav-dot"></span> Criteria</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Interview System</div>
+      <a href="#interview-create" class="nav-item"><span class="nav-dot"></span> Create Interview</a>
+      <a href="#interview-question" class="nav-item"><span class="nav-dot"></span> Generate Question</a>
+      <a href="#interview-submit" class="nav-item"><span class="nav-dot"></span> Submit Answer</a>
+      <a href="#interview-get" class="nav-item"><span class="nav-dot"></span> Get Results</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Reference</div>
+      <a href="#errors" class="nav-item"><span class="nav-dot"></span> Error Codes</a>
+      <a href="#rate-limits" class="nav-item"><span class="nav-dot"></span> Rate Limits</a>
+      <a href="#webhooks" class="nav-item"><span class="nav-dot"></span> Webhooks</a>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="version-badge"><span class="pulse"></span> v1.0 — Live</div>
+    </div>
+  </nav>
+
+  <!-- ─── MAIN ─── -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-tag">⚡ REST API</div>
+      <h1>Build with the<br><span class="grad">ProValuate API</span></h1>
+      <p class="hero-desc">
+        Integrate AI-powered resume screening, candidate scoring, and conversational interviews directly into your ATS, HRMS, or recruitment workflow. Every feature in the ProValuate platform is available via REST API.
+      </p>
+      <div class="hero-pills">
+        <div class="pill"><span class="pill-icon">🔐</span> API Key Auth</div>
+        <div class="pill"><span class="pill-icon">📦</span> JSON / Multipart</div>
+        <div class="pill"><span class="pill-icon">⚡</span> WebSocket Support</div>
+        <div class="pill"><span class="pill-icon">🌐</span> HTTPS Only</div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section">
+      <span class="section-anchor" id="overview"></span>
+      <h2><span class="section-num">01</span> Overview</h2>
+      <p>The ProValuate API lets you automate every stage of the candidate assessment lifecycle — from parsing job descriptions and scoring resumes, to conducting dynamic AI-driven interviews and generating detailed reports.</p>
+
+      <div class="info-box">
+        <span class="info-icon">💡</span>
+        <div class="info-text">
+          <strong>What you can build:</strong> Embed resume screening inside your existing ATS, trigger automatic interviews on candidate application, pull assessment scores into your HRMS dashboard, or build custom hiring workflows with full programmatic control.
+        </div>
+      </div>
+
+      <h3>API Architecture</h3>
+      <p>All endpoints are RESTful and return JSON responses. File uploads use <code style="color:var(--accent2); font-family:'IBM Plex Mono',monospace; font-size:12px;">multipart/form-data</code>. All other requests use <code style="color:var(--accent2); font-family:'IBM Plex Mono',monospace; font-size:12px;">application/json</code>.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- AUTH -->
+    <div class="section">
+      <span class="section-anchor" id="auth"></span>
+      <h2><span class="section-num">02</span> Authentication</h2>
+      <p>The ProValuate API uses two identifiers to authenticate and scope every request: your <strong style="color:var(--text)">Company ID</strong> and <strong style="color:var(--text)">User ID</strong>. These are passed in the request body or as query parameters — never in headers.</p>
+
+      <ul class="auth-steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Log in to your ProValuate dashboard</div>
+            <div class="step-desc">Navigate to <strong style="color:var(--accent)">Settings → API Access</strong> to retrieve your Company ID and User ID.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Include credentials on every request</div>
+            <div class="step-desc">Attach <code style="color:var(--accent2); font-family:'IBM Plex Mono',monospace; font-size:11px;">company_id</code> and <code style="color:var(--accent2); font-family:'IBM Plex Mono',monospace; font-size:11px;">user_id</code> in the request body or as query params. All data is scoped to your company.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Secure your credentials</div>
+            <div class="step-desc">Never expose credentials client-side. Always make API calls from your server or secure backend environment.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">Example — Credential Usage</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><span class="cmt"># Every request should include these identifiers</span>
+{
+  <span class="key">"company_id"</span>: <span class="str">"bea223c9-94c0-483e-bc36-cd11826f32f5"</span>,
+  <span class="key">"user_id"</span>:    <span class="str">"336e4422-d872-4f58-810e-4eb59da73206"</span>
+}</pre>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- BASE URL -->
+    <div class="section">
+      <span class="section-anchor" id="base-url"></span>
+      <h2><span class="section-num">03</span> Base URL</h2>
+      <p>All API requests should be directed to the following base URL. Ensure all requests use HTTPS.</p>
+
+      <div class="base-url">
+        <span class="base-url-label">Base URL</span>
+        <span class="base-url-value">https://flask-6421997997235322.kloudbeansite.com</span>
+      </div>
+
+      <div class="warning-box">
+        <span class="info-icon">⚠️</span>
+        <div class="info-text">
+          <strong>Production only.</strong> This endpoint serves live data. Test integrations using a separate sandbox company account. Contact support to provision a sandbox environment.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CV UPLOAD -->
+    <div class="section">
+      <span class="section-anchor" id="cv-upload"></span>
+      <h2><span class="section-num">04</span> Upload Resume</h2>
+      <p>Upload a candidate's resume PDF to ProValuate storage. Returns a hosted file URL used in subsequent analysis calls.</p>
+
+      <div class="endpoint-card">
+        <div class="endpoint-header">
+          <span class="method post">POST</span>
+          <span class="endpoint-path">/cv/upload</span>
+          <span class="endpoint-desc">Upload a resume file</span>
+        </div>
+        <div class="endpoint-body">
+          <h3>Request — multipart/form-data</h3>
+          <table class="param-table">
+            <thead>
+              <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="param-name">file</span></td><td><span class="param-type">File</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">PDF file of the candidate's resume</td></tr>
+              <tr><td><span class="param-name">company_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Your company UUID</td></tr>
+              <tr><td><span class="param-name">user_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">User performing the upload</td></tr>
+              <tr><td><span class="param-name">jd_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Job description UUID to assess against</td></tr>
+              <tr><td><span class="param-name">criteria_id</span></td><td><span class="param-type">string</span></td><td><span class="optional-badge">optional</span></td><td style="color:#445070;">Scoring criteria UUID</td></tr>
+              <tr><td><span class="param-name">candidate_name</span></td><td><span class="param-type">string</span></td><td><span class="optional-badge">optional</span></td><td style="color:#445070;">Candidate's display name</td></tr>
+            </tbody>
+          </table>
+
+          <div class="sdk-tabs">
+            <div class="sdk-tab active">cURL</div>
+            <div class="sdk-tab">Python</div>
+            <div class="sdk-tab">Node.js</div>
+          </div>
+          <div class="code-block" style="border-radius:0 8px 8px 8px; margin-top:0;">
+            <div class="code-header">
+              <span class="code-lang">cURL</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><span class="met">curl</span> -X POST <span class="str">"https://flask-6421997997235322.kloudbeansite.com/cv/upload"</span> \
+  -F <span class="str">"file=@/path/to/resume.pdf"</span> \
+  -F <span class="str">"company_id=bea223c9-94c0-483e-bc36-cd11826f32f5"</span> \
+  -F <span class="str">"user_id=336e4422-d872-4f58-810e-4eb59da73206"</span> \
+  -F <span class="str">"jd_id=455f4748-7753-4af7-9077-82ffd11057d2"</span> \
+  -F <span class="str">"candidate_name=Jane Smith"</span></pre>
+          </div>
+
+          <h3>Response</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">JSON — 200 OK</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre>{
+  <span class="key">"status"</span>:         <span class="str">"success"</span>,
+  <span class="key">"file_url"</span>:       <span class="str">"https://storage.supabase.co/.../resume.pdf"</span>,
+  <span class="key">"resume_id"</span>:     <span class="str">"3481d4e1-c068-429e-a6dc-57fc2e70e80a"</span>,
+  <span class="key">"candidate_name"</span>: <span class="str">"Jane Smith"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CV ANALYZE -->
+    <div class="section">
+      <span class="section-anchor" id="cv-analyze"></span>
+      <h2><span class="section-num">05</span> Analyze Resumes</h2>
+      <p>Run AI-powered analysis on one or more uploaded resumes against a job description and scoring criteria. Returns detailed scores, recommendations, and assessment reports.</p>
+
+      <div class="endpoint-card">
+        <div class="endpoint-header">
+          <span class="method post">POST</span>
+          <span class="endpoint-path">/cv/analyze_resumes</span>
+          <span class="endpoint-desc">Batch analyze resumes against a JD</span>
+        </div>
+        <div class="endpoint-body">
+          <h3>Request Body — application/json</h3>
+          <table class="param-table">
+            <thead>
+              <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="param-name">jd_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Job description UUID</td></tr>
+              <tr><td><span class="param-name">resume_urls</span></td><td><span class="param-type">string[]</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Array of hosted resume file URLs</td></tr>
+              <tr><td><span class="param-name">company_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Your company UUID</td></tr>
+              <tr><td><span class="param-name">criteria_id</span></td><td><span class="param-type">string</span></td><td><span class="optional-badge">optional</span></td><td style="color:#445070;">Custom scoring criteria UUID</td></tr>
+            </tbody>
+          </table>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">Request</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre>{
+  <span class="key">"jd_id"</span>:       <span class="str">"455f4748-7753-4af7-9077-82ffd11057d2"</span>,
+  <span class="key">"criteria_id"</span>: <span class="str">"e12df1fa-7879-4db8-a40e-063002bdd76a"</span>,
+  <span class="key">"company_id"</span>:  <span class="str">"bea223c9-94c0-483e-bc36-cd11826f32f5"</span>,
+  <span class="key">"resume_urls"</span>: [
+    <span class="str">"https://storage.supabase.co/.../candidate1.pdf"</span>,
+    <span class="str">"https://storage.supabase.co/.../candidate2.pdf"</span>
+  ]
+}</pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">Response — 200 OK</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre>{
+  <span class="key">"status"</span>:                <span class="str">"success"</span>,
+  <span class="key">"message"</span>:               <span class="str">"Processed 2/2 resumes"</span>,
+  <span class="key">"successful_analyses"</span>:   <span class="num">2</span>,
+  <span class="key">"failed_analyses"</span>:       <span class="num">0</span>,
+  <span class="key">"results"</span>: [
+    {
+      <span class="key">"candidate_name"</span>:   <span class="str">"Kartik Batchu"</span>,
+      <span class="key">"final_score"</span>:      <span class="num">6.39</span>,
+      <span class="key">"recommendation"</span>:   <span class="str">"To be interviewed"</span>,
+      <span class="key">"parameter_scores"</span>: {
+        <span class="key">"Technical Skills"</span>:  { <span class="key">"score"</span>: <span class="num">7.2</span>, <span class="key">"weightage"</span>: <span class="num">30</span> },
+        <span class="key">"Experience Level"</span>: { <span class="key">"score"</span>: <span class="num">2.35</span>, <span class="key">"weightage"</span>: <span class="num">25</span> },
+        <span class="key">"Education"</span>:        { <span class="key">"score"</span>: <span class="num">9.15</span>, <span class="key">"weightage"</span>: <span class="num">15</span> },
+        <span class="key">"Soft Skills"</span>:      { <span class="key">"score"</span>: <span class="num">8.70</span>, <span class="key">"weightage"</span>: <span class="num">20</span> },
+        <span class="key">"Stability"</span>:        { <span class="key">"score"</span>: <span class="num">5.30</span>, <span class="key">"weightage"</span>: <span class="num">10</span> }
+      },
+      <span class="key">"assessment_id"</span>:   <span class="str">"761ecbd0-f2aa-4df1-ad22-c95419065993"</span>
+    }
+  ]
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- JD LIST -->
+    <div class="section">
+      <span class="section-anchor" id="jd-list"></span>
+      <h2><span class="section-num">06</span> Job Descriptions</h2>
+      <p>Retrieve all job descriptions associated with your company, or fetch a specific JD by ID.</p>
+
+      <div class="endpoint-card">
+        <div class="endpoint-header">
+          <span class="method get">GET</span>
+          <span class="endpoint-path">/api/job_descriptions?company_id={company_id}</span>
+          <span class="endpoint-desc">List all JDs</span>
+        </div>
+        <div class="endpoint-body">
+          <table class="param-table">
+            <thead><tr><th>Query Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><span class="param-name">company_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Your company UUID</td></tr>
+            </tbody>
+          </table>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">Response — 200 OK</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>{
+  <span class="key">"status"</span>: <span class="str">"success"</span>,
+  <span class="key">"data"</span>: [
+    {
+      <span class="key">"jd_id"</span>:      <span class="str">"455f4748-7753-4af7-9077-82ffd11057d2"</span>,
+      <span class="key">"title"</span>:     <span class="str">"Machine Learning Trainee"</span>,
+      <span class="key">"status"</span>:    <span class="str">"active"</span>,
+      <span class="key">"jd_file"</span>:   <span class="str">"https://storage.supabase.co/.../jd.txt"</span>,
+      <span class="key">"created_at"</span>: <span class="str">"2026-01-29T08:37:10Z"</span>
+    }
+  ]
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="endpoint-card" style="margin-top:16px;">
+        <div class="endpoint-header">
+          <span class="method get">GET</span>
+          <span class="endpoint-path">/api/criteria?company_id={company_id}</span>
+          <span class="endpoint-desc">List scoring criteria</span>
+        </div>
+        <div class="endpoint-body">
+          <p style="font-size:13.5px; color:#445070;">Returns all evaluation criteria grids for your company. Each grid defines weighted parameters used to score candidates.</p>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">Response — 200 OK</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>{
+  <span class="key">"status"</span>: <span class="str">"success"</span>,
+  <span class="key">"data"</span>: [
+    {
+      <span class="key">"criteria_id"</span>:   <span class="str">"e12df1fa-7879-4db8-a40e-063002bdd76a"</span>,
+      <span class="key">"criteria_name"</span>: <span class="str">"Machine Learning"</span>,
+      <span class="key">"grid"</span>: [
+        { <span class="key">"parameter"</span>: <span class="str">"Technical Skills"</span>, <span class="key">"weightage"</span>: <span class="num">30</span> },
+        { <span class="key">"parameter"</span>: <span class="str">"Experience Level"</span>, <span class="key">"weightage"</span>: <span class="num">25</span> }
+      ]
+    }
+  ]
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- INTERVIEW SYSTEM -->
+    <div class="section">
+      <span class="section-anchor" id="interview-create"></span>
+      <h2><span class="section-num">07</span> Interview System</h2>
+      <p>The interview API lets you programmatically create, conduct, and retrieve AI-driven candidate interviews. Supports both functional and behavioral interview types.</p>
+
+      <div class="endpoint-card">
+        <div class="endpoint-header">
+          <span class="method post">POST</span>
+          <span class="endpoint-path">/api/create-interview</span>
+          <span class="endpoint-desc">Initialize a new interview session</span>
+        </div>
+        <div class="endpoint-body">
+          <table class="param-table">
+            <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><span class="param-name">candidate_name</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Full name of the candidate</td></tr>
+              <tr><td><span class="param-name">position</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Role being interviewed for</td></tr>
+              <tr><td><span class="param-name">candidate_email</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Candidate's email address</td></tr>
+              <tr><td><span class="param-name">company_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Your company UUID</td></tr>
+              <tr><td><span class="param-name">interview_type</span></td><td><span class="param-type">string</span></td><td><span class="optional-badge">optional</span></td><td style="color:#445070;"><code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2)">functional</code> or <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2)">behavioral</code></td></tr>
+              <tr><td><span class="param-name">custom_instructions</span></td><td><span class="param-type">string</span></td><td><span class="optional-badge">optional</span></td><td style="color:#445070;">Additional interviewer context</td></tr>
+            </tbody>
+          </table>
+
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">Response — 200 OK</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>{
+  <span class="key">"interview_id"</span>: <span class="str">"3e754fc9-1fbd-4c05-acee-58db8549eabc"</span>,
+  <span class="key">"status"</span>:       <span class="str">"pending"</span>,
+  <span class="key">"interview_url"</span>: <span class="str">"https://app.provaluate.com/interview/3e754fc9"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="endpoint-card" style="margin-top:16px;">
+        <div class="endpoint-header">
+          <span class="method post">POST</span>
+          <span class="endpoint-path">/api/generate-question</span>
+          <span class="endpoint-desc">Generate the next interview question</span>
+        </div>
+        <div class="endpoint-body">
+          <p style="font-size:13.5px; color:#445070;">Generates a contextual follow-up question based on the interview history and configured parameters. Pass <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2)">interview_id</code> in the body.</p>
+        </div>
+      </div>
+
+      <div class="endpoint-card" style="margin-top:16px;">
+        <div class="endpoint-header">
+          <span class="method post">POST</span>
+          <span class="endpoint-path">/api/submit-answer</span>
+          <span class="endpoint-desc">Submit a candidate's answer for scoring</span>
+        </div>
+        <div class="endpoint-body">
+          <table class="param-table">
+            <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><span class="param-name">interview_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">The active interview session ID</td></tr>
+              <tr><td><span class="param-name">question_id</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">The question being answered</td></tr>
+              <tr><td><span class="param-name">transcript</span></td><td><span class="param-type">string</span></td><td><span class="required-badge">required</span></td><td style="color:#445070;">Transcribed text of the answer</td></tr>
+              <tr><td><span class="param-name">audio_url</span></td><td><span class="param-type">string</span></td><td><span class="optional-badge">optional</span></td><td style="color:#445070;">Hosted audio recording URL</td></tr>
+              <tr><td><span class="param-name">written_answer</span></td><td><span class="param-type">string</span></td><td><span class="optional-badge">optional</span></td><td style="color:#445070;">Written portion of the answer</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="endpoint-card" style="margin-top:16px;">
+        <div class="endpoint-header">
+          <span class="method get">GET</span>
+          <span class="endpoint-path">/api/get-interview/{interview_id}</span>
+          <span class="endpoint-desc">Retrieve full interview results</span>
+        </div>
+        <div class="endpoint-body">
+          <p style="font-size:13.5px; color:#445070;">Returns the complete interview record including all questions, answers, per-parameter scores, speech analysis, and the final overall score.</p>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">Response — 200 OK</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre>{
+  <span class="key">"interview_id"</span>:    <span class="str">"3e754fc9-1fbd-4c05-acee-58db8549eabc"</span>,
+  <span class="key">"candidate_name"</span>:  <span class="str">"Kartik Batchu"</span>,
+  <span class="key">"status"</span>:          <span class="str">"completed"</span>,
+  <span class="key">"overall_score"</span>:   <span class="num">7.25</span>,
+  <span class="key">"parameter_scores"</span>: {
+    <span class="key">"Feature Engineering &amp; ML Support"</span>: { <span class="key">"score"</span>: <span class="num">7.5</span>, <span class="key">"weight"</span>: <span class="num">50</span> },
+    <span class="key">"Data Visualization &amp; Reporting"</span>:   { <span class="key">"score"</span>: <span class="num">7.0</span>, <span class="key">"weight"</span>: <span class="num">50</span> }
+  },
+  <span class="key">"speech_report"</span>:    { <span class="key">"filler_density"</span>: <span class="num">14.87</span>, <span class="key">"stress_score"</span>: <span class="num">90</span> },
+  <span class="key">"action_plan"</span>:      <span class="str">"..."</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ERRORS -->
+    <div class="section">
+      <span class="section-anchor" id="errors"></span>
+      <h2><span class="section-num">08</span> Error Codes</h2>
+      <p>All errors return a JSON body with a <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent2)">status</code> of <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent3)">"error"</code> and a descriptive <code style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent2)">message</code> field.</p>
+
+      <table class="status-table">
+        <thead><tr><th>Code</th><th>Meaning</th><th>Common Cause</th></tr></thead>
+        <tbody>
+          <tr><td><span class="status-code s200">200</span></td><td style="color:var(--text)">OK</td><td style="color:#445070;">Request succeeded</td></tr>
+          <tr><td><span class="status-code s400">400</span></td><td style="color:var(--text)">Bad Request</td><td style="color:#445070;">Missing required parameters or malformed JSON</td></tr>
+          <tr><td><span class="status-code s401">401</span></td><td style="color:var(--text)">Unauthorized</td><td style="color:#445070;">Invalid or missing company_id / user_id</td></tr>
+          <tr><td><span class="status-code s400">404</span></td><td style="color:var(--text)">Not Found</td><td style="color:#445070;">Resource (JD, resume, interview) does not exist</td></tr>
+          <tr><td><span class="status-code s500">500</span></td><td style="color:var(--text)">Server Error</td><td style="color:#445070;">Internal processing failure — contact support</td></tr>
+        </tbody>
+      </table>
+
+      <div class="code-block" style="margin-top:20px;">
+        <div class="code-header"><span class="code-lang">Error Response Shape</span></div>
+        <pre>{
+  <span class="key">"status"</span>:  <span class="str">"error"</span>,
+  <span class="key">"message"</span>: <span class="str">"Missing required parameter: jd_id"</span>
+}</pre>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- RATE LIMITS -->
+    <div class="section">
+      <span class="section-anchor" id="rate-limits"></span>
+      <h2><span class="section-num">09</span> Rate Limits</h2>
+      <p>Default rate limits apply per company account. Contact us to discuss higher limits for enterprise integrations.</p>
+
+      <div class="limit-cards">
+        <div class="limit-card">
+          <div class="limit-card-val">500</div>
+          <div class="limit-card-label">Requests / Hour</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-card-val">50</div>
+          <div class="limit-card-label">Resumes / Batch</div>
+        </div>
+        <div class="limit-card">
+          <div class="limit-card-val">10 MB</div>
+          <div class="limit-card-label">Max File Size</div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <span class="info-icon">⚠️</span>
+        <div class="info-text">
+          <strong>Batch processing tip:</strong> When analyzing large candidate pools, split resume_urls into batches of 10–20 for optimal performance and to avoid timeouts.
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- WEBHOOKS -->
+    <div class="section">
+      <span class="section-anchor" id="webhooks"></span>
+      <h2><span class="section-num">10</span> Webhooks</h2>
+      <p>ProValuate can push real-time notifications to your endpoint when key events occur — such as when a resume analysis completes or a candidate finishes an interview.</p>
+
+      <div class="info-box">
+        <span class="info-icon">🔔</span>
+        <div class="info-text">
+          <strong>Webhook support is available on Pro and Enterprise plans.</strong> Configure webhook URLs from <strong>Settings → Integrations → Webhooks</strong> in your dashboard. Contact <strong>sales@aitamate.com</strong> to enable.
+        </div>
+      </div>
+
+      <h3>Supported Events</h3>
+      <table class="param-table">
+        <thead><tr><th>Event</th><th>Trigger</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">assessment.completed</span></td><td style="color:#445070;">Resume analysis and scoring has finished</td></tr>
+          <tr><td><span class="param-name">interview.completed</span></td><td style="color:#445070;">Candidate has completed all interview questions</td></tr>
+          <tr><td><span class="param-name">interview.started</span></td><td style="color:#445070;">Candidate has begun the interview session</td></tr>
+          <tr><td><span class="param-name">report.ready</span></td><td style="color:#445070;">Full report with speech analysis is available</td></tr>
+        </tbody>
+      </table>
+
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">Webhook Payload Example</span></div>
+        <pre>{
+  <span class="key">"event"</span>:        <span class="str">"assessment.completed"</span>,
+  <span class="key">"timestamp"</span>:    <span class="str">"2026-03-06T10:30:00Z"</span>,
+  <span class="key">"company_id"</span>:   <span class="str">"bea223c9-94c0-483e-bc36-cd11826f32f5"</span>,
+  <span class="key">"data"</span>: {
+    <span class="key">"assessment_id"</span>:   <span class="str">"761ecbd0-f2aa-4df1-ad22-c95419065993"</span>,
+    <span class="key">"candidate_name"</span>:  <span class="str">"Kartik Batchu"</span>,
+    <span class="key">"final_score"</span>:     <span class="num">6.39</span>,
+    <span class="key">"recommendation"</span>:  <span class="str">"To be interviewed"</span>
+  }
+}</pre>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- HEALTH CHECK -->
+    <div class="section">
+      <h2><span class="section-num">11</span> Health Check</h2>
+      <p>Use the health endpoint to verify that all ProValuate services are operational before making requests.</p>
+
+      <div class="endpoint-card">
+        <div class="endpoint-header">
+          <span class="method get">GET</span>
+          <span class="endpoint-path">/health</span>
+          <span class="endpoint-desc">System health status</span>
+        </div>
+        <div class="endpoint-body">
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">Response — 200 OK</span></div>
+            <pre>{
+  <span class="key">"message"</span>: <span class="str">"Unified I Analyzer Backend with Interview System"</span>,
+  <span class="key">"services"</span>: {
+    <span class="key">"cv_analyzer"</span>:        <span class="str">"Available"</span>,
+    <span class="key">"ai_analyzer"</span>:        <span class="str">"Available"</span>,
+    <span class="key">"interview_system"</span>:   <span class="str">"Available"</span>,
+    <span class="key">"websocket_support"</span>:  <span class="str">"Available"</span>,
+    <span class="key">"audio_transcription"</span>:<span class="str">"Available"</span>
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:32px;">
+        <span class="info-icon">📬</span>
+        <div class="info-text">
+          <strong>Need help?</strong> Reach out to our team at <strong>sales@aitamate.com</strong> — we're happy to help you integrate ProValuate into your hiring stack. Enterprise and white-label plans are also available.
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function copyCode(btn) {
+    const pre = btn.closest('.code-block').querySelector('pre');
+    const text = pre.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+
+  // Highlight active nav item on scroll
+  const anchors = document.querySelectorAll('.section-anchor');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-20% 0px -70% 0px' });
+
+  anchors.forEach(a => observer.observe(a));
+
+  // Tab switching (visual only)
+  document.querySelectorAll('.sdk-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      tab.closest('.sdk-tabs').querySelectorAll('.sdk-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

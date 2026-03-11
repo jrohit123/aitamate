@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<title>Process Audit Template — aitamate</title>
+<meta name="robots" content="noindex, nofollow"/>
+
+<!-- ── FONTS ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0A1628;
+  line-height: 1.6;
+  background: white;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+/* ── COVER PAGE ── */
+.cover-page {
+  text-align: center;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #f0f6ff 0%, #f7f9fc 100%);
+  border-radius: 12px;
+  margin-bottom: 60px;
+}
+
+.cover-page h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0A1628;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.cover-page .subtitle {
+  font-size: 1.2rem;
+  color: #5A6A7E;
+  margin-bottom: 32px;
+}
+
+.cover-page .tagline {
+  font-size: 0.95rem;
+  color: #1A6FD4;
+  font-weight: 600;
+}
+
+/* ── SECTIONS ── */
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #0A1628;
+  margin-top: 60px;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #1A6FD4;
+  padding-bottom: 12px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0A1628;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1A6FD4;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5A6A7E;
+  margin-bottom: 16px;
+}
+
+ul, ol {
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+li {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5A6A7E;
+  margin-bottom: 12px;
+}
+
+/* ── BOXES ── */
+.info-box {
+  background: #EBF4FF;
+  border-left: 4px solid #1A6FD4;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 6px;
+}
+
+.alert-box {
+  background: rgba(230, 126, 34, 0.05);
+  border-left: 4px solid #E67E22;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 6px;
+}
+
+/* ── PROCESS MAP ── */
+.process-map {
+  background: white;
+  border: 2px solid #DDE4EE;
+  border-radius: 8px;
+  padding: 32px;
+  margin: 32px 0;
+  page-break-inside: avoid;
+}
+
+.process-header {
+  background: #1A6FD4;
+  color: white;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.step-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #DDE4EE;
+}
+
+.step-item:last-child {
+  border-bottom: none;
+}
+
+.step-number {
+  background: #EBF4FF;
+  border: 2px solid #1A6FD4;
+  color: #1A6FD4;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.step-content p {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.step-fields {
+  background: #f7f9fc;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+.step-fields strong {
+  color: #1A6FD4;
+}
+
+/* ── AUDIT FORM ── */
+.audit-form {
+  background: #F7F9FC;
+  border: 1px solid #DDE4EE;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 32px 0;
+  page-break-inside: avoid;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.form-row.two-col {
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #0A1628;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border: 1px solid #DDE4EE;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #5A6A7E;
+}
+
+.form-group textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+/* ── TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  page-break-inside: avoid;
+}
+
+.data-table th {
+  background: #1A6FD4;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.data-table td {
+  border: 1px solid #DDE4EE;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: #F7F9FC;
+}
+
+/* ── FOOTER ── */
+.guide-footer {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 2px solid #DDE4EE;
+  text-align: center;
+}
+
+.guide-footer p {
+  font-size: 0.85rem;
+  color: #5A6A7E;
+  margin-bottom: 12px;
+}
+
+.cta-text {
+  font-size: 0.95rem;
+  color: #1A6FD4;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+@media print {
+  .page-break {
+    page-break-after: always;
+  }
+
+  .print-button {
+    display: none;
+  }
+}
+
+.print-button {
+  display: block;
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  background: #1A6FD4;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+}
+
+.print-button:hover {
+  background: #2E8CF0;
+}
+
+@media print {
+  .print-button {
+    display: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="print-button" onclick="window.print()"><i>🖨️</i> Print as PDF or Save as Template</button>
+
+<!-- COVER PAGE -->
+<div class="cover-page">
+  <h1>Process Audit Template</h1>
+  <p class="subtitle">Document Your Current-State Process</p>
+  <p class="tagline">Step-by-step framework for mapping any business process • Complete and share with your automation partner • aitamate Solutions</p>
+</div>
+
+<div class="container">
+
+<!-- INTRODUCTION -->
+<h2>How to Use This Template</h2>
+
+<p>This template enables you to document a single business process from end-to-end. Complete one template per process you want to audit or automate.</p>
+
+<p><strong>Typical use case:</strong> You've identified a high-priority process (e.g., customer onboarding, invoice processing, hiring workflow). Now map out every step, every tool, every decision, and every handoff.</p>
+
+<div class="info-box">
+  <strong>Key participants:</strong> Include someone who actually does the work (not just a manager). They'll catch the steps that technically don't exist but happen anyway.
+</div>
+
+<p style="margin-top: 24px;"><strong>Time required:</strong> 60-90 minutes to document a process. More time for complex enterprise workflows.</p>
+
+<!-- PROCESS METADATA -->
+<h2>Process Information</h2>
+
+<div class="audit-form">
+  <div class="form-row two-col">
+    <div class="form-group">
+      <label for="process_name">Process Name:</label>
+      <input type="text" id="process_name" placeholder="e.g., Customer Onboarding"/>
+    </div>
+    <div class="form-group">
+      <label for="process_owner">Process Owner (who submits this):</label>
+      <input type="text" id="process_owner" placeholder="Name / Title"/>
+    </div>
+  </div>
+
+  <div class="form-row two-col">
+    <div class="form-group">
+      <label for="date_audited">Date Audited:</label>
+      <input type="date" id="date_audited"/>
+    </div>
+    <div class="form-group">
+      <label for="frequency">Process Frequency:</label>
+      <select id="frequency">
+        <option value="">-- Select --</option>
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="yearly">Yearly</option>
+        <option value="adhoc">Ad-hoc / As-needed</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="process_description">Process Description (what does this process do?):</label>
+      <textarea id="process_description" placeholder="High-level overview in 2-3 sentences"></textarea>
+    </div>
+  </div>
+
+  <div class="form-row two-col">
+    <div class="form-group">
+      <label for="avg_time">Average time to complete:</label>
+      <input type="text" id="avg_time" placeholder="e.g., 45 min / 8 hours / 2 days"/>
+    </div>
+    <div class="form-group">
+      <label for="annual_volume">Annual volume (instances per year):</label>
+      <input type="number" id="annual_volume" placeholder="e.g., 365 (daily)"/>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS MAP -->
+<div class="page-break"></div>
+
+<h2>Step-by-Step Process Map</h2>
+
+<p><strong>Map each step of the process.</strong> Include decision points, handoffs between people/departments, and tool usage. Use the template below for each step (add rows as needed).</p>
+
+<div class="process-map">
+  <div class="process-header">Process Timeline</div>
+
+  <div class="step-item">
+    <div class="step-number">1</div>
+    <div class="step-content">
+      <h4>Step Name</h4>
+      <p>_________________________________________</p>
+      <div class="step-fields">
+        <strong>Owner (who does this):</strong> _________________<br/>
+        <strong>Tool/System used:</strong> _________________<br/>
+        <strong>Time required:</strong> ___ minutes<br/>
+        <strong>Input data from:</strong> _________________<br/>
+        <strong>Output/Result:</strong> _________________<br/>
+        <strong>Errors/Rework possible?</strong> (Y/N)
+      </div>
+    </div>
+  </div>
+
+  <div class="step-item">
+    <div class="step-number">2</div>
+    <div class="step-content">
+      <h4>Step Name</h4>
+      <p>_________________________________________</p>
+      <div class="step-fields">
+        <strong>Owner (who does this):</strong> _________________<br/>
+        <strong>Tool/System used:</strong> _________________<br/>
+        <strong>Time required:</strong> ___ minutes<br/>
+        <strong>Input data from:</strong> _________________<br/>
+        <strong>Output/Result:</strong> _________________<br/>
+        <strong>Errors/Rework possible?</strong> (Y/N)
+      </div>
+    </div>
+  </div>
+
+  <div class="step-item">
+    <div class="step-number">3</div>
+    <div class="step-content">
+      <h4>Step Name</h4>
+      <p>_________________________________________</p>
+      <div class="step-fields">
+        <strong>Owner (who does this):</strong> _________________<br/>
+        <strong>Tool/System used:</strong> _________________<br/>
+        <strong>Time required:</strong> ___ minutes<br/>
+        <strong>Input data from:</strong> _________________<br/>
+        <strong>Output/Result:</strong> _________________<br/>
+        <strong>Errors/Rework possible?</strong> (Y/N)
+      </div>
+    </div>
+  </div>
+
+  <div class="step-item">
+    <div class="step-number">4</div>
+    <div class="step-content">
+      <h4>Step Name (Add more rows as needed)</h4>
+      <p>_________________________________________</p>
+      <div class="step-fields">
+        <strong>Owner (who does this):</strong> _________________<br/>
+        <strong>Tool/System used:</strong> _________________<br/>
+        <strong>Time required:</strong> ___ minutes<br/>
+        <strong>Input data from:</strong> _________________<br/>
+        <strong>Output/Result:</strong> _________________<br/>
+        <strong>Errors/Rework possible?</strong> (Y/N)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEMS & TOOLS INVENTORY -->
+<div class="page-break"></div>
+
+<h2>Systems & Tools Inventory</h2>
+
+<p>List every system, tool, or platform involved in this process.</p>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>System/Tool Name</th>
+      <th>Purpose in this process</th>
+      <th>Data stored here?</th>
+      <th>Manual entry (Y/N)</th>
+      <th>API available?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>____</td>
+      <td>____</td>
+    </tr>
+    <tr>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>____</td>
+      <td>____</td>
+    </tr>
+    <tr>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>____</td>
+      <td>____</td>
+    </tr>
+    <tr>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>_______________________</td>
+      <td>____</td>
+      <td>____</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- PAIN POINTS & OPPORTUNITIES -->
+<div class="page-break"></div>
+
+<h2>Pain Points & Opportunities</h2>
+
+<p><strong>For each step, identify what's broken, inefficient, or error-prone.</strong> This is where automation opportunities live.</p>
+
+<div class="audit-form">
+  <div class="form-group">
+    <label for="pain_points"><strong>1. What's manual and repetitive?</strong></label>
+    <textarea id="pain_points" placeholder="E.g., 'We manually copy customer data from email into three different systems every time.'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="handoffs"><strong>2. Where do handoffs happen between people/systems?</strong></label>
+    <textarea id="handoffs" placeholder="E.g., 'After Sarah enters the data, she emails Tom to review. Tom sends a Slack message to Joe. Joe manually updates the database.'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="errors"><strong>3. Where do errors or rework happen?</strong></label>
+    <textarea id="errors" placeholder="E.g., 'Wrong data gets entered 20% of the time because the form is unclear. That requires manual correction.'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="wait_times"><strong>4. Where do people/processes wait on external events or approvals?</strong></label>
+    <textarea id="wait_times" placeholder="E.g., 'Step 4 can't start until manager approval from Step 3. This often gets stuck for days.'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="data_silos"><strong>5. Where does data get duplicated or is the same info stored in multiple places?</strong></label>
+    <textarea id="data_silos" placeholder="E.g., 'Customer info is in CRM, email database, and spreadsheet. They never match.'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="bottlenecks"><strong>6. What single person or system could break this entire process if it failed?</strong></label>
+    <textarea id="bottlenecks" placeholder="Single point of failure analysis"></textarea>
+  </div>
+</div>
+
+<!-- BUSINESS IMPACT -->
+<div class="page-break"></div>
+
+<h2>Business Impact Analysis</h2>
+
+<p><strong>Quantify the impact of this process operating inefficiently.</strong></p>
+
+<div class="audit-form">
+  <div class="form-row two-col">
+    <div class="form-group">
+      <label for="time_per_cycle">Total time per cycle (hours):</label>
+      <input type="number" id="time_per_cycle" placeholder="e.g., 4.5"/>
+    </div>
+    <div class="form-group">
+      <label for="person_hours_per_week">Person-hours consumed per week:</label>
+      <input type="text" id="person_hours_per_week" placeholder="(frequency × time) / week"/>
+    </div>
+  </div>
+
+  <div class="form-row two-col">
+    <div class="form-group">
+      <label for="cost_per_cycle">Cost per cycle (salary + overhead):</label>
+      <input type="text" id="cost_per_cycle" placeholder="₹ _____"/>
+    </div>
+    <div class="form-group">
+      <label for="annual_cost">Annual cost (time + errors + delays):</label>
+      <input type="text" id="annual_cost" placeholder="₹ _____"/>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="error_impact"><strong>Cost of errors/rework:</strong></label>
+      <textarea id="error_impact" placeholder="What happens when this process fails? How often? What does it cost?"></textarea>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="business_impact"><strong>Business impact if this were instant/automated:</strong></label>
+      <textarea id="business_impact" placeholder="What becomes possible? Faster customer response? Better decision-making? Revenue growth?"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- AUTOMATION READINESS -->
+<div class="page-break"></div>
+
+<h2>Automation Readiness Assessment</h2>
+
+<p><strong>Rate this process on readiness for automation (1-5).</strong> 1 = Too complex or unstable, 5 = Ideal candidate.</p>
+
+<div class="audit-form">
+  <div class="form-group">
+    <label><strong>Process Stability:</strong> How often do the steps or rules change?</label>
+    <p style="font-size: 0.85rem; color: #5A6A7E;">5 = Never changes, 1 = Changes every week</p>
+    <input type="range" min="1" max="5" placeholder="Select rating"/>
+  </div>
+
+  <div class="form-group">
+    <label><strong>Data Quality:</strong> Is the data clean and consistent?</label>
+    <p style="font-size: 0.85rem; color: #5A6A7E;">5 = Perfect (no cleanup needed), 1 = Messy and inconsistent</p>
+    <input type="range" min="1" max="5" placeholder="Select rating"/>
+  </div>
+
+  <div class="form-group">
+    <label><strong>System Readiness:</strong> Can your systems talk to each other (APIs, integrations)?</label>
+    <p style="font-size: 0.85rem; color: #5A6A7E;">5 = All systems have APIs, 1 = Lots of legacy systems, no APIs</p>
+    <input type="range" min="1" max="5" placeholder="Select rating"/>
+  </div>
+
+  <div class="form-group">
+    <label><strong>Process Clarity:</strong> Is it easy to explain this process to someone unfamiliar with it?</label>
+    <p style="font-size: 0.85rem; color: #5A6A7E;">5 = Crystal clear, 1 = Complex and ad-hoc</p>
+    <input type="range" min="1" max="5" placeholder="Select rating"/>
+  </div>
+
+  <div class="form-group">
+    <label><strong>Business Case:</strong> Is the financial or efficiency return compelling?</label>
+    <p style="font-size: 0.85rem; color: #5A6A7E;">5 = Major savings or revenue impact, 1 = Minimal benefit</p>
+    <input type="range" min="1" max="5" placeholder="Select rating"/>
+  </div>
+
+  <div class="form-group">
+    <label for="overall_score"><strong>Overall Readiness Score (add above scores):</strong></label>
+    <input type="text" id="overall_score" placeholder="_____ / 25 (Ideal: 15+ is good candidate)"/>
+  </div>
+</div>
+
+<!-- NEXT STEPS -->
+<div class="page-break"></div>
+
+<h2>Next Steps</h2>
+
+<div class="info-box">
+  <strong>You've now documented your process.</strong> This is the foundation for:
+  <ul style="margin-left: 0; margin-top: 16px;">
+    <li style="margin-left: 24px;">✓ Getting technical bids from automation partners</li>
+    <li style="margin-left: 24px;">✓ Planning implementation sequencing</li>
+    <li style="margin-left: 24px;">✓ Identifying quick wins vs. big bets</li>
+    <li style="margin-left: 24px;">✓ Communicating the business case to leadership</li>
+  </ul>
+</div>
+
+<p style="margin-top: 24px;"><strong>This template is deliberately incomplete.</strong> You now have the structure. An automation consultant would:</p>
+<ul>
+  <li>Deep-dive on the 2-3 most painful steps</li>
+  <li>Get technical details about API availability and data formats</li>
+  <li>Run scenarios: "If we automate steps 3-5, what does the new process look like?"</li>
+  <li>Provide specifics on tools, cost, timeline, and expected ROI</li>
+</ul>
+
+<!-- FOOTER -->
+<div class="guide-footer">
+  <p>This template is based on BPM (Business Process Management) best practices used in enterprise automation projects.</p>
+  <p>Ready for that deep-dive? <strong style="color: #1A6FD4;">Email your completed template to sales@aitamate.com to schedule a consultation.</strong></p>
+  <p class="cta-text">📅 Let's translate this into a roadmap → calendly.com/aitamate/discovery</p>
+</div>
+
+</div>
+
+</body>
+</html>

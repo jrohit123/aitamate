@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<title>Automation Workflow Blueprint — aitamate</title>
+<meta name="robots" content="noindex, nofollow"/>
+
+<!-- ── FONTS ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0A1628;
+  line-height: 1.6;
+  background: white;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+/* ── COVER PAGE ── */
+.cover-page {
+  text-align: center;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #f0f6ff 0%, #f7f9fc 100%);
+  border-radius: 12px;
+  margin-bottom: 60px;
+}
+
+.cover-page h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0A1628;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.cover-page .subtitle {
+  font-size: 1.2rem;
+  color: #5A6A7E;
+  margin-bottom: 32px;
+}
+
+.cover-page .tagline {
+  font-size: 0.95rem;
+  color: #1A6FD4;
+  font-weight: 600;
+}
+
+/* ── SECTIONS ── */
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #0A1628;
+  margin-top: 60px;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #1A6FD4;
+  padding-bottom: 12px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0A1628;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1A6FD4;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5A6A7E;
+  margin-bottom: 16px;
+}
+
+ul, ol {
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+li {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5A6A7E;
+  margin-bottom: 12px;
+}
+
+/* ── BOXES ── */
+.info-box {
+  background: #EBF4FF;
+  border-left: 4px solid #1A6FD4;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 6px;
+}
+
+.alert-box {
+  background: rgba(230, 126, 34, 0.05);
+  border-left: 4px solid #E67E22;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 6px;
+}
+
+.success-box {
+  background: rgba(46, 204, 113, 0.05);
+  border-left: 4px solid #2ECC71;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 6px;
+}
+
+/* ── WORKFLOW DIAGRAM ── */
+.workflow-box {
+  background: white;
+  border: 2px solid #DDE4EE;
+  border-radius: 8px;
+  padding: 32px;
+  margin: 32px 0;
+  page-break-inside: avoid;
+}
+
+.workflow-header {
+  background: #1A6FD4;
+  color: white;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.flow-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #DDE4EE;
+}
+
+.flow-item:last-child {
+  border-bottom: none;
+}
+
+.flow-type {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  white-space: nowrap;
+}
+
+.flow-type.trigger {
+  background: #3498DB;
+}
+
+.flow-type.action {
+  background: #2ECC71;
+}
+
+.flow-type.decision {
+  background: #E67E22;
+}
+
+.flow-type.data {
+  background: #9B59B6;
+}
+
+.flow-type.notification {
+  background: #E74C3C;
+}
+
+.flow-description p {
+  margin-bottom: 8px;
+}
+
+.flow-details {
+  background: #f7f9fc;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  border-left: 3px solid #1A6FD4;
+}
+
+.flow-details strong {
+  color: #0A1628;
+}
+
+/* ── FORM ── */
+.form-box {
+  background: #F7F9FC;
+  border: 1px solid #DDE4EE;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 32px 0;
+  page-break-inside: avoid;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #0A1628;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border: 1px solid #DDE4EE;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #5A6A7E;
+}
+
+.form-group textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── TABLE ── */
+.config-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  page-break-inside: avoid;
+}
+
+.config-table th {
+  background: #1A6FD4;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.config-table td {
+  border: 1px solid #DDE4EE;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+
+.config-table tbody tr:nth-child(even) {
+  background: #F7F9FC;
+}
+
+/* ── FOOTER ── */
+.guide-footer {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 2px solid #DDE4EE;
+  text-align: center;
+}
+
+.guide-footer p {
+  font-size: 0.85rem;
+  color: #5A6A7E;
+  margin-bottom: 12px;
+}
+
+.cta-text {
+  font-size: 0.95rem;
+  color: #1A6FD4;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+@media print {
+  .page-break {
+    page-break-after: always;
+  }
+
+  .print-button {
+    display: none;
+  }
+}
+
+.print-button {
+  display: block;
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  background: #1A6FD4;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+}
+
+.print-button:hover {
+  background: #2E8CF0;
+}
+
+@media print {
+  .print-button {
+    display: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="print-button" onclick="window.print()"><i>🖨️</i> Print as PDF or Save as Blueprint Template</button>
+
+<!-- COVER PAGE -->
+<div class="cover-page">
+  <h1>Automation Workflow Blueprint</h1>
+  <p class="subtitle">Design Your Future-State Process</p>
+  <p class="tagline">Map how your process will work after automation • Template for design workshops • aitamate Solutions</p>
+</div>
+
+<div class="container">
+
+<!-- INTRODUCTION -->
+<h2>About This Blueprint</h2>
+
+<p>This template helps you visualize what an automated process looks like <em>after</em> optimization. It documents:</p>
+<ul>
+  <li><strong>Triggers:</strong> What starts the workflow?</li>
+  <li><strong>Actions:</strong> What does the automation do?</li>
+  <li><strong>Decisions:</strong> Where does logic branch (if X, then Y)?</li>
+  <li><strong>Data flows:</strong> What information moves between systems?</li>
+  <li><strong>Notifications:</strong> Who gets alerted and when?</li>
+</ul>
+
+<div class="info-box">
+  <strong>Best approach:</strong> Use this right after your current-state process audit. Map what SHOULD happen, not what currently happens. This becomes your design spec.
+</div>
+
+<!-- PROCESS CONTEXT -->
+<h2>Process Overview</h2>
+
+<div class="form-box">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="process_name">Process Name:</label>
+      <input type="text" id="process_name" placeholder="e.g., Automated Customer Onboarding"/>
+    </div>
+    <div class="form-group">
+      <label for="current_owner">Current Owner (who manages today?):</label>
+      <input type="text" id="current_owner" placeholder="Name / Role"/>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="future_owner">Future Owner (post-automation):</label>
+      <input type="text" id="future_owner" placeholder="Role or system"/>
+    </div>
+    <div class="form-group">
+      <label for="design_date">Blueprint Design Date:</label>
+      <input type="date" id="design_date"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="key_improvement">Key Improvement Objective:</label>
+    <textarea id="key_improvement" placeholder="What should automation achieve? Faster? Fewer errors? Cost reduction?"></textarea>
+  </div>
+</div>
+
+<!-- BEFORE/AFTER COMPARISON -->
+<h2>Before & After Snapshot</h2>
+
+<table class="config-table">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Current State</th>
+      <th>Future State (Post-Automation)</th>
+      <th>Improvement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Process time</strong></td>
+      <td>___ hours/day(s)</td>
+      <td>___ minutes/instant</td>
+      <td>___ % faster</td>
+    </tr>
+    <tr>
+      <td><strong>Manual steps required</strong></td>
+      <td>___ steps</td>
+      <td>___ steps (or 0)</td>
+      <td>___ % reduction</td>
+    </tr>
+    <tr>
+      <td><strong>Error rate</strong></td>
+      <td>___ %</td>
+      <td>___ %</td>
+      <td>___ % reduction</td>
+    </tr>
+    <tr>
+      <td><strong>People hours per cycle</strong></td>
+      <td>___ hours</td>
+      <td>___ hours</td>
+      <td>___ % reduction</td>
+    </tr>
+    <tr>
+      <td><strong>Cost per cycle</strong></td>
+      <td>₹ _____ </td>
+      <td>₹ _____</td>
+      <td>₹ _____ saved</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- WORKFLOW MAP -->
+<div class="page-break"></div>
+
+<h2>Workflow Stages</h2>
+
+<p><strong>Map each stage of the automated workflow.</strong> Use the template below for each major phase (add rows as needed).</p>
+
+<div class="workflow-box">
+  <div class="workflow-header">Workflow Sequence</div>
+
+  <!-- STAGE 1 -->
+  <div class="flow-item">
+    <div class="flow-type trigger">TRIGGER</div>
+    <div class="flow-description">
+      <p><strong>Stage 1: What initiates this workflow?</strong></p>
+      <p>_________________________________________</p>
+      <div class="flow-details">
+        <strong>Trigger source:</strong> Email received / Form submission / Schedule / External API event<br/>
+        <strong>Trigger condition:</strong> _________________________________<br/>
+        <strong>Data passed:</strong> _________________________________
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION 1 -->
+  <div class="flow-item">
+    <div class="flow-type action">ACTION</div>
+    <div class="flow-description">
+      <p><strong>Stage 2: First action the workflow takes</strong></p>
+      <p>_________________________________________</p>
+      <div class="flow-details">
+        <strong>System involved:</strong> _________________________________<br/>
+        <strong>Action detail:</strong> Create record / Update field / Format data / Query database<br/>
+        <strong>Data transformed:</strong> _________________________________
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA FLOW 1 -->
+  <div class="flow-item">
+    <div class="flow-type data">DATA</div>
+    <div class="flow-description">
+      <p><strong>Stage 3: Data passes between systems</strong></p>
+      <p>_________________________________________</p>
+      <div class="flow-details">
+        <strong>From system:</strong> _________________________________<br/>
+        <strong>To system:</strong> _________________________________<br/>
+        <strong>Data fields:</strong> _________________________________
+      </div>
+    </div>
+  </div>
+
+  <!-- DECISION POINT -->
+  <div class="flow-item">
+    <div class="flow-type decision">DECISION</div>
+    <div class="flow-description">
+      <p><strong>Stage 4: Logic point — the workflow branches</strong></p>
+      <p>If ______________________________ , then:</p>
+      <div class="flow-details">
+        <strong>Condition to evaluate:</strong> _________________________________<br/>
+        <strong>Path A (if TRUE):</strong> _________________________________<br/>
+        <strong>Path B (if FALSE):</strong> _________________________________
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION 2 -->
+  <div class="flow-item">
+    <div class="flow-type action">ACTION</div>
+    <div class="flow-description">
+      <p><strong>Stage 5: Another action</strong></p>
+      <p>_________________________________________</p>
+      <div class="flow-details">
+        <strong>System involved:</strong> _________________________________<br/>
+        <strong>Action detail:</strong> _________________________________<br/>
+        <strong>Result/output:</strong> _________________________________
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION -->
+  <div class="flow-item">
+    <div class="flow-type notification">NOTIFY</div>
+    <div class="flow-description">
+      <p><strong>Stage 6: Who gets notified and when?</strong></p>
+      <p>_________________________________________</p>
+      <div class="flow-details">
+        <strong>Recipient:</strong> _________________________________<br/>
+        <strong>Channel:</strong> Email / Slack / Dashboard / SMS<br/>
+        <strong>Message/Content:</strong> _________________________________
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION 3 - FINAL -->
+  <div class="flow-item">
+    <div class="flow-type action">COMPLETE</div>
+    <div class="flow-description">
+      <p><strong>Stage 7: Workflow completion</strong></p>
+      <p>_________________________________________</p>
+      <div class="flow-details">
+        <strong>Final state:</strong> Record created / Updated / Archived<br/>
+        <strong>Workflow status:</strong> DONE / PENDING / ESCALATED<br/>
+        <strong>Audit trail captured?</strong> (For compliance) _______________
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEM INTEGRATIONS -->
+<div class="page-break"></div>
+
+<h2>System Integrations & Connections</h2>
+
+<p><strong>List all systems involved in this automated workflow.</strong> Note how they connect.</p>
+
+<table class="config-table">
+  <thead>
+    <tr>
+      <th>System/Tool</th>
+      <th>Role in workflow</th>
+      <th>Connection method</th>
+      <th>Data in → Data out</th>
+      <th>Error handling</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>_______________</td>
+      <td>Trigger / Source</td>
+      <td>API / Webhook / Manual</td>
+      <td>Receives → Sends</td>
+      <td>Retry / Alert</td>
+    </tr>
+    <tr>
+      <td>_______________</td>
+      <td>Transform / Process</td>
+      <td>API / Webhook / Direct</td>
+      <td>Receives → Sends</td>
+      <td>Retry / Alert</td>
+    </tr>
+    <tr>
+      <td>_______________</td>
+      <td>Destination / Update</td>
+      <td>API / Webhook / Direct</td>
+      <td>Receives → Stores</td>
+      <td>Retry / Alert</td>
+    </tr>
+    <tr>
+      <td>_______________</td>
+      <td>Notification</td>
+      <td>API / Email / Webhook</td>
+      <td>Receives → Sends</td>
+      <td>Log / Retry</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ERROR HANDLING -->
+<div class="page-break"></div>
+
+<h2>Error Handling & Edge Cases</h2>
+
+<p><strong>What happens when things go wrong?</strong> Good automation anticipates failure scenarios.</p>
+
+<div class="form-box">
+  <div class="form-group">
+    <label for="error_scenario_1"><strong>Scenario 1: What if the trigger data is incomplete?</strong></label>
+    <textarea id="error_scenario_1" placeholder="E.g., 'If customer email is missing, reject the request and notify admin'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="error_scenario_2"><strong>Scenario 2: What if the API call to System B fails?</strong></label>
+    <textarea id="error_scenario_2" placeholder="E.g., 'Retry 3 times, then escalate to support queue'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="error_scenario_3"><strong>Scenario 3: What if data validation fails?</strong></label>
+    <textarea id="error_scenario_3" placeholder="E.g., 'Log the error, send to manual review queue'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="error_scenario_4"><strong>Scenario 4: What if duplicate records are detected?</strong></label>
+    <textarea id="error_scenario_4" placeholder="E.g., 'Merge records, notify user'"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="error_scenario_5"><strong>Scenario 5: What if the workflow times out?</strong></label>
+    <textarea id="error_scenario_5" placeholder="E.g., 'Trigger alert to ops team, try async approach'"></textarea>
+  </div>
+</div>
+
+<!-- MONITORING & METRICS -->
+<div class="page-break"></div>
+
+<h2>Monitoring & Success Metrics</h2>
+
+<p><strong>How will you know this automation is working?</strong> Define metrics to track post-launch.</p>
+
+<div class="form-box">
+  <div class="form-group">
+    <label for="metric_1"><strong>Metric 1: Workflow completion rate</strong></label>
+    <input type="text" placeholder="Target: _____% of workflows complete without errors"/>
+  </div>
+
+  <div class="form-group">
+    <label for="metric_2"><strong>Metric 2: Average processing time</strong></label>
+    <input type="text" placeholder="Target: _____ minutes/seconds per workflow"/>
+  </div>
+
+  <div class="form-group">
+    <label for="metric_3"><strong>Metric 3: Error rate</strong></label>
+    <input type="text" placeholder="Target: ____% of workflows fail or require manual intervention"/>
+  </div>
+
+  <div class="form-group">
+    <label for="metric_4"><strong>Metric 4: Cost per cycle</strong></label>
+    <input type="text" placeholder="Target: ₹ _____ per cycle (vs. current ₹ _____)"/>
+  </div>
+
+  <div class="form-group">
+    <label for="metric_5"><strong>Metric 5: User/stakeholder satisfaction</strong></label>
+    <textarea placeholder="How will you measure if users are happier? Faster response time? Fewer errors? Increased UX?"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="dashboard"><strong>Dashboard / Monitoring:</strong></label>
+    <textarea placeholder="Where will you see real-time metrics? (Reporting tool, dashboard, alerts)"></textarea>
+  </div>
+</div>
+
+<!-- IMPLEMENTATION PLAN -->
+<div class="page-break"></div>
+
+<h2>Implementation Roadmap</h2>
+
+<p><strong>Phase-based rollout plan.</strong></p>
+
+<div class="form-box">
+  <div class="form-group">
+    <label for="phase_1"><strong>Phase 1: Pilot</strong></label>
+    <textarea id="phase_1" placeholder="Test with subset of data / users. Timeline: 1-2 weeks. Success criteria: [list]"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="phase_2"><strong>Phase 2: Soft launch</strong></label>
+    <textarea id="phase_2" placeholder="Expand to team with support nearby. Timeline: 1-4 weeks."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="phase_3"><strong>Phase 3: Full production</strong></label>
+    <textarea id="phase_3" placeholder="Full rollout. Monitoring active. Support escalation paths defined."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="rollback_plan"><strong>Rollback plan (if it breaks):</strong></label>
+    <textarea id="rollback_plan" placeholder="How do we revert to manual process if automation fails?"></textarea>
+  </div>
+</div>
+
+<!-- SIGN-OFF -->
+<div class="page-break"></div>
+
+<h2>Blueprint Sign-Off</h2>
+
+<div class="success-box">
+  <strong>This blueprint represents the team's collective vision for the automated process.</strong> 
+  <br/><br/>
+  It will guide:
+  <ul style="margin-left: 0; margin-top: 12px;">
+    <li style="margin-left: 24px;">✓ Technical architecture & tool selection</li>
+    <li style="margin-left: 24px;">✓ Development / configuration work</li>
+    <li style="margin-left: 24px;">✓ Change management & user training</li>
+    <li style="margin-left: 24px;">✓ Testing & quality assurance</li>
+    <li style="margin-left: 24px;">✓ Go-live readiness</li>
+  </ul>
+</div>
+
+<div class="form-box">
+  <div class="form-group">
+    <label for="approved_by"><strong>Approved by (name/role):</strong></label>
+    <input type="text" id="approved_by"/>
+  </div>
+
+  <div class="form-group">
+    <label for="approval_date"><strong>Approval date:</strong></label>
+    <input type="date" id="approval_date"/>
+  </div>
+
+  <div class="form-group">
+    <label for="next_review"><strong>Next blueprint review date:</strong></label>
+    <input type="date" id="next_review"/>
+  </div>
+
+  <div class="form-group">
+    <label for="technical_poc"><strong>Technical POC for implementation:</strong></label>
+    <input type="text" id="technical_poc" placeholder="Name / Email / Phone"/>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="guide-footer">
+  <p>This blueprint is template-based on BPMN (Business Process Model and Notation) standards used in enterprise automation.</p>
+  <p>Ready to proceed with this design? <strong style="color: #1A6FD4;">Email this completed blueprint to sales@aitamate.com with your goals and timeline.</strong></p>
+  <p class="cta-text">📅 Let's scope the build → calendly.com/aitamate/discovery</p>
+</div>
+
+</div>
+
+</body>
+</html>

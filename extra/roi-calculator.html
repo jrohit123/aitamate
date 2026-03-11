@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<!-- ── PRIMARY SEO ── -->
+<title>AI ROI Calculator — See Your Annual Savings — aitamate</title>
+<meta name="description" content="Calculate your annual savings from AI automation. See exactly how much your business could save by automating repetitive tasks and reducing hiring mistakes."/>
+<meta name="keywords" content="ROI calculator, AI ROI, automation savings calculator, process automation cost savings"/>
+<meta name="author" content="aitamate Solutions"/>
+<meta name="robots" content="noindex, follow"/>
+<link rel="canonical" href="https://www.aitamate.com/roi-calculator.html"/>
+
+<!-- ── FAVICON ── -->
+<link rel="icon" type="image/x-icon" href="src/favicon.png"/>
+
+<!-- ── FONTS & LIBRARIES ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<!-- ── SHARED STYLESHEET ── -->
+<link rel="stylesheet" href="src/aitamate.css"/>
+
+<style>
+body {
+  background: linear-gradient(135deg, #f0f6ff 0%, #f7f9fc 100%);
+}
+
+nav {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.calculator-hero {
+  padding: 100px 6% 60px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calculator-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.calculator-hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.calculator-section {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 6%;
+}
+
+.calculator-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+}
+
+@media(max-width: 900px) {
+  .calculator-container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+.calc-inputs {
+  padding: 48px;
+  border-right: 1px solid var(--border);
+}
+
+@media(max-width: 900px) {
+  .calc-inputs {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.calc-inputs h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 32px;
+}
+
+.input-group {
+  margin-bottom: 28px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.input-group select,
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+  transition: all 0.2s;
+}
+
+.input-group select:focus,
+.input-group input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(26, 111, 212, 0.1);
+}
+
+.input-helper {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+  display: block;
+}
+
+.calc-results {
+  padding: 48px;
+  background: var(--bg);
+  overflow-y: auto;
+}
+
+.calc-results h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calc-results h2 i {
+  color: var(--blue);
+  font-size: 1.2rem;
+}
+
+.result-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.result-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 4px 12px rgba(26, 111, 212, 0.1);
+}
+
+.result-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.result-value {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.result-subtext {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.result-card.highlight {
+  background: linear-gradient(135deg, rgba(26, 111, 212, 0.05) 0%, rgba(46, 140, 240, 0.05) 100%);
+  border-color: var(--blue);
+}
+
+.result-card.highlight .result-value {
+  color: var(--blue-lt);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+.breakdown-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid var(--border);
+}
+
+.breakdown-section h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--blue);
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.breakdown-item:last-child {
+  border-bottom: none;
+}
+
+.breakdown-item-label {
+  color: var(--navy);
+}
+
+.breakdown-item-value {
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.cta-section {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(26, 111, 212, 0.05) 0%, rgba(46, 140, 240, 0.05) 100%);
+  border-radius: 12px;
+  margin-top: 40px;
+}
+
+.cta-section h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.cta-section p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.cta-button:hover {
+  background: var(--blue-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(26, 111, 212, 0.3);
+}
+
+.cta-button.secondary {
+  background: white;
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
+}
+
+.cta-button.secondary:hover {
+  background: var(--blue-pale);
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 24px;
+  line-height: 1.5;
+}
+
+.disclaimer a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.disclaimer a:hover {
+  text-decoration: underline;
+}
+
+@media(max-width: 600px) {
+  .calc-inputs,
+  .calc-results {
+    padding: 32px 24px;
+  }
+
+  .result-value {
+    font-size: 1.5rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .cta-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+    <img src="src/Logo-transparent_bg.png" alt="aitamate" style="height:36px;"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+    <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--blue);">ai<span style="color:var(--navy);">tamate</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="solutions.html">Solutions</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Request a Demo</a>
+</nav>
+
+<div class="calculator-hero" style="margin-top: 66px;">
+  <h1>Your AI Automation ROI</h1>
+  <p>Adjust your inputs to see how much your business could save annually by automating, and how long it would take to break even.</p>
+</div>
+
+<section class="calculator-section">
+  <div class="calculator-container">
+    <!-- INPUTS -->
+    <div class="calc-inputs">
+      <h2>Your Business</h2>
+
+      <div class="input-group">
+        <label>Team Size *</label>
+        <select id="teamSize" onchange="calculateROI()">
+          <option value="">Select team size</option>
+          <option value="10">1-10 people (Avg: 6)</option>
+          <option value="30">11-50 people (Avg: 30)</option>
+          <option value="125">51-200 people (Avg: 125)</option>
+          <option value="300">200+ people (Avg: 300)</option>
+        </select>
+        <span class="input-helper">How many people on your team?</span>
+      </div>
+
+      <div class="input-group">
+        <label>Average Annual Salary *</label>
+        <select id="avgSalary" onchange="calculateROI()">
+          <option value="">Select salary range</option>
+          <option value="40">₹30-50 Lakhs (Avg: ₹40L)</option>
+          <option value="62.5">₹50-75 Lakhs (Avg: ₹62.5L)</option>
+          <option value="87.5">₹75-100 Lakhs (Avg: ₹87.5L)</option>
+          <option value="120">₹100+ Lakhs (Avg: ₹120L)</option>
+        </select>
+        <span class="input-helper">What's your average employee cost (including benefits)?</span>
+      </div>
+
+      <div class="input-group">
+        <label>Wasted Hours Per Week (Per Employee)</label>
+        <input type="range" id="wastedHours" min="5" max="40" value="15" onchange="calculateROI()">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+          <span class="input-helper">Hours spent on manual, repetitive work</span>
+          <span style="font-weight: 700; color: var(--blue); font-size: 1rem;" id="hoursDisplay">15 hrs/week</span>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Primary Challenge</label>
+        <select id="challenge" onchange="calculateROI()">
+          <option value="general">General Automation</option>
+          <option value="hiring">Hiring & Recruitment (bad hires cost 2-3x salary)</option>
+          <option value="execution">Execution & Accountability</option>
+        </select>
+        <span class="input-helper">What's costing you the most?</span>
+      </div>
+
+      <button onclick="resetCalculator()" style="width: 100%; padding: 10px; margin-top: 20px; border: 1.5px solid var(--border); background: white; border-radius: 6px; cursor: pointer; font-weight: 600; color: var(--muted); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--blue)'; this.style.color='var(--blue)';" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--muted)';">Reset Calculator</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="calc-results">
+      <h2><i class="fa-solid fa-chart-line"></i> Your Annual Opportunity</h2>
+
+      <div class="result-card highlight">
+        <div class="result-label">Total Annual Waste</div>
+        <div class="result-value" id="totalWaste">₹0L</div>
+        <div class="result-subtext">Cost of manual work & inefficiency</div>
+      </div>
+
+      <div class="breakdown-section">
+        <h3>Cost Breakdown</h3>
+        <div class="breakdown-item">
+          <span class="breakdown-item-label">Salary cost of wasted time</span>
+          <span class="breakdown-item-value" id="salaryWaste">₹0L</span>
+        </div>
+        <div class="breakdown-item" id="hireWasteRow" style="display: none;">
+          <span class="breakdown-item-label">Bad hire risk cost</span>
+          <span class="breakdown-item-value" id="hireWaste">₹0L</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="result-card">
+        <div class="result-label">Typical Automation Cost</div>
+        <div class="result-value" id="automationCost">₹0L</div>
+        <div class="result-subtext">One-time setup (3-4 month implementation)</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="result-card highlight">
+        <div class="result-label">Net Savings (Year 1)</div>
+        <div class="result-value" id="netSavingsY1">₹0L</div>
+        <div class="result-subtext">After automation cost, first year savings</div>
+      </div>
+
+      <div class="breakdown-section">
+        <h3>Payback Timeline</h3>
+        <div class="breakdown-item">
+          <span class="breakdown-item-label">Break-even point</span>
+          <span class="breakdown-item-value" id="breakeven">0 months</span>
+        </div>
+        <div class="breakdown-item">
+          <span class="breakdown-item-label">Year 2+ savings (annual)</span>
+          <span class="breakdown-item-value" id="savingsY2Plus">₹0L</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="calculator-section">
+  <div class="cta-section">
+    <h3>What's Your Next Step?</h3>
+    <p>These numbers are based on actual client implementations. Let's talk about which automations would deliver the fastest ROI for your specific situation.</p>
+    <div class="cta-buttons">
+      <a href="https://calendly.com/aitamate/discovery" target="_blank" class="cta-button">
+        <i class="fa-solid fa-calendar"></i> Book a Strategy Call
+      </a>
+      <a href="automation-audit-checklist-gate.html" class="cta-button secondary">
+        <i class="fa-solid fa-clipboard-list"></i> Get Audit Checklist
+      </a>
+    </div>
+    <div class="disclaimer">
+      This calculator provides estimates based on industry averages and client case studies. Actual savings depend on implementation scope, team adoption, and business context. <a href="contact.html">Contact us</a> for a personalized assessment.
+    </div>
+  </div>
+</section>
+
+<script>
+function calculateROI() {
+  const teamSize = parseInt(document.getElementById('teamSize').value) || 0;
+  const avgSalary = parseFloat(document.getElementById('avgSalary').value) || 0;
+  const wastedHours = parseInt(document.getElementById('wastedHours').value) || 0;
+  const challenge = document.getElementById('challenge').value;
+
+  // Update slider display
+  document.getElementById('hoursDisplay').textContent = wastedHours + ' hrs/week';
+
+  if (!teamSize || !avgSalary) {
+    resetResults();
+    return;
+  }
+
+  // CALCULATIONS (in Lakhs, since we're in India)
+  // Hourly rate = Annual Salary / (52 weeks * 40 hours)
+  const hourlyRate = avgSalary / (52 * 40);
+  
+  // Annual salary cost of wasted time
+  const salaryWaste = (wastedHours * 52 * hourlyRate * teamSize) / 10000000; // Convert to Lakhs
+  
+  // Bad hire cost (if hiring challenge selected)
+  let hireWaste = 0;
+  if (challenge === 'hiring') {
+    // Assume 3-5% of hires are bad, avg bad hire cost is 2.5x salary
+    const badHireRate = 0.04; // 4% of team turns over badly
+    const costMultiplier = 2.5;
+    hireWaste = (teamSize * avgSalary * badHireRate * costMultiplier) / 10000000;
+    document.getElementById('hireWasteRow').style.display = 'flex';
+  } else {
+    document.getElementById('hireWasteRow').style.display = 'none';
+  }
+
+  const totalWaste = salaryWaste + hireWaste;
+
+  // Automation implementation cost (typical range: ₹20L - ₹80L depending on complexity & team size)
+  let automationCost;
+  if (teamSize <= 10) {
+    automationCost = 25; // ₹25L for small team
+  } else if (teamSize <= 30) {
+    automationCost = 45; // ₹45L for medium team
+  } else {
+    automationCost = 70; // ₹70L for larger team
+  }
+
+  // Typical annual savings (70-80% of waste can be captured in year 1)
+  const captureRate = 0.75;
+  const annualSavings = totalWaste * captureRate;
+  
+  // Net savings year 1 (after automation cost)
+  const netSavingsY1 = annualSavings - automationCost;
+
+  // Payback period (months)
+  const breakEvenMonths = automationCost > 0 ? Math.ceil((automationCost / annualSavings) * 12) : 0;
+
+  // Year 2+ savings (full savings, no implementation cost)
+  const savingsY2Plus = totalWaste; // Can capture full waste over time
+
+  // FORMAT AND DISPLAY
+  function formatValue(value) {
+    if (value < 1) {
+      return '₹' + (value * 100).toFixed(0) + 'K';
+    }
+    return '₹' + value.toFixed(1) + 'L';
+  }
+
+  document.getElementById('totalWaste').textContent = formatValue(totalWaste);
+  document.getElementById('salaryWaste').textContent = formatValue(salaryWaste);
+  document.getElementById('hireWaste').textContent = formatValue(hireWaste);
+  document.getElementById('automationCost').textContent = formatValue(automationCost);
+  document.getElementById('netSavingsY1').textContent = formatValue(netSavingsY1);
+  document.getElementById('savingsY2Plus').textContent = formatValue(savingsY2Plus);
+  document.getElementById('breakeven').textContent = breakEvenMonths <= 12 ? breakEvenMonths + ' months' : '< 1 year';
+}
+
+function resetResults() {
+  document.getElementById('totalWaste').textContent = '₹0L';
+  document.getElementById('salaryWaste').textContent = '₹0L';
+  document.getElementById('hireWaste').textContent = '₹0L';
+  document.getElementById('automationCost').textContent = '₹0L';
+  document.getElementById('netSavingsY1').textContent = '₹0L';
+  document.getElementById('savingsY2Plus').textContent = '₹0L';
+  document.getElementById('breakeven').textContent = '0 months';
+}
+
+function resetCalculator() {
+  document.getElementById('teamSize').value = '';
+  document.getElementById('avgSalary').value = '';
+  document.getElementById('wastedHours').value = '15';
+  document.getElementById('challenge').value = 'general';
+  document.getElementById('hoursDisplay').textContent = '15 hrs/week';
+  resetResults();
+}
+
+// Initialize on page load
+window.addEventListener('load', () => {
+  calculateROI();
+});
+</script>
+
+</body>
+</html>

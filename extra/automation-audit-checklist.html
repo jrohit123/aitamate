@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<title>5-Point Automation Audit Checklist — aitamate</title>
+<meta name="robots" content="noindex, nofollow"/>
+
+<!-- ── FONTS ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0A1628;
+  line-height: 1.6;
+  background: white;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+@media print {
+  .container {
+    padding: 40px 30px;
+  }
+}
+
+/* ── COVER PAGE ── */
+.cover-page {
+  text-align: center;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #f0f6ff 0%, #f7f9fc 100%);
+  border-radius: 12px;
+  margin-bottom: 60px;
+}
+
+.cover-page h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0A1628;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.cover-page .subtitle {
+  font-size: 1.2rem;
+  color: #5A6A7E;
+  margin-bottom: 32px;
+}
+
+.cover-page .tagline {
+  font-size: 0.95rem;
+  color: #1A6FD4;
+  font-weight: 600;
+}
+
+/* ── SECTIONS ── */
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #0A1628;
+  margin-top: 60px;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #1A6FD4;
+  padding-bottom: 12px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0A1628;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1A6FD4;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5A6A7E;
+  margin-bottom: 16px;
+}
+
+ul, ol {
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+li {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5A6A7E;
+  margin-bottom: 12px;
+}
+
+/* ── BOXES ── */
+.info-box {
+  background: #EBF4FF;
+  border-left: 4px solid #1A6FD4;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 6px;
+}
+
+.alert-box {
+  background: rgba(230, 126, 34, 0.05);
+  border-left: 4px solid #E67E22;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 6px;
+}
+
+/* ── CHECKLIST POINTS ── */
+.checklist-point {
+  background: white;
+  border: 2px solid #DDE4EE;
+  border-radius: 8px;
+  padding: 28px;
+  margin: 32px 0;
+  page-break-inside: avoid;
+}
+
+.point-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: white;
+  background: #1A6FD4;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.checklist-point h3 {
+  margin-top: 0;
+  color: #0A1628;
+}
+
+.worksheet {
+  background: #F7F9FC;
+  border: 1px dashed #DDE4EE;
+  padding: 16px;
+  border-radius: 6px;
+  margin: 16px 0;
+  font-family: monospace;
+  font-size: 0.9rem;
+  min-height: 100px;
+  color: #5A6A7E;
+}
+
+.worksheet strong {
+  color: #0A1628;
+}
+
+/* ── SCORING TABLE ── */
+.scoring-grid {
+  width: 100%;
+  margin: 32px 0;
+  page-break-inside: avoid;
+}
+
+.scoring-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.scoring-cell {
+  background: white;
+  border: 1px solid #DDE4EE;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.scoring-cell.header {
+  background: #f0f6ff;
+  font-weight: 700;
+  color: #1A6FD4;
+}
+
+.scoring-cell.opportunity {
+  background: #f0f6ff;
+  border-color: #1A6FD4;
+  text-align: left;
+  padding: 12px;
+}
+
+/* ── FOOTER ── */
+.guide-footer {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 2px solid #DDE4EE;
+  text-align: center;
+}
+
+.guide-footer p {
+  font-size: 0.85rem;
+  color: #5A6A7E;
+  margin-bottom: 12px;
+}
+
+.guide-footer strong {
+  color: #1A6FD4;
+}
+
+.cta-text {
+  font-size: 0.95rem;
+  color: #1A6FD4;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+@media print {
+  .page-break {
+    page-break-after: always;
+  }
+  
+  .print-button {
+    display: none;
+  }
+}
+
+.print-button {
+  display: block;
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  background: #1A6FD4;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+}
+
+.print-button:hover {
+  background: #2E8CF0;
+}
+
+@media print {
+  .print-button {
+    display: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="print-button" onclick="window.print()"><i>🖨️</i> Print as PDF</button>
+
+<!-- COVER PAGE -->
+<div class="cover-page">
+  <h1>5-Point Automation Audit Checklist</h1>
+  <p class="subtitle">Find Your Hidden Automation Opportunities</p>
+  <p class="tagline">A practical worksheet to identify where delays, manual work, and inefficiency cost your business the most • aitamate Solutions</p>
+</div>
+
+<div class="container">
+
+<!-- INTRODUCTION -->
+<h2>How to Use This Checklist</h2>
+
+<p>This checklist is designed to be completed as a team exercise. Set aside 60-90 minutes in a workshop setting. Go through each of the 5 points with your operations, HR, or finance team. Be honest about where friction exists.</p>
+
+<div class="info-box">
+  <strong>Pro tip:</strong> Don't overthink this. Your gut instinct about where problems exist is usually right. The goal is to surface opportunities, not solve them (yet).
+</div>
+
+<p style="margin-top: 24px;"><strong>What you'll get out of this:</strong></p>
+<ul>
+  <li>A clear list of 5-10 processes that could be automated</li>
+  <li>Quantified understanding of how much time/money each opportunity represents</li>
+  <li>A prioritized view of which to tackle first (usually not what you think)</li>
+  <li>Data to present to leadership and justify investment</li>
+</ul>
+
+<!-- POINT 1 -->
+<div class="checklist-point">
+  <div class="point-number">1</div>
+  <h3>Where Is Your Manual Labor Bleeding Away?</h3>
+  
+  <p><strong>The question:</strong> Who on your team spends the most time on work that could be done by a machine or a simple script?</p>
+  
+  <p><strong>Look for:</strong></p>
+  <ul>
+    <li>Data entry into multiple systems</li>
+    <li>Copy-pasting information between tools</li>
+    <li>Formatting reports or documents from raw data</li>
+    <li>Manually screening, sorting, or filtering information</li>
+    <li>Repetitive email or notification tasks</li>
+  </ul>
+
+  <h4>Your Worksheet:</h4>
+  <div class="worksheet">
+    <strong>Person/Role:</strong> _________________________________
+    <br><strong>Task:</strong> _____________________________________
+    <br><strong>Hours per week:</strong> ___ Hours [estimate]
+    <br><strong>Cost (hours × hourly rate):</strong> ₹ ____________
+    <br><br>What's the impact if we do nothing? _____________________
+  </div>
+
+  <p><strong>Record 3-5 examples of manual labor you observed.</strong></p>
+</div>
+
+<!-- POINT 2 -->
+<div class="page-break"></div>
+
+<div class="checklist-point">
+  <div class="point-number">2</div>
+  <h3>Which Tasks Repeat 5+ Times Per Week?</h3>
+  
+  <p><strong>The question:</strong> What workflows run over and over? Every day or multiple times daily?</p>
+  
+  <p><strong>Why this matters:</strong> Repetitive tasks are automation gold. They're predictable, easily testable, and deliver consistent ROI.</p>
+
+  <p><strong>Look for:</strong></p>
+  <ul>
+    <li>Status check-ins or status updates</li>
+    <li>Data validation or quality checks</li>
+    <li>Schedule coordination or calendar management</li>
+    <li>Invoice processing or payment approvals</li>
+    <li>Daily/weekly report generation</li>
+    <li>Customer or employee communication templated messages</li>
+  </ul>
+
+  <h4>Your Worksheet:</h4>
+  <div class="worksheet">
+    <strong>Recurring Task:</strong> __________________________
+    <br><strong>Frequency:</strong> ___ times per week [or per day]
+    <br><strong>Time per cycle:</strong> ___ minutes
+    <br><strong>Total time/week:</strong> ___ hours
+    <br><br>Who owns this task? ___________________________
+    <br><br>What would change if it was instant/automated? ____________
+  </div>
+
+  <p><strong>Record your top 5-8 repetitive tasks.</strong></p>
+</div>
+
+<!-- POINT 3 -->
+<div class="page-break"></div>
+
+<div class="checklist-point">
+  <div class="point-number">3</div>
+  <h3>How Much Decision-Data Are You Manually Compiling?</h3>
+  
+  <p><strong>The question:</strong> Where does someone have to hunt through multiple systems, reports, or files to make a decision?</p>
+  
+   <p><strong>Why this matters:</strong> Pulling data from 10 different sources before making a decision is automation looking for a home. Automating data *visibility* is often more valuable than automating the task itself.</p>
+
+  <p><strong>Look for:</strong></p>
+  <ul>
+    <li>Weekly/monthly reporting cycles that take hours</li>
+    <li>Status meetings where people read out metrics manually</li>
+    <li>Decision backlogs waiting for data compilation</li>
+    <li>Critical decisions delayed because "we need to check three systems"</li>
+    <li>Multiple tools tracking the same information (data duplicated across systems)</li>
+  </ul>
+
+  <h4>Your Worksheet:</h4>
+  <div class="worksheet">
+    <strong>Decision Point:</strong> ___________________________
+    <br><strong>Data sources involved:</strong> ___ systems [list them]
+    <br><strong>Time to compile:</strong> ___ hours monthly
+    <br><strong>Who needs this data?</strong> ____________________
+    <br><br>How would better visibility change this decision? ___________
+  </div>
+
+  <p><strong>Record 3-4 decision-data compilation tasks.</strong></p>
+</div>
+
+<!-- POINT 4 -->
+<div class="page-break"></div>
+
+<div class="checklist-point">
+  <div class="point-number">4</div>
+  <h3>Where Is Team Productivity Lost to Admin Work?</h3>
+  
+  <p><strong>The question:</strong> Where do your most valuable people spend time on admin instead of doing what they were hired to do?</p>
+  
+  <p><strong>Why this matters:</strong> This is where automation has the highest ROI. One ops manager saving 10 hours/week to focus on strategy = millions in value. This is the conversation that justifies investment.</p>
+
+  <p><strong>Look for:</strong></p>
+  <ul>
+    <li>Managers spending time on scheduling, coordination, or logistics instead of coaching</li>
+    <li>Sales people doing data entry instead of selling</li>
+    <li>HR teams managing onboarding checklists instead of culture building</li>
+    <li>Finance teams reconciling spreadsheets instead of strategic planning</li>
+    <li>Leaders doing manual tasks that junior staff could do (if they had time)</li>
+  </ul>
+
+  <h4>Your Worksheet:</h4>
+  <div class="worksheet">
+    <strong>High-value role:</strong> ____________________________
+    <br><strong>Admin task stealing their time:</strong> ________________
+    <br><strong>Hours per week on this task:</strong> ___ hours
+    <br><strong>Their annual salary:</strong> ₹ ___ Lakhs
+    <br><br>What would this person focus on if they had those hours back? ____
+  </div>
+
+  <p><strong>Record 3-5 instances where top talent is stuck in admin mode.</strong></p>
+</div>
+
+<!-- POINT 5 -->
+<div class="page-break"></div>
+
+<div class="checklist-point">
+  <div class="point-number">5</div>
+  <h3>What Would You Build If You Had 10 Extra Hours Every Week?</h3>
+  
+  <p><strong>The question:</strong> If your team had 10 hours of freed-up capacity per week, what would change?</p>
+  
+  <p><strong>Why this matters:</strong> This question surfaces the true business value. It's not about automation for its own sake—it's about what becomes possible once you're not drowning in repetitive work.</p>
+
+  <p><strong>Examples:</strong></p>
+  <ul>
+    <li>"We'd finally have time to improve our hiring process and reduce bad hires"</li>
+    <li>"We could build that customer portal we've been planning for 18 months"</li>
+    <li>"We could actually analyze our data instead of just collecting it"</li>
+    <li>"We could mentor junior staff instead of firefighting every day"</li>
+    <li>"We could finally scale to the next customer segment"</li>
+  </ul>
+
+  <h4>Your Worksheet:</h4>
+  <div class="worksheet">
+    <strong>If we automated [task from Points 1-4],</strong>
+    <br><strong>we would have the capacity to:</strong>
+    <br>1. ________________________________________
+    <br>2. ________________________________________
+    <br>3. ________________________________________
+    <br><br><strong>Business impact of doing this:</strong> ₹ ____ or ____ new customers or ____ in time savings
+  </div>
+
+  <p><strong>Brain-dump all the ideas. The best automation opportunities are the ones that unblock something bigger.</strong></p>
+</div>
+
+<!-- SCORING & PRIORITIZATION -->
+<div class="page-break"></div>
+
+<h2>Scoring & Prioritization Matrix</h2>
+
+<p>Now that you've identified opportunities, it's time to prioritize. Use this matrix to score each opportunity on two dimensions: <strong>Impact</strong> (how much it would save/improve) and <strong>Feasibility</strong> (how easy/realistic it is to automate).</p>
+
+<div class="info-box">
+  <strong>Target:</strong> Usually, the best first automation is HIGH IMPACT + HIGH FEASIBILITY (quick win). Then tackle HIGH IMPACT + MEDIUM FEASIBILITY (bigger plays). Avoid LOW IMPACT even if feasible (not worth your energy).
+</div>
+
+<h3>Opportunity Scoring</h3>
+
+<p><strong>For each opportunity you identified, score 1-5 on each dimension:</strong></p>
+
+<div class="scoring-grid">
+  <div class="scoring-row">
+    <div class="scoring-cell header">Opportunity Name</div>
+    <div class="scoring-cell header">Impact (1-5)</div>
+    <div class="scoring-cell header">Feasibility (1-5)</div>
+  </div>
+  
+  <div class="scoring-row">
+    <div class="scoring-cell">___________________</div>
+    <div class="scoring-cell">____</div>
+    <div class="scoring-cell">____</div>
+  </div>
+  
+  <div class="scoring-row">
+    <div class="scoring-cell">___________________</div>
+    <div class="scoring-cell">____</div>
+    <div class="scoring-cell">____</div>
+  </div>
+  
+  <div class="scoring-row">
+    <div class="scoring-cell">___________________</div>
+    <div class="scoring-cell">____</div>
+    <div class="scoring-cell">____</div>
+  </div>
+  
+  <div class="scoring-row">
+    <div class="scoring-cell">___________________</div>
+    <div class="scoring-cell">____</div>
+    <div class="scoring-cell">____</div>
+  </div>
+  
+  <div class="scoring-row">
+    <div class="scoring-cell">___________________</div>
+    <div class="scoring-cell">____</div>
+    <div class="scoring-cell">____</div>
+  </div>
+</div>
+
+<h3>Scoring Guide</h3>
+
+<h4>Impact (1-5)</h4>
+<ul>
+  <li><strong>5 = Eliminates ₹50L+ annual cost or enables major new revenue</strong></li>
+  <li><strong>4 = Saves ₹20-50L annually or frees up 10+ person-hours/week</strong></li>
+  <li><strong>3 = Saves ₹5-20L or frees up 5-10 person-hours/week</strong></li>
+  <li><strong>2 = Saves ₹1-5L or frees up 2-5 person-hours/week</strong></li>
+  <li><strong>1 = Saves <₹1L or saves <2 hours/week</strong></li>
+</ul>
+
+<h4>Feasibility (1-5)</h4>
+<ul>
+  <li><strong>5 = Can be done with existing tools, no coding, <1 week</strong></li>
+  <li><strong>4 = Straightforward API integration or RPA, 2-4 weeks</strong></li>
+  <li><strong>3 = Doable but requires custom logic or data work, 4-8 weeks</strong></li>
+  <li><strong>2 = Complex, requires multiple tool changes or data migration, 8-12 weeks</strong></li>
+  <li><strong>1 = Very complex, custom build required, 3+ months</strong></li>
+</ul>
+
+<!-- SUMMARY -->
+<div class="page-break"></div>
+
+<h2>Your Summary</h2>
+
+<div class="alert-box">
+  <strong>What This Checklist Found:</strong>
+  <br>✓ ___ opportunities identified
+  <br>✓ Estimated ___ hours/week of freed-up capacity
+  <br>✓ Estimated ₹___ annual savings
+  <br>✓ Top priority: ___________________________
+</div>
+
+<!-- FINAL CTA -->
+<h2>What's Next?</h2>
+
+<p>Congratulations. You've just done 40% of a professional process audit. You've identified problems and quantified their impact.</p>
+
+<p><strong>Here's what you still need:</strong></p>
+<ul>
+  <li><strong>Prioritization based on dependencies</strong> — These opportunities don't exist in isolation. Automating process B might unlock process A. A professional audit sequences them optimally.</li>
+  <li><strong>Realistic ROI and timeline</strong> — Your estimates are usually conservative. A pro can tell you actual costs, timelines, and risk factors.</li>
+  <li><strong>Tool and technology selection</strong> — Which tools to use? Build vs. buy vs. integrate? That decision alone can make or break ROI.</li>
+  <li><strong>Implementation support</strong> — Identifying opportunities is one thing. Executing them successfully is another. Most automation projects fail not on the tools, but on change management.</li>
+</ul>
+
+<p style="margin-top: 32px; font-size: 1rem; color: #1A6FD4; font-weight: 600;">The opportunities are real. The question is: how do you want to execute them?</p>
+
+<!-- FOOTER -->
+<div class="guide-footer">
+  <p>This checklist is based on process audit frameworks used by enterprise consulting firms, adapted for SMEs.</p>
+  <p>Questions? <strong style="color: #1A6FD4;">Email sales@aitamate.com. We'll help you prioritize.</strong></p>
+  <p class="cta-text">📅 Ready to move from "we know the problem" to "we're implementing the solution"? → calendly.com/aitamate/discovery</p>
+</div>
+
+</div>
+
+</body>
+</html>
