@@ -369,19 +369,24 @@
 <body>
 
 <nav>
-  <a href="index.html">
+  <a href="index.html" class="nav-logo">
     <img src="src/Logo-transparent_bg.png" alt="aitamate" style="height:36px;"
          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
     <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--blue);">ai<span style="color:var(--navy);">tamate</span></span>
   </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="solutions.html">Solutions</a></li>
-    <li><a href="resources.html">Resources</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a class="nav-cta" href="contact.html">Request a Demo</a>
+  <button class="nav-toggle" aria-label="Toggle navigation">
+    <span class="nav-toggle-bars"></span>
+  </button>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Request a Demo</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -495,6 +500,60 @@
 </section>
 
 <script>
+async function handleFormSubmit(event, resourceType) {
+  event.preventDefault();
+  
+  const form = event.target;
+  const formData = new FormData(form);
+  
+  const data = {
+    first_name: formData.get('first_name'),
+    last_name: formData.get('last_name'),
+    email: formData.get('email'),
+    company: formData.get('company'),
+    team_size: formData.get('team_size'),
+    challenge_area: formData.get('challenge_area'),
+    context: formData.get('context'),
+    resource_type: resourceType,
+    timestamp: new Date().toISOString()
+  };
+  
+  try {
+    // Send to n8n webhook (replace with your actual webhook URL)
+    const response = await fetch('https://YOUR_N8N_WEBHOOK_URL', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  
+    if (response.ok) {
+      // Show success message
+      form.style.display = 'none';
+      document.getElementById('successMessage').classList.add('show');
+      
+      // Log analytics
+      console.log('Lead captured:', data);
+    } else {
+      alert('There was an issue. Please try again or email sales@aitamate.com');
+    }
+  } catch (error) {
+    console.error('Form submission error:', error);
+    alert('Please refresh and try again, or email sales@aitamate.com');
+  }
+}
+
+function initNavToggle() {
+  const navToggle = document.querySelector('.nav-toggle');
+  const navRight = document.querySelector('.nav-right');
+  if (!navToggle || !navRight) return;
+  navToggle.addEventListener('click', function () {
+    navToggle.classList.toggle('is-open');
+    navRight.classList.toggle('is-open');
+  });
+}
+
+initNavToggle();
+</script>
 async function handleFormSubmit(event, resourceType) {
   event.preventDefault();
   
