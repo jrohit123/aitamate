@@ -280,58 +280,97 @@
   
   function validateForm(event) {
     event.preventDefault();
-    
+
     // Get form values
     const firstName = document.querySelector('input[name="first_name"]').value.trim();
     const lastName = document.querySelector('input[name="last_name"]').value.trim();
     const email = document.querySelector('input[name="email"]').value.trim();
     const phone = document.querySelector('input[name="phone"]').value.trim();
     const company = document.querySelector('input[name="company"]').value.trim();
+    const teamSize = document.querySelector('select[name="team_size"]').value;
+    const message = document.querySelector('textarea[name="message"]').value.trim();
     const consent = document.querySelector('input[name="consent"]').checked;
-    
+
+    // collect interests into a comma-separated string
+    const interests = Array.from(document.querySelectorAll('input[name="interest"]:checked'))
+      .map(cb => cb.value)
+      .join(', ');
+
     // Validation checks
     if (!firstName) {
       alert('Please enter your first name.');
       return false;
     }
-    
+
     if (!lastName) {
       alert('Please enter your last name.');
       return false;
     }
-    
+
     if (!email) {
       alert('Please enter your email address.');
       return false;
     }
-    
+
     if (!company) {
       alert('Please enter your company name.');
       return false;
     }
-    
+
     if (!phone) {
       alert('Please enter your phone number.');
       return false;
     }
-    
+
     // Validate phone format
     const phoneRegex = /^\+\d{1,3}[- ]?\d{10}$/;
     const normalizedPhone = phone.replace(/\s/g, '');
-    
+
     if (!phoneRegex.test(normalizedPhone)) {
       alert('Please enter a valid phone number in the format: +[country code]-[10 digit number] (e.g., +91-1234567890)');
       return false;
     }
-    
+
     if (!consent) {
       alert('Please agree to the Privacy Policy and consent to be contacted.');
       return false;
     }
-    
-    // If all validations pass, allow form submission
-    alert('Form submitted successfully!');
-    // Remove this line when connecting to actual backend
+
+    // Prepare payload for webhook
+    const webhookUrl = 'https://automations.aitamate.com/webhook/aitamate-enquiries';
+    const payload = {
+      firstName,
+      lastName,
+      workEmail: email,
+      phone: normalizedPhone,
+      company,
+      teamSize,
+      interests,
+      aboutBusiness: message,
+      leadSource: 'Contact Page Form'
+    };
+
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Thank you! Your enquiry has been sent. We will respond within one business day.');
+        // clear form fields
+        document.querySelector('form').reset();
+      } else {
+        alert('There was an issue submitting your enquiry. Please try again later.');
+      }
+    })
+    .catch(err => {
+      console.error('Webhook error:', err);
+      alert('There was an issue submitting your enquiry. Please try again later.');
+    });
+
     return false;
   }
   

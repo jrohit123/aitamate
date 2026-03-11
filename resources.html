@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<!-- ── PRIMARY SEO ── -->
+<title>Free AI & Automation Resources — aitamate</title>
+<meta name="description" content="Download free AI guides, process audit checklists, ROI calculators, and automation templates. Everything you need to get started with automation."/>
+<meta name="keywords" content="AI resources, automation guides, process audit template, free tools, business templates, automation checklist"/>
+<meta name="author" content="aitamate Solutions"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.aitamate.com/resources.html"/>
+
+<!-- ── OPEN GRAPH ── -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.aitamate.com/resources.html"/>
+<meta property="og:title" content="Free AI & Automation Resources — aitamate"/>
+<meta property="og:description" content="AI guides, audit checklists, ROI calculator, and templates to help you discover and implement automation."/>
+<meta property="og:image" content="https://www.aitamate.com/src/og-resources.png"/>
+<meta property="og:site_name" content="aitamate Solutions"/>
+
+<!-- ── FAVICON ── -->
+<link rel="icon" type="image/x-icon" href="src/favicon.png"/>
+
+<!-- ── FONTS & LIBRARIES ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+<!-- ── SHARED STYLESHEET ── -->
+<link rel="stylesheet" href="src/aitamate.css"/>
+
+<style>
+.resources-hero {
+  padding: 100px 6% 60px;
+  background: linear-gradient(160deg, #f0f6ff 0%, #f7f9fc 55%, #eef4fb 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.resources-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(26, 111, 212, 0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.resources-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.resources-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resources-hero h1 em {
+  color: var(--blue);
+  font-style: normal;
+}
+
+.resources-hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resources-grid {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 6%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.resource-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.resource-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--blue);
+  box-shadow: 0 12px 32px rgba(26, 111, 212, 0.12);
+}
+
+.resource-icon {
+  font-size: 3rem;
+  color: var(--blue);
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: var(--blue-pale);
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resource-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.resource-description {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.resource-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.resource-meta i {
+  color: var(--blue);
+}
+
+.resource-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--blue);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.resource-cta:hover {
+  background: var(--blue-lt);
+  transform: translateY(-2px);
+}
+
+.resource-card.featured {
+  grid-column: span 1;
+  border: 2px solid var(--blue);
+  background: linear-gradient(135deg, rgba(26, 111, 212, 0.02) 0%, rgba(46, 140, 240, 0.02) 100%);
+}
+
+.resource-card.featured .resource-icon {
+  background: var(--blue);
+  color: white;
+}
+
+.featured-badge {
+  display: inline-block;
+  background: var(--blue);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+}
+
+.use-case-section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 6%;
+}
+
+.use-case-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.use-case-subtitle {
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+}
+
+.use-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.use-case-card {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s;
+}
+
+.use-case-card:hover {
+  border-color: var(--blue);
+  background: white;
+}
+
+.use-case-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.use-case-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.resource-cta-secondary {
+  background: white;
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
+}
+
+.resource-cta-secondary:hover {
+  background: var(--blue-pale);
+}
+
+.faq-section {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 6%;
+}
+
+.faq-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.faq-item {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--navy);
+  transition: all 0.2s;
+}
+
+.faq-question:hover {
+  background: var(--bg);
+}
+
+.faq-question i {
+  color: var(--blue);
+  transition: transform 0.3s;
+}
+
+.faq-answer {
+  padding: 0 20px 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  display: none;
+  border-top: 1px solid var(--border);
+}
+
+.faq-answer.show {
+  display: block;
+}
+
+.faq-question i.show {
+  transform: rotate(180deg);
+}
+
+.cta-footer {
+  text-align: center;
+  padding: 60px 6%;
+  background: linear-gradient(135deg, rgba(26, 111, 212, 0.05) 0%, rgba(46, 140, 240, 0.05) 100%);
+  border-radius: 12px;
+  max-width: 1200px;
+  margin: 80px auto;
+}
+
+.cta-footer h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.cta-footer p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-footer-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-footer .resource-cta {
+  width: auto;
+  padding: 12px 32px;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+    <img src="src/Logo-transparent_bg.png" alt="aitamate" style="height:36px;"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';"/>
+    <span style="display:none;font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:900;color:var(--blue);">ai<span style="color:var(--navy);">tamate</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="solutions.html">Solutions</a></li>
+    <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Request a Demo</a>
+</nav>
+
+<!-- HERO -->
+<div class="resources-hero" style="margin-top: 66px;">
+  <h1>Free Resources to Get Started with <em>AI Automation</em></h1>
+  <p>Everything you need to assess your readiness, identify opportunities, calculate ROI, and build your automation roadmap.</p>
+</div>
+
+<!-- RESOURCES GRID -->
+<section class="resources-grid">
+  <!-- RESOURCE 1: AI READINESS GUIDE -->
+  <div class="resource-card" data-aos="fade-up" data-aos-delay="0">
+    <div class="resource-icon"><i class="fa-solid fa-compass"></i></div>
+    <h3>AI Readiness Guide</h3>
+    <p class="resource-description">Discover your AI maturity level. Self-assess across 20 dimensions and see exactly where you stand (Level 1-4) on the AI adoption journey.</p>
+    <div class="resource-meta">
+      <i class="fa-solid fa-file-pdf"></i>
+      <span>Downloadable PDF</span>
+      <span>•</span>
+      <span>10 min read</span>
+    </div>
+    <a href="get-ai-readiness-guide.html" class="resource-cta">
+      <i class="fa-solid fa-download"></i> Get Your Guide
+    </a>
+  </div>
+
+  <!-- RESOURCE 2: AUTOMATION CHECKLIST -->
+  <div class="resource-card" data-aos="fade-up" data-aos-delay="80">
+    <div class="resource-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+    <h3>5-Point Audit Checklist</h3>
+    <p class="resource-description">Uncover hidden automation opportunities. Use our 5-point framework to identify where delays and manual work are costing you the most.</p>
+    <div class="resource-meta">
+      <i class="fa-solid fa-file-pdf"></i>
+      <span>Downloadable PDF</span>
+      <span>•</span>
+      <span>15 min to complete</span>
+    </div>
+    <a href="get-automation-audit-checklist.html" class="resource-cta">
+      <i class="fa-solid fa-download"></i> Download Checklist
+    </a>
+  </div>
+
+  <!-- RESOURCE 3: ROI CALCULATOR (Featured) -->
+  <div class="resource-card featured" data-aos="fade-up" data-aos-delay="160">
+    <div class="featured-badge"><i class="fa-solid fa-star"></i> Interactive Tool</div>
+    <div class="resource-icon"><i class="fa-solid fa-calculator"></i></div>
+    <h3>ROI Calculator</h3>
+    <p class="resource-description">Calculate exactly how much your business loses annually to manual work. See your break-even point and multi-year savings scenarios.</p>
+    <div class="resource-meta">
+      <i class="fa-solid fa-zap"></i>
+      <span>Instant Results</span>
+      <span>•</span>
+      <span>60 seconds</span>
+    </div>
+    <a href="get-roi-calculator.html" class="resource-cta">
+      <i class="fa-solid fa-arrow-right"></i> Calculate Your ROI
+    </a>
+  </div>
+
+  <!-- RESOURCE 4: TEMPLATES -->
+  <div class="resource-card" data-aos="fade-up" data-aos-delay="240">
+    <div class="resource-icon"><i class="fa-solid fa-layer-group"></i></div>
+    <h3>Templates Suite</h3>
+    <p class="resource-description">Professional templates: Process Audit Template, Automation Workflow Blueprint, and Opportunity Scoring Matrix. Use in workshops or planning.</p>
+    <div class="resource-meta">
+      <i class="fa-solid fa-file-word"></i>
+      <span>DOCX Files</span>
+      <span>•</span>
+      <span>3 templates</span>
+    </div>
+    <a href="get-templates-suite.html" class="resource-cta">
+      <i class="fa-solid fa-download"></i> Get Templates
+    </a>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-case-section">
+  <h2 class="use-case-title">How to Use These Resources</h2>
+  <p class="use-case-subtitle">Different resources serve different purposes. Pick the ones that match your current stage.</p>
+  
+  <div class="use-case-grid">
+    <div class="use-case-card" data-aos="fade-up" data-aos-delay="0">
+      <h4><i class="fa-solid fa-circle" style="color: var(--blue); margin-right: 8px; font-size: 0.6rem;"></i> Exploring AI</h4>
+      <p><strong>Start with:</strong> AI Readiness Guide. Get a baseline understanding of your maturity level and learn what each stage requires.</p>
+    </div>
+    <div class="use-case-card" data-aos="fade-up" data-aos-delay="80">
+      <h4><i class="fa-solid fa-circle" style="color: var(--blue); margin-right: 8px; font-size: 0.6rem;"></i> Finding Opportunities</h4>
+      <p><strong>Use:</strong> Automation Checklist + ROI Calculator. Identify what to automate and quantify the business impact.</p>
+    </div>
+    <div class="use-case-card" data-aos="fade-up" data-aos-delay="160">
+      <h4><i class="fa-solid fa-circle" style="color: var(--blue); margin-right: 8px; font-size: 0.6rem;"></i> Building Your Roadmap</h4>
+      <p><strong>Reference:</strong> Templates Suite. Use these to map processes internally, prepare for professional engagement, or document your approach.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <h2>Common Questions</h2>
+  
+  <div class="faq-item" data-aos="fade-up">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>Are these resources really free? What's the catch?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Yes, they're completely free! We provide these resources because they're genuinely useful for businesses exploring automation. We ask for your email so we can follow up with relevant information and offers. If you ever want to unsubscribe, you can do so anytime.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="80">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>Can we use these templates for our internal team planning?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Absolutely! The templates are designed to be used in internal workshops, planning sessions, and team exercises. They help align your team on process mapping and automation opportunity identification. Feel free to customize them for your use case.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="160">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>Are the ROI calculator numbers realistic for my business?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>The calculator provides estimates based on industry averages and case studies from 50+ SME implementations. Actual results depend on your specific context: process complexity, team adoption, and implementation timeline. For a personalized assessment, book a discovery call with our team.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="240">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>What's the difference between templates and professional guidance?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Templates give you the structure and methodology. Professional guidance adds the domain expertise: knowing which automations deliver the fastest ROI, avoiding common mistakes, handling edge cases, and managing implementation risks. Think of templates as the map—professional services help you navigate it efficiently.</p>
+    </div>
+  </div>
+
+  <div class="faq-item" data-aos="fade-up" data-aos-delay="320">
+    <div class="faq-question" onclick="toggleFAQ(this)">
+      <span>Can I share these resources with my leadership team?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Of course! That's actually the best use case for these resources. Share the ROI calculator with your CFO, the readiness guide with your CTO, and the templates with your ops team. Each person will get value tailored to their perspective.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FOOTER -->
+<div class="cta-footer">
+  <h2>Ready for Professional Help?</h2>
+  <p>Our resources give you the foundation. Let's talk about how to accelerate from assessment to implementation.</p>
+  <div class="cta-footer-buttons">
+    <a href="https://calendly.com/aitamate/discovery" target="_blank" class="resource-cta">
+      <i class="fa-solid fa-calendar"></i> Book a Strategy Call
+    </a>
+    <a href="contact.html" class="resource-cta resource-cta-secondary">
+      <i class="fa-solid fa-envelope"></i> Email Us
+    </a>
+  </div>
+</div>
+
+<script>
+function toggleFAQ(element) {
+  const answer = element.nextElementSibling;
+  const icon = element.querySelector('i');
+  
+  answer.classList.toggle('show');
+  icon.classList.toggle('show');
+}
+
+// Initialize AOS
+AOS.init({
+  duration: 800,
+  once: true
+});
+</script>
+
+</body>
+</html>

@@ -336,9 +336,13 @@
       <h2>Get <em>AI Working For Your Business</em> - Even If You Don't Know Where to Start</h2>
       <p>Download our free AI Readiness Guide and discover the 5 highest-ROI automation opportunities for businesses like yours - with a prioritised action plan you can act on this week.</p>
       <div class="lm-form">
-        <input id="lead-name" type="text" placeholder="Your Full Name *"/>
+        <div style="display: flex; gap: 16px;">
+          <input id="lead-firstname" type="text" placeholder="First Name *" style="flex: 1;"/>
+          <input id="lead-lastname" type="text" placeholder="Last Name *" style="flex: 1;"/>
+        </div>
         <input id="lead-email" type="email" placeholder="Work Email Address *"/>
         <input id="lead-phone" type="tel" placeholder="Phone Number with country code (e.g. +91-1234567890) *"/>
+        <input id="lead-about" type="text area" placeholder="A little about you/your business *"/>
         <a class="btn-primary" href="#" onclick="return downloadGuide()">Download Free Guide</a>
       </div>
     </div>
@@ -380,12 +384,20 @@ function isValidPhone(phone) {
 }
 
 function downloadGuide() {
-  const name = document.getElementById('lead-name').value.trim();
+  const firstName = document.getElementById('lead-firstname').value.trim();
+  const lastName = document.getElementById('lead-lastname').value.trim();
   const email = document.getElementById('lead-email').value.trim();
   const phone = document.getElementById('lead-phone').value.replace(/ /g, '');
-  if (!name) {
-    alert('Please fill in your name.');
-    document.getElementById('lead-name').focus();
+  const about = document.getElementById('lead-about').value.trim();
+  
+  if (!firstName) {
+    alert('Please fill in your first name.');
+    document.getElementById('lead-firstname').focus();
+    return false;
+  }
+  if (!lastName) {
+    alert('Please fill in your last name.');
+    document.getElementById('lead-lastname').focus();
     return false;
   }
   if (!email) {
@@ -408,9 +420,48 @@ function downloadGuide() {
     document.getElementById('lead-phone').focus();
     return false;
   }
-  // Placeholder for actual download logic
-  alert('Thank you! Please check your email for the guide download link.');
-  // Here you can add: window.location.href = 'path/to/guide.pdf';
+  if (!about) {
+    alert('Please tell us a bit about your business.');
+    document.getElementById('lead-about').focus();
+    return false;
+  }
+  
+  // Send data to webhook
+  const webhookUrl = 'https://automations.aitamate.com/webhook/aitamate-enquiries';
+  const payload = {
+    firstName: firstName,
+    lastName: lastName,
+    workEmail: email,
+    phone: phone,
+    aboutBusiness: about,
+    leadSource: "Lead Magnet: AI Readiness Guide"
+  };
+  
+  fetch(webhookUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('Thank you! Please check your email for the guide download link.');
+      // Clear form after successful submission
+      document.getElementById('lead-firstname').value = '';
+      document.getElementById('lead-lastname').value = '';
+      document.getElementById('lead-email').value = '';
+      document.getElementById('lead-phone').value = '';
+      document.getElementById('lead-about').value = '';
+    } else {
+      alert('There was an issue processing your request. Please try again later.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was an issue processing your request. Please try again later.');
+  });
+  
   return false;
 }
 AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});
