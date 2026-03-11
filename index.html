@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
 <!-- ── PRIMARY SEO ── -->
-<title>aitamate Solutions - AI-Powered Business Automation | ProValuate & Momentum</title>
+<title>aitamate - Automate with AI</title>
 <meta name="description" content="aitamate helps businesses automate repetitive work with ethical, practical AI. Explore ProValuate (hiring intelligence) and Momentum (execution discipline) - both live and ready to use today."/>
 <meta name="keywords" content="AI business automation, aitamate, ProValuate, Momentum, hiring intelligence, execution intelligence, HR automation, SME AI tools, AI workflow automation, process optimisation, augmented intelligence"/>
 <meta name="author" content="aitamate Solutions"/>
@@ -112,7 +112,7 @@
 <!-- ── 2. BANNER CTA ── -->
 <div class="banner-cta" data-aos="fade-up">
   <h2>Scale Your Business <em>Without Scaling Your Headcount</em> - Starting Today</h2>
-  <a class="btn-white" href="#readiness-guide">Download Free AI Readiness Guide</a>
+  <a class="btn-white" href="ai-readiness-guide-gate.html">Download Free AI Readiness Guide</a>
 </div>
 
 <!-- ── 3. PROBLEM ── -->
@@ -312,7 +312,7 @@
         <span class="pc-tag">Execution Intelligence</span>
         <h3>Momentum</h3>
         <p class="pc-tagline">Daily Execution Discipline System</p>
-        <p>Strategy means nothing without daily execution. Momentum instils structured check-in disciplines and AI-powered accountability loops that keep SME teams on track - every single day.</p>
+        <p>Strategy means nothing without daily execution. Momentum instils structured check-in disciplines along with task-dependencies and accountability loops that keep SME teams on track - every single day.</p>
         <div class="pc-ready"><i class="fa-solid fa-circle"></i> Live & ready for sign-up</div>
         <a class="link-arrow" href="http://momentum.aitamate.com" target="_blank" rel="noopener">Get Started with Momentum <i class="fa-solid fa-arrow-right"></i></a>
       </div>
@@ -336,9 +336,10 @@
       <h2>Get <em>AI Working For Your Business</em> - Even If You Don't Know Where to Start</h2>
       <p>Download our free AI Readiness Guide and discover the 5 highest-ROI automation opportunities for businesses like yours - with a prioritised action plan you can act on this week.</p>
       <div class="lm-form">
-        <input type="text" placeholder="Your Full Name"/>
-        <input type="email" placeholder="Work Email Address"/>
-        <a class="btn-primary" href="#">Download Free Guide</a>
+        <input id="lead-name" type="text" placeholder="Your Full Name *"/>
+        <input id="lead-email" type="email" placeholder="Work Email Address *"/>
+        <input id="lead-phone" type="tel" placeholder="Phone Number with country code (e.g. +91-1234567890) *"/>
+        <a class="btn-primary" href="#" onclick="return downloadGuide()">Download Free Guide</a>
       </div>
     </div>
   </div>
@@ -367,6 +368,52 @@
   </div>
 </footer>
 
-<script>AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});</script>
+<script>
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+  const phoneRegex = /^\+\d{1,3}[- ]?\d{10}$/;
+  return phoneRegex.test(phone);
+}
+
+function downloadGuide() {
+  const name = document.getElementById('lead-name').value.trim();
+  const email = document.getElementById('lead-email').value.trim();
+  const phone = document.getElementById('lead-phone').value.replace(/ /g, '');
+  if (!name) {
+    alert('Please fill in your name.');
+    document.getElementById('lead-name').focus();
+    return false;
+  }
+  if (!email) {
+    alert('Please fill in your email.');
+    document.getElementById('lead-email').focus();
+    return false;
+  }
+  if (!isValidEmail(email)) {
+    alert('Please enter a valid email address.');
+    document.getElementById('lead-email').focus();
+    return false;
+  }
+  if (!phone) {
+    alert('Please fill in your phone number.');
+    document.getElementById('lead-phone').focus();
+    return false;
+  }
+  if (!isValidPhone(phone)) {
+    alert('Please enter a valid phone number (e.g., +91-1234567890).');
+    document.getElementById('lead-phone').focus();
+    return false;
+  }
+  // Placeholder for actual download logic
+  alert('Thank you! Please check your email for the guide download link.');
+  // Here you can add: window.location.href = 'path/to/guide.pdf';
+  return false;
+}
+AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});
+</script>
 </body>
 </html>

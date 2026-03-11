@@ -89,7 +89,7 @@
   <div class="contact-inner">
 
     <!-- SIDEBAR -->
-    <div data-aos="fade-right">
+    <div class="contact-sidebar" data-aos="fade-right">
       <p class="sec-label">Contact</p>
       <h2>We'd love to hear from you.</h2>
       <p>Whether you're ready to get started, exploring your options, or just want to understand how AI could fit into your specific context - reach out and we'll respond within one business day.</p>
@@ -130,17 +130,18 @@
     <!-- FORM -->
     <div id="ctcform" data-aos="fade-left" data-aos-delay="100">
       <div class="contact-form-wrap">
-        <h3>Request a Demo or Discovery Call</h3>
+        <h3>Request a Demo or a Discovery Call</h3>
         <p class="form-sub">Tell us a little about your business and what you're looking to solve. We'll take it from there.</p>
 
         <div class="intent-tabs">
           <div class="intent-tab active" onclick="setTab(this)">Request a Demo</div>
           <div class="intent-tab" onclick="setTab(this)">Book a Discovery Call</div>
           <div class="intent-tab" onclick="setTab(this)">Get a Process Audit</div>
-          <div class="intent-tab" onclick="setTab(this)">General Enquiry</div>
+          <div class="intent-tab" onclick="setTab(this)">Train My Team</div>
+          <div class="intent-tab" onclick="setTab(this)">Full Process Automation</div>
         </div>
 
-        <form action="#" method="POST">
+        <form action="#" method="POST" onsubmit="validateForm(event)">
           <div class="form-row">
             <div class="form-group">
               <label>First Name *</label>
@@ -154,6 +155,10 @@
           <div class="form-group">
             <label>Work Email *</label>
             <input type="email" name="email" placeholder="rahul@company.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" name="phone" placeholder="e.g. +91-1234567890" required/>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -197,7 +202,7 @@
               <label class="cb-option">
                 <input type="checkbox" name="interest" value="Training"/>
                 <span class="cb-box"><i class="fa-solid fa-check"></i></span>
-                <span class="cb-text">AI Workforce Training</span>
+                <span class="cb-text">AI Training</span>
               </label>
               <label class="cb-option">
                 <input type="checkbox" name="interest" value="Guidance"/>
@@ -227,13 +232,13 @@
     <h2>Or jump straight in - both products are ready for immediate sign-up</h2>
     <div class="ql-grid">
       <div class="ql-card">
-        <div class="ql-icon"><i class="fa-solid fa-brain"></i></div>
         <h3>ProValuate</h3>
+        <div class="ql-icon"><i class="fa-solid fa-infinity"></i></div>
         <p>Start making smarter, data-backed hiring decisions today.</p>
         <a href="http://provaluate.aitamate.com" target="_blank" rel="noopener">Sign Up Free <i class="fa-solid fa-arrow-right" style="font-size:.65rem;margin-left:4px;"></i></a>
       </div>
       <div class="ql-card">
-        <div class="ql-icon"><i class="fa-solid fa-rocket"></i></div>
+        <div class="ql-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up ml-2 w-5 h-5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div>
         <h3>Momentum</h3>
         <p>Install daily execution discipline in your team from day one.</p>
         <a href="http://momentum.aitamate.com" target="_blank" rel="noopener">Sign Up Free <i class="fa-solid fa-arrow-right" style="font-size:.65rem;margin-left:4px;"></i></a>
@@ -272,9 +277,96 @@
 
 <script>
   AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});
+  
+  function validateForm(event) {
+    event.preventDefault();
+    
+    // Get form values
+    const firstName = document.querySelector('input[name="first_name"]').value.trim();
+    const lastName = document.querySelector('input[name="last_name"]').value.trim();
+    const email = document.querySelector('input[name="email"]').value.trim();
+    const phone = document.querySelector('input[name="phone"]').value.trim();
+    const company = document.querySelector('input[name="company"]').value.trim();
+    const consent = document.querySelector('input[name="consent"]').checked;
+    
+    // Validation checks
+    if (!firstName) {
+      alert('Please enter your first name.');
+      return false;
+    }
+    
+    if (!lastName) {
+      alert('Please enter your last name.');
+      return false;
+    }
+    
+    if (!email) {
+      alert('Please enter your email address.');
+      return false;
+    }
+    
+    if (!company) {
+      alert('Please enter your company name.');
+      return false;
+    }
+    
+    if (!phone) {
+      alert('Please enter your phone number.');
+      return false;
+    }
+    
+    // Validate phone format
+    const phoneRegex = /^\+\d{1,3}[- ]?\d{10}$/;
+    const normalizedPhone = phone.replace(/\s/g, '');
+    
+    if (!phoneRegex.test(normalizedPhone)) {
+      alert('Please enter a valid phone number in the format: +[country code]-[10 digit number] (e.g., +91-1234567890)');
+      return false;
+    }
+    
+    if (!consent) {
+      alert('Please agree to the Privacy Policy and consent to be contacted.');
+      return false;
+    }
+    
+    // If all validations pass, allow form submission
+    alert('Form submitted successfully!');
+    // Remove this line when connecting to actual backend
+    return false;
+  }
+  
   function setTab(el){
     document.querySelectorAll('.intent-tab').forEach(t=>t.classList.remove('active'));
     el.classList.add('active');
+    
+    // Get all checkboxes
+    const provaluateCheckbox = document.querySelector('input[type="checkbox"][value="ProValuate"]');
+    const momentumCheckbox = document.querySelector('input[type="checkbox"][value="Momentum"]');
+    const auditCheckbox = document.querySelector('input[type="checkbox"][value="Audit"]');
+    const automationsCheckbox = document.querySelector('input[type="checkbox"][value="Automations"]');
+    const trainingCheckbox = document.querySelector('input[type="checkbox"][value="Training"]');
+    const guidanceCheckbox = document.querySelector('input[type="checkbox"][value="Guidance"]');
+    
+    // Uncheck all first
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"][name="interest"]');
+    allCheckboxes.forEach(cb => cb.checked = false);
+    
+    const tabText = el.textContent.trim();
+    
+    if (tabText === 'Request a Demo') {
+      if (provaluateCheckbox) provaluateCheckbox.checked = true;
+      if (momentumCheckbox) momentumCheckbox.checked = true;
+    } else if (tabText === 'Book a Discovery Call') {
+      if (guidanceCheckbox) guidanceCheckbox.checked = true;
+    } else if (tabText === 'Get a Process Audit') {
+      if (auditCheckbox) auditCheckbox.checked = true;
+    } else if (tabText === 'Train My Team') {
+      if (trainingCheckbox) trainingCheckbox.checked = true;
+    } else if (tabText === 'Full Process Automation') {
+      if (auditCheckbox) auditCheckbox.checked = true;
+      if (automationsCheckbox) automationsCheckbox.checked = true;
+      if (trainingCheckbox) trainingCheckbox.checked = true;
+    }
   }
 </script>
 </body>
