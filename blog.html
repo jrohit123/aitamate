@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Complete Guide to ProValuate</title>
+<link rel="icon" type="image/x-icon" href="src/favicon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#1a5fd4;
+  --blue-light:#eef3fd;
+  --teal:#006f80;
+  --ink:#141c2e;
+  --ink2:#2e3a52;
+  --muted:#6b7a96;
+  --light:#f5f7fc;
+  --border:#e2e7f2;
+  --white:#fff;
+  --accent:#c8860a;
+  --accent-light:#fdf3e3;
+  --red:#c0392b;
+}
+
+html{scroll-behavior:smooth;}
+[id]{scroll-margin-top:72px;}
+
+body{
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Source Sans 3',sans-serif;
+  font-size:18px;
+  line-height:1.8;
+}
+
+/* ─── TOP NAV ─── */
+.top-nav{
+  border-bottom:1px solid var(--border);
+  padding:0 40px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;top:0;z-index:50;
+}
+.nav-logo img{height:34px;}
+.nav-links{
+  display:flex;align-items:center;gap:28px;
+}
+.nav-links a{
+  font-size:14px;font-weight:600;color:var(--muted);
+  text-decoration:none;transition:color 0.15s;
+}
+.nav-links a:hover{color:var(--ink);}
+.nav-cta{
+  background:var(--blue);color:#fff;
+  font-size:13px;font-weight:700;
+  padding:8px 20px;border-radius:6px;
+  text-decoration:none;transition:all 0.15s;
+}
+.nav-cta:hover{background:#154bb0 !important;color:#fff !important;}
+
+/* ─── COVER ─── */
+.cover{
+  background:var(--light);
+  border-bottom:1px solid var(--border);
+  padding:72px 40px 64px;
+  text-align:center;
+}
+.cover-category{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--blue);
+  background:var(--blue-light);
+  border:1px solid rgba(26,95,212,0.2);
+  padding:5px 16px;border-radius:100px;
+  margin-bottom:28px;
+}
+.cover h1{
+  font-family:'Lora',serif;
+  font-size:48px;font-weight:700;
+  line-height:1.2;letter-spacing:-0.5px;
+  color:var(--ink);
+  max-width:780px;margin:0 auto 20px;
+}
+.cover-sub{
+  font-size:20px;color:var(--muted);
+  max-width:620px;margin:0 auto 36px;
+  line-height:1.7;font-weight:300;
+}
+.cover-meta{
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  font-size:14px;color:var(--muted);
+  border-top:1px solid var(--border);
+  padding-top:24px;margin-top:0;
+}
+.cover-meta-divider{color:var(--border);}
+.cover-author{font-weight:600;color:var(--ink2);}
+
+/* ─── BLOG LAYOUT ─── */
+.blog-layout{
+  max-width:760px;
+  margin:0 auto;
+  padding:64px 24px 100px;
+}
+
+/* ─── TOC ─── */
+.toc{
+  background:var(--light);
+  border:1px solid var(--border);
+  border-left:4px solid var(--blue);
+  border-radius:8px;
+  padding:28px 32px;
+  margin-bottom:56px;
+}
+.toc-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--muted);margin-bottom:16px;
+}
+.toc ol{padding-left:20px;}
+.toc li{margin-bottom:8px;}
+.toc a{
+  font-size:15px;font-weight:600;color:var(--blue);
+  text-decoration:none;transition:color 0.15s;
+}
+.toc a:hover{color:#154bb0;text-decoration:underline;}
+
+/* ─── PROSE ─── */
+.prose p{
+  color:#333d52;
+  margin-bottom:24px;
+  font-size:18px;
+  line-height:1.85;
+}
+.prose p:first-of-type::first-letter{
+  font-family:'Lora',serif;
+  font-size:64px;line-height:0.85;
+  font-weight:700;
+  float:left;
+  margin-right:8px;
+  margin-top:8px;
+  color:var(--blue);
+}
+
+/* ─── HEADINGS ─── */
+.prose h2{
+  font-family:'Lora',serif;
+  font-size:30px;font-weight:700;
+  color:var(--ink);
+  margin:60px 0 20px;
+  line-height:1.3;
+  padding-bottom:16px;
+  border-bottom:2px solid var(--border);
+}
+.prose h2 .h2-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;font-weight:500;
+  color:var(--blue);
+  display:block;
+  margin-bottom:6px;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.prose h3{
+  font-family:'Lora',serif;
+  font-size:22px;font-weight:600;
+  color:var(--ink);
+  margin:36px 0 14px;
+  line-height:1.4;
+}
+.prose h4{
+  font-size:16px;font-weight:700;
+  color:var(--ink2);
+  text-transform:uppercase;letter-spacing:0.5px;
+  margin:28px 0 10px;
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* ─── CALLOUT BOXES ─── */
+.callout{
+  border-radius:10px;
+  padding:24px 28px;
+  margin:32px 0;
+  display:flex;gap:16px;
+  align-items:flex-start;
+}
+.callout-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.callout-body{flex:1;}
+.callout-body strong{display:block;font-size:15px;font-weight:700;margin-bottom:6px;}
+.callout-body p{font-size:15px;color:var(--ink2);margin:0 !important;line-height:1.7;}
+.callout-body p::first-letter{all:unset !important;}
+.callout.info{background:var(--blue-light);border:1px solid rgba(26,95,212,0.2);}
+.callout.tip{background:var(--accent-light);border:1px solid rgba(200,134,10,0.2);}
+.callout.note{background:#f0faf2;border:1px solid rgba(0,111,128,0.2);}
+
+/* ─── FEATURE LIST ─── */
+.feature-list{
+  list-style:none;padding:0;
+  margin:20px 0 28px;
+}
+.feature-list li{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  font-size:16px;color:var(--ink2);
+  line-height:1.6;
+}
+.feature-list li:last-child{border-bottom:none;}
+.fl-icon{
+  width:24px;height:24px;
+  border-radius:6px;
+  background:var(--blue-light);
+  color:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;flex-shrink:0;margin-top:2px;
+  font-weight:700;
+}
+
+/* ─── COMPARISON TABLE ─── */
+.comp-table{
+  width:100%;border-collapse:collapse;
+  margin:28px 0;font-size:14px;
+  border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.comp-table thead tr{background:var(--ink);color:#fff;}
+.comp-table th{
+  padding:14px 18px;text-align:left;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:500;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.comp-table th:last-child{color:#7ab3ff;}
+.comp-table td{
+  padding:13px 18px;
+  border-bottom:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;
+}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:nth-child(even) td{background:var(--light);}
+.comp-table td:last-child{font-weight:600;color:var(--blue);}
+.comp-table td.bad{color:var(--red);}
+.comp-table td.med{color:var(--muted);}
+
+/* ─── PULL QUOTE ─── */
+.pull-quote{
+  border-left:4px solid var(--blue);
+  margin:40px 0;
+  padding:8px 0 8px 32px;
+}
+.pull-quote p{
+  font-family:'Lora',serif;
+  font-size:22px;font-style:italic;
+  color:var(--ink);line-height:1.6;
+  margin:0 !important;
+}
+.pull-quote p::first-letter{all:unset !important;}
+.pull-quote cite{
+  display:block;
+  font-size:13px;font-style:normal;
+  color:var(--muted);margin-top:12px;
+  font-family:'JetBrains Mono',monospace;
+  text-transform:uppercase;letter-spacing:1px;
+}
+
+/* ─── INLINE CODE ─── */
+code{
+  font-family:'JetBrains Mono',monospace;
+  font-size:14px;
+  background:var(--light);
+  color:var(--blue);
+  padding:2px 8px;border-radius:4px;
+  border:1px solid var(--border);
+}
+
+/* ─── BADGE ROW ─── */
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 24px;}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;
+  padding:6px 14px;border-radius:100px;
+  border:1px solid var(--border);
+  background:var(--white);color:var(--ink2);
+}
+.badge.blue{background:var(--blue-light);color:var(--blue);border-color:rgba(26,95,212,0.2);}
+.badge.teal{background:#e0f5f7;color:var(--teal);border-color:rgba(0,111,128,0.2);}
+.badge.gold{background:var(--accent-light);color:var(--accent);border-color:rgba(200,134,10,0.2);}
+
+/* ─── IMAGE CAPTION ─── */
+.img-block{
+  background:var(--light);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:28px;
+  margin:32px 0;
+  text-align:center;
+}
+.img-caption{
+  font-size:13px;color:var(--muted);
+  font-style:italic;margin-top:10px;
+}
+
+/* ─── STEP LIST ─── */
+.step-list{list-style:none;padding:0;counter-reset:steps;margin:20px 0 28px;}
+.step-list li{
+  counter-increment:steps;
+  display:flex;gap:18px;
+  margin-bottom:24px;
+  align-items:flex-start;
+}
+.step-list li::before{
+  content:counter(steps);
+  width:32px;height:32px;border-radius:50%;
+  background:var(--blue);color:#fff;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+.step-list li .step-body{flex:1;}
+.step-list li .step-title{font-weight:700;color:var(--ink);font-size:17px;margin-bottom:4px;}
+.step-list li .step-desc{font-size:16px;color:var(--muted);line-height:1.7;}
+
+/* ─── DIVIDER ─── */
+.section-divider{
+  display:flex;align-items:center;gap:16px;
+  margin:48px 0;color:var(--border);
+}
+.section-divider::before,.section-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.section-divider span{font-size:20px;}
+
+/* ─── CTA BANNER ─── */
+.cta-banner{
+  background:linear-gradient(135deg,var(--ink) 0%,#1e3a6e 100%);
+  border-radius:14px;
+  padding:48px 40px;
+  text-align:center;
+  margin:56px 0;
+}
+.cta-banner h3{
+  font-family:'Lora',serif;
+  font-size:28px;font-weight:700;
+  color:#fff;margin-bottom:12px;
+  line-height:1.3;
+}
+.cta-banner p{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:24px !important;}
+.cta-banner p::first-letter{all:unset !important;}
+.cta-btn{
+  display:inline-block;
+  background:#fff;color:var(--ink);
+  font-size:15px;font-weight:700;
+  padding:14px 32px;border-radius:8px;
+  text-decoration:none;transition:all 0.2s;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.cta-email{
+  display:block;margin-top:14px;
+  color:rgba(255,255,255,0.4);font-size:13px;
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* ─── AUTHOR BOX ─── */
+.author-box{
+  display:flex;gap:20px;align-items:flex-start;
+  background:var(--light);border:1px solid var(--border);
+  border-radius:10px;padding:24px 28px;
+  margin:48px 0 0;
+}
+.author-avatar{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--teal));
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+  color:#fff;font-weight:700;font-family:'Lora',serif;
+}
+.author-name{font-weight:700;font-size:16px;color:var(--ink);margin-bottom:4px;}
+.author-role{font-size:13px;color:var(--muted);margin-bottom:8px;}
+.author-bio{font-size:14px;color:var(--ink2);line-height:1.6;}
+
+/* ─── FOOTER ─── */
+.site-footer{
+  background:var(--light);
+  border-top:1px solid var(--border);
+  padding:40px;text-align:center;
+}
+.footer-logo img{height:32px;margin-bottom:12px;}
+.footer-text{font-size:14px;color:var(--muted);margin-bottom:6px;}
+.footer-email{color:var(--blue);font-size:14px;text-decoration:none;}
+.footer-tagline{font-family:'Lora',serif;font-style:italic;font-size:15px;color:var(--muted);margin-top:16px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div style="font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--ink);">
+    <a href="https://provaluate.aitamate.com" target="_blank" rel="noreferrer">
+      <img src="src/ProValuate_Logo.png" alt="ProValuate" style="height:34px;">
+    </a>
+  </div>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Stop Hiring Based on Guesswork</h1>
+  <p class="cover-sub">A complete walkthrough of every feature - from resolving a messy job description to running a context-aware AI interview - and why it changes hiring forever.</p>
+  <div class="cover-meta">
+    <span class="cover-author">ProValuate Team</span>
+    <span class="cover-meta-divider">·</span>
+    <span>March 2026</span>
+    <span class="cover-meta-divider">·</span>
+    <span>12 min read</span>
+  </div>
+</div>
+
+<!-- BLOG BODY -->
+<article class="blog-layout">
+
+  <!-- TABLE OF CONTENTS -->
+  <nav class="toc">
+    <div class="toc-title">In this article</div>
+    <ol>
+      <li><a href="#intro">Why Traditional Hiring Is Broken</a></li>
+      <li><a href="#jd">Resolving the Job Description</a></li>
+      <li><a href="#criteria">Building Your Scoring Criteria</a></li>
+      <li><a href="#resume">Deep Resume Analysis</a></li>
+      <li><a href="#interview-config">Configuring the Interview</a></li>
+      <li><a href="#conversational">Conversational AI Interviews</a></li>
+      <li><a href="#types">Interview Types &amp; Modes Explained</a></li>
+      <li><a href="#portal">The Career Portal</a></li>
+      <li><a href="#plugins">Gmail, Outlook &amp; LinkedIn Plugins</a></li>
+      <li><a href="#impact">Traditional ATS vs. ChatGPT vs. ProValuate</a></li>
+      <li><a href="#closing">Final Thoughts</a></li>
+    </ol>
+  </nav>
+
+  <!-- INTRO -->
+  <div id="intro" class="prose">
+    <p>Hiring has a problem that nobody talks about openly: the tools we use to evaluate people are embarrassingly primitive compared to the decisions they're being asked to support. 
+      <ul>
+        <li>&emsp;An ATS counts keyword matches.</li>
+        <li>&emsp;A spreadsheet tracks "yes / no" decisions.</li>
+        <li>&emsp;A phone screen is entirely subjective.</li>
+        <li>&emsp;Recruiters using AI/LLMs frivolously to try and match the context.</li>
+      </ul><br>
+      And somewhere in this chaos, genuinely great candidates get dropped - while mediocre ones who happen to know how to format a resume sail through.</p>
+      
+    <p><b>ProValuate</b> was built to fix this. Not with another dashboard that shows you the same information in a prettier way, but with a fundamentally different approach - one that understands job descriptions, reads resumes in context, scores candidates against criteria you actually care about, and then conducts a real, intelligent interview that adapts to what the person in front of you is saying.</p>
+
+    <p>This post is a complete walkthrough of how the platform works, from the very first step of uploading a job description all the way through to a candidate completing a speech-analysed AI interview. By the end, you'll understand not just what each aspect does, but <em>why</em> it's designed the way it is.</p>
+
+    <div class="callout info">
+      <span class="callout-icon">💡</span>
+      <div class="callout-body">
+        <strong>Who is this for?</strong>
+        <p>CHROs, HR managers, Recruiters and TA leads who want to understand ProValuate before rolling it out - or anyone curious about what modern AI-driven hiring actually looks like under the hood.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- JD RESOLUTION -->
+  <div id="jd" class="prose">
+    <h2><span class="h2-num">Chapter 01</span>Resolving the Job Description</h2>
+
+    <p>Every hiring process starts with a job description - and most job descriptions are a mess. They're written by committee, copy-pasted from last year's version, stuffed with buzzwords, vague about what's actually required, and inconsistent in structure. If you feed a bad JD into a bad screening system, you get bad shortlists. Garbage in, garbage out.</p>
+
+    <p>ProValuate takes a different approach. Before anything else happens - before a single resume is uploaded - the platform reads and <strong>resolves</strong> the job description into a structured, queryable set of attributes. Think of it as translating a free-form document into a precise data model that the rest of the system can actually work with.</p>
+
+    <h3>What does "resolving" actually mean?</h3>
+
+    <p>When you upload a JD, our AI parses it and extracts the following dimensions automatically:</p>
+
+    <ul class="feature-list">
+      <li><span class="fl-icon">T</span><span><strong>Technical skills</strong> - specific tools, languages, platforms, and frameworks that the role requires (e.g. Python, SQL, Salesforce, AutoCAD)</span></li>
+      <li><span class="fl-icon">F</span><span><strong>Functional skills</strong> - the actual job duties and domain capabilities required (e.g. Data Pipeline Development, Financial Modelling, Patient Assessment)</span></li>
+      <li><span class="fl-icon">S</span><span><strong>Soft skills</strong> - interpersonal and behavioural competencies (e.g. Problem-solving mindset, Scientific thinking, Communication)</span></li>
+      <li><span class="fl-icon">E</span><span><strong>Education</strong> - degree level, field of study, and whether it's mandatory or preferred</span></li>
+      <li><span class="fl-icon">X</span><span><strong>Experience</strong> - years of experience, whether it's mandatory or a range, and any specifics like "in a startup environment"</span></li>
+      <li><span class="fl-icon">📍</span><span><strong>Location</strong> - city, state, country, or remote status</span></li>
+    </ul>
+
+    <p>The resolved JD is then stored and linked to every resume analysis and interview that runs against it. This is crucial because it means the AI isn't re-reading and re-interpreting the JD every single time - it works from a consistent, pre-processed understanding of the role. That's what makes ProValuate's evaluations <em>consistent</em> across hundreds of candidates, rather than drifting based on how the model is feeling that day.</p>
+
+    <div class="callout tip">
+      <span class="callout-icon">✦</span>
+      <div class="callout-body">
+        <strong>Why this matters for accuracy</strong>
+        <p>A traditional ATS matches the words in a resume to the words in a JD. ProValuate matches the <em>meaning</em> behind a resume to the <em>structured requirements</em> extracted from a JD. The difference in result quality is significant.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- CRITERIA -->
+  <div id="criteria" class="prose">
+    <h2><span class="h2-num">Chapter 02</span>Building Your Scoring Criteria</h2>
+
+    <p>Once the JD is resolved, you need to decide how you want to evaluate candidates against it. This is where ProValuate's custom criteria system comes in - and it's one of the most underappreciated and yet the most powerful features on the platform.</p>
+
+    <p>The idea is simple: not all aspects of a role matter equally. For a junior data engineer role, technical skills might be worth 30% of the evaluation while stability might only be worth 10%. For a senior sales manager position, soft skills and communication might outweigh raw technical ability. ProValuate lets you encode exactly that logic into a scoring grid.</p>
+
+    <h3>How the criteria grid works</h3>
+
+    <p>You define a set of parameters - the dimensions you want to evaluate candidates on - and assign each one a percentage weighting. The weightings must sum to 100%. For each parameter, you also write a short instruction that tells the AI <em>how</em> to assess it when it reads a resume.</p>
+
+    <div class="img-block">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;text-align:left;font-size:13px;">
+        <div style="background:var(--ink);color:rgba(255,255,255,0.5);padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Example Criteria Grid - Machine Learning Role</div>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr style="background:var(--light);">
+            <th style="padding:10px 16px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border-bottom:1px solid var(--border);">Parameter</th>
+            <th style="padding:10px 16px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border-bottom:1px solid var(--border);">Weight</th>
+            <th style="padding:10px 16px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border-bottom:1px solid var(--border);">What the AI assesses</th>
+          </tr>
+          <tr><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:600;">Technical Skills</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);text-align:center;color:var(--blue);font-weight:700;">30%</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--muted);">Python, ML frameworks, MLOps tools, deployment experience</td></tr>
+          <tr style="background:var(--light);"><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:600;">Experience Level</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);text-align:center;color:var(--blue);font-weight:700;">25%</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--muted);">Years in production ML, not just academic projects</td></tr>
+          <tr><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:600;">Soft Skills</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);text-align:center;color:var(--blue);font-weight:700;">20%</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--muted);">Communication, collaboration, problem-solving mindset</td></tr>
+          <tr style="background:var(--light);"><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:600;">Education</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);text-align:center;color:var(--blue);font-weight:700;">15%</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--muted);">Degree relevance, institution credibility, certifications</td></tr>
+          <tr><td style="padding:10px 16px;font-weight:600;">Stability</td><td style="padding:10px 16px;text-align:center;color:var(--blue);font-weight:700;">10%</td><td style="padding:10px 16px;color:var(--muted);">Average tenure per role, job-hopping patterns</td></tr>
+        </table>
+      </div>
+      <p class="img-caption">A real criteria grid from a live ProValuate assessment. Weights are fully customisable per role.</p>
+    </div>
+
+    <p>Once built, criteria grids are reusable. You create them once and assign them to any number of job descriptions. You can also set a "default criteria" per JD - which becomes the scoring model used automatically when candidates apply through your career portal.</p>
+
+    <div class="pull-quote">
+      <p>"The criteria grid is where your hiring philosophy becomes a scoring algorithm. For the first time, your instincts about what matters in a role become something the AI can actually act on - consistently, at scale."</p>
+      <cite>- ProValuate Design Principle</cite>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- RESUME ANALYSIS -->
+  <div id="resume" class="prose">
+    <h2><span class="h2-num">Chapter 03</span>Deep Resume Analysis - Beyond Keyword Matching</h2>
+
+    <p>With a resolved JD and a scoring criteria in place, you're now ready to evaluate resumes. And this is where most people genuinely start to see something different about ProValuate compared to anything they've used before.</p>
+
+    <p>Upload one resume or a hundred - the system processes them all the same way. For each CV, the AI performs a thorough read of the document, extracting structured information about the candidate (skills, employment history, education, projects) and then scoring them against your criteria grid with actual evidence.</p>
+
+    <h3>What you get for every candidate</h3>
+
+    <ul class="feature-list">
+      <li><span class="fl-icon">📊</span><span><strong>Per-parameter scores</strong> on a 1–10 scale, each with a cited evidence excerpt from the CV itself - not just a number, but a reason</span></li>
+      <li><span class="fl-icon">🎯</span><span><strong>A weighted final score</strong> calculated from your criteria grid - so a candidate's overall match reflects the priorities <em>you</em> set, not some generic formula</span></li>
+      <li><span class="fl-icon">📝</span><span><strong>A detailed written assessment</strong> covering key strengths, notable gaps, experience relevance, employment history continuity, and an overall fit summary</span></li>
+      <li><span class="fl-icon">💡</span><span><strong>A recommendation</strong> - one of three clearly defined outcomes: <em>To be interviewed</em>, <em>Review further</em>, or <em>Candidature rejected</em> - plus a rationale and suggested follow-up questions</span></li>
+    </ul>
+
+    <h3>Consistency by design</h3>
+
+    <p>One of the quiet but critical things ProValuate does is enforce scoring consistency. The same resume evaluated against the same JD and criteria will always produce the same score. This sounds obvious, but it's actually a hard problem with language models - they're probabilistic by nature and can produce different outputs for the same input. ProValuate uses content hashing and caching to ensure that doesn't happen here.</p>
+
+    <div class="callout note">
+      <span class="callout-icon">✓</span>
+      <div class="callout-body">
+        <strong>No hallucination on scores</strong>
+        <p>Scores are anchored to evidence strength: how specific, how detailed, and how technically relevant the matching content in the CV is. The AI is instructed never to give a high score without citing the actual text that justifies it.</p>
+      </div>
+    </div>
+
+    <p>The final scorecard is exportable as an Excel report with one row per candidate and separate columns for each parameter - making it straightforward to sort, filter, and present shortlists to stakeholders without any additional work.</p>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- INTERVIEW CONFIG -->
+  <div id="interview-config" class="prose">
+    <h2><span class="h2-num">Chapter 04</span>Configuring the Interview - Your Parameters, Your Rules</h2>
+
+    <p>Before a candidate sets foot in an interview (even a virtual, AI-conducted one), someone has to design what that interview actually tests. In traditional hiring this happens informally - an interviewer prepares a few questions, improvises the rest, and the whole thing is shaped more by mood than methodology. ProValuate makes interview design explicit, structured, and reusable.</p>
+
+    <h3>Choosing your interview mode</h3>
+
+    <p>The first decision is which <strong>mode</strong> you want to run. ProValuate offers two fundamentally different approaches:</p>
+
+    <div class="badge-row">
+      <span class="badge blue">🤖 AI Dynamic Mode</span>
+      <span class="badge gold">📝 Structured Pre-Defined Mode</span>
+    </div>
+
+    <p>In <strong>AI Dynamic Mode</strong>, you set the parameters and the system generates every question on the fly - adapting in real time to what the candidate is saying. You don't write a single question yourself. In <strong>Structured Mode</strong>, your HR team writes the exact questions that every candidate will receive - giving you full control and perfect consistency across all evaluations.</p>
+
+    <h3>Setting up parameters for AI mode</h3>
+
+    <p>For an AI interview, you define a set of assessment parameters - very similar in concept to the scoring criteria, but specifically designed for verbal evaluation. Each parameter comes with several configurable fields:</p>
+
+    <ol class="step-list">
+      <li>
+        <div class="step-body">
+          <div class="step-title">Parameter Name &amp; Description</div>
+          <div class="step-desc">Give it a clear name (e.g. "Feature Engineering &amp; ML Support") and a bulleted description of what it covers. This description is what the AI uses to frame its questions.</div>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <div class="step-title">Weight &amp; Question Count</div>
+          <div class="step-desc">Assign a percentage weighting and define the minimum and maximum number of questions the AI should ask for this parameter. A heavier parameter gets more airtime.</div>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <div class="step-title">Difficulty Level &amp; Time Limit</div>
+          <div class="step-desc">Set the question difficulty - Easy, Regular, or Hard - and a per-question time limit in minutes. The AI calibrates question complexity accordingly.</div>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <div class="step-title">Written Answer Toggle</div>
+          <div class="step-desc">For parameters where you want a candidate to demonstrate knowledge in writing (e.g. showing a formula, a code snippet, or a structured framework), you can enable a written answer box that appears alongside the spoken response.</div>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <div class="step-title">Scoring Criteria per Parameter</div>
+          <div class="step-desc">Define your own scoring rubric - what does an Excellent (9–10) response look like? What about Average (5–6)? The AI uses these to calibrate its post-interview scoring.</div>
+        </div>
+      </li>
+    </ol>
+
+    <p>Once configured, the parameter setup is saved against the role name and can be reused for every subsequent interview for that position. You build it once; it runs forever.</p>
+
+    <div class="callout info">
+      <span class="callout-icon">⚡</span>
+      <div class="callout-body">
+        <strong>Generate parameters automatically from the JD</strong>
+        <p>Don't want to build parameters from scratch? Hit "Generate AI Parameters" and the system will read your resolved JD and suggest a full parameter set appropriate for the role - complete with descriptions, weights, and difficulty levels. You can then tweak as needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- CONVERSATIONAL INTERVIEWS -->
+  <div id="conversational" class="prose">
+    <h2><span class="h2-num">Chapter 05</span>Conversational AI Interviews - Context That Actually Follows You</h2>
+
+    <p>This is the feature most people want to understand before they commit to ProValuate - and it's the one that's hardest to describe without actually experiencing it. So let's be very precise about what's happening.</p>
+
+    <p>A typical AI interview tool asks a question, receives an answer, moves to the next pre-written question. It doesn't matter what the candidate said - the next question is already decided. That's not a conversation. That's a digital form with a microphone attached.</p>
+
+    <p>ProValuate's interview is different because it maintains the full context of everything the candidate has said before generating the next question. Every response the candidate gives is transcribed, processed, and fed back into the AI's context window before it decides where to take the conversation next.</p>
+
+    <h3>What this looks like in practice</h3>
+
+    <p>If a candidate answers a question about data preprocessing by casually mentioning that they've used IQR-based outlier detection in production, the AI will pick up on that - and might follow up with a more specific probe about how they handle outliers in different distribution shapes, or how they ensure the thresholds computed on training data are correctly applied to new batches. It's not guessing or hallucinating. It's reading what was actually said and responding to it.</p>
+
+    <h3>Full speech analysis on every answer</h3>
+
+    <p>Beyond the content of what candidates say, ProValuate also analyses <em>how</em> they say it. Every spoken answer is processed for:</p>
+
+    <ul class="feature-list">
+      <li><span class="fl-icon">🎙</span><span><strong>Speaking pace</strong> - words per minute, compared against a comfortable conversational range</span></li>
+      <li><span class="fl-icon">💬</span><span><strong>Filler word density</strong> - count and rate of filler words like "um", "like", "basically", "you know" - a reliable proxy for uncertainty</span></li>
+      <li><span class="fl-icon">📊</span><span><strong>Voice stress score</strong> - derived from jitter and shimmer analysis of the audio, indicating perceived anxiety levels</span></li>
+      <li><span class="fl-icon">🔊</span><span><strong>Voice confidence &amp; modulation</strong> - pitch variation, intensity, and engagement score</span></li>
+      <li><span class="fl-icon">⏸</span><span><strong>Pause analysis</strong> - categorised as breathing, thoughtful, or awkward pauses, with per-pause duration timing</span></li>
+    </ul>
+
+    <p>All of this is compiled into a detailed speech feedback report per answer, and a final overall speech analysis report for the full interview. Candidates also receive a personalised action plan - a structured set of improvement recommendations based on their specific speech patterns and content weaknesses.</p>
+
+    <div class="pull-quote">
+      <p>"The interview doesn't just evaluate what you know. It understands how confidently you know it - and the difference between those two things turns out to be enormously important in real hiring decisions."</p>
+      <cite>- ProValuate Interview Design Team</cite>
+    </div>
+
+    <h3>Personalised opening questions from the CV</h3>
+
+    <p>Optionally, you can enable personalised questions - where the AI reads the candidate's own resume and crafts a set of custom opening questions that reference their specific background before moving into the standard parameter-based assessment. This creates a more natural, less robotic feel from the very first exchange and gives candidates the sense that someone has actually read their CV.</p>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- INTERVIEW TYPES -->
+  <div id="types" class="prose">
+    <h2><span class="h2-num">Chapter 06</span>Interview Types &amp; Modes - Choosing the Right Assessment for the Role</h2>
+
+    <p>Different roles demand different kinds of evaluation. A software engineer needs to be tested on what they can build. A customer success manager needs to demonstrate how they handle conflict. A team lead needs to show both. ProValuate provides three interview <strong>types</strong> to map to these different needs, plus two distinct <strong>modes</strong> that control how the interview is delivered.</p>
+
+    <h3>The three interview types</h3>
+
+    <div class="badge-row">
+      <span class="badge blue">Functional</span>
+      <span class="badge teal">Behavioral</span>
+      <span class="badge gold">Mixed</span>
+    </div>
+
+    <p><strong>Functional interviews</strong> focus on role-specific hard skills and domain knowledge - the things the person will actually be doing day-to-day. For a data scientist, that means statistical methods, ML pipelines, and production deployment. For a nurse, it means clinical procedures, patient assessment, and regulatory compliance. The AI knows the difference because the parameters you configure describe the domain explicitly.</p>
+
+    <p><strong>Behavioral interviews</strong> shift the focus to soft skills, interpersonal effectiveness, and professional attributes - assessed through real examples from the candidate's past. The AI prompts for STAR-method responses (Situation, Task, Action, Result) and evaluates the quality and clarity of the examples given. Parameters in a behavioral interview look like "Cross-Functional Collaboration," "Resilience Under Pressure," or "Stakeholder Communication."</p>
+
+    <p><strong>Mixed interviews</strong> do exactly what you'd expect - they blend both functional and behavioral evaluation in whatever ratio makes sense for the role. A 50/50 split is the default, but you can skew it toward whichever dimension is more critical by adjusting parameter weights accordingly.</p>
+
+    <h3>The two delivery modes</h3>
+
+    <p>Independently of type, every interview is delivered in one of two modes:</p>
+
+    <p>In <strong>AI Dynamic Mode</strong>, the AI generates every question live, based on the parameters you've configured and the real-time context of the conversation. No two interviews are identical - each one is shaped by what the candidate says. This is the mode most employers use for mid-to-senior roles where nuance matters.</p>
+
+    <p>In <strong>Structured Mode</strong>, your HR team writes the exact questions upfront using the HR Interview Creator. Every candidate who goes through this role receives precisely the same questions in the same order. This is ideal for high-volume hiring, regulated industries, or situations where legal defensibility of the evaluation process is important. Scores are still AI-generated and evidence-based - but the question set is human-controlled.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>AI Dynamic Mode</th>
+          <th>Structured Mode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Questions</strong></td>
+          <td class="med">Generated live by AI</td>
+          <td class="med">Pre-written by HR team</td>
+        </tr>
+        <tr>
+          <td><strong>Consistency</strong></td>
+          <td class="med">Parameter-consistent, question-variable</td>
+          <td>Identical for all candidates</td>
+        </tr>
+        <tr>
+          <td><strong>Adaptability</strong></td>
+          <td>Responds to candidate answers</td>
+          <td class="med">Fixed sequence</td>
+        </tr>
+        <tr>
+          <td><strong>Best for</strong></td>
+          <td class="med">Mid-senior, nuanced roles</td>
+          <td class="med">High-volume, regulated hiring</td>
+        </tr>
+        <tr>
+          <td><strong>Scoring</strong></td>
+          <td>AI evidence-based</td>
+          <td>AI evidence-based</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- CAREER PORTAL -->
+  <div id="portal" class="prose">
+    <h2><span class="h2-num">Chapter 07</span>The Career Portal - Your Public Face for Hiring</h2>
+
+    <p>Every company on ProValuate gets a public career page - a clean, branded page that lives at a custom URL slug like <code>provaluate.aitamate.com/careers/yourcompany</code>. It's not a job board listing buried among thousands of other companies. It's your page, showing only your active roles, representing only your brand.</p>
+
+    <p>The career portal is designed to close the loop between attraction and assessment. A candidate finds your open roles, reads the job description, uploads their CV - and the moment they hit submit, ProValuate has already started evaluating them in the background against your criteria. By the time you open your dashboard the next morning, there's already a ranked shortlist waiting.</p>
+
+    <h3>What you can configure on your career page</h3>
+
+    <ul class="feature-list">
+      <li><span class="fl-icon">🔗</span><span><strong>Custom URL slug</strong> - your company name becomes part of the URL, making it easy to share in emails, social posts, and job adverts</span></li>
+      <li><span class="fl-icon">🏢</span><span><strong>Company logo and vision statement</strong> - up to 400 characters of "about us" text that candidates see before they apply</span></li>
+      <li><span class="fl-icon">📋</span><span><strong>Selective JD publishing</strong> - only job descriptions with a default criteria set and the "Post on career page" toggle enabled appear publicly. You stay in control of what's live</span></li>
+      <li><span class="fl-icon">⚡</span><span><strong>Automatic background screening</strong> - every CV submitted goes straight into the analysis pipeline with no manual trigger required</span></li>
+    </ul>
+
+    <div class="callout note">
+      <span class="callout-icon">✓</span>
+      <div class="callout-body">
+        <strong>Zero manual work after setup</strong>
+        <p>Once your career page is configured and your JDs are published, the entire inbound flow - submission, analysis, scoring, and shortlisting - runs automatically. You only touch the process when there's a human decision to make.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- PLUGINS -->
+  <div id="plugins" class="prose">
+    <h2><span class="h2-num">Chapter 08</span>Gmail, Outlook &amp; LinkedIn Plugins - Screening Without Leaving Your Inbox</h2>
+
+    <p>The reality of recruiting is that a huge number of applications still arrive by email - directly, through referrals, or forwarded by line managers. Asking a recruiter to download every attachment, log into a separate platform, upload the file, and wait for results creates friction that just doesn't get done consistently. ProValuate solves this with browser plugins that bring the screening to where the recruiter already is.</p>
+
+    <h3>Gmail Chrome Extension</h3>
+
+    <p>Install the ProValuate Chrome Extension and a floating button appears on every Gmail email that contains a CV attachment. Click it, and a modal slides open showing all detected resume files in the email. Select the JD and criteria you want to evaluate against, hit Assess, and watch the progress bar run. Results are automatically synced to your ProValuate dashboard.</p>
+
+    <p>The extension handles PDF, DOC, DOCX, and TXT formats. It works on batch emails too - if an email has five CV attachments, it'll process all five simultaneously, show you a live count, and surface a summary when complete. The whole thing happens without leaving Gmail.</p>
+
+    <div class="callout info">
+      <span class="callout-icon">🔐</span>
+      <div class="callout-body">
+        <strong>Credentials sync automatically</strong>
+        <p>The extension links to your ProValuate account via a secure cookie-based sync. Log in to the web app once and your Company ID and User ID are available to the extension - no manual configuration required after the initial setup.</p>
+      </div>
+    </div>
+
+    <h3>Microsoft Outlook Add-in</h3>
+
+    <p>For teams that live in Microsoft 365, ProValuate offers a native Outlook add-in that integrates directly into the Outlook task pane. Built on the Microsoft Graph API with proper OAuth token handling, the add-in reads CV attachments from your inbox, allows you to select a JD and criteria from a dropdown panel inside Outlook, and triggers the same analysis pipeline as the Gmail extension.</p>
+
+    <p>Results sync back to your ProValuate dashboard just as they would from any other source - the candidate appears in your scorecard alongside everyone who applied through the career portal or was manually uploaded. Everything in one place, regardless of where the CV originally arrived.</p>
+
+    <h3>LinkedIn Plugin</h3>
+
+    <p>The third plugin brings ProValuate directly into LinkedIn. A one-click assess button that appears on candidate profiles and LinkedIn Jobs applications - letting recruiters screen profiles in the moment of discovery, without downloading anything. Shortlisted candidates flow directly into the ProValuate dashboard for deeper evaluation and interview scheduling.</p>
+
+    <div class="badge-row">
+      <span class="badge blue">✉️ Gmail - Available Now</span>
+      <span class="badge blue">📘 Outlook - Available Now</span>
+      <span class="badge blue">💼 LinkedIn - Available Now</span>
+    </div>
+    <div class="callout-body">
+      <strong>We meet you right where you are at!</strong>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- IMPACT / COMPARISON SECTION -->
+  <div id="impact" class="prose">
+    <h2><span class="h2-num">The ProValuate Difference</span>Traditional ATS vs. ChatGPT vs. ProValuate</h2>
+
+    <p>Before we wrap up, it's worth addressing the question every recruiter eventually asks: <em>"We already use an ATS. We've also tried pasting CVs into ChatGPT. Why do we need ProValuate?"</em> It's a fair question - and the answer isn't just marketing. The three approaches are fundamentally different in what they can and cannot do, and understanding those differences changes how you think about the cost of getting it wrong.</p>
+
+    <h3>The Traditional ATS: Fast, Scalable, and Shallow</h3>
+
+    <p>Applicant Tracking Systems were built to solve a volume problem, not a quality problem. When your company receives five hundred applications for a single role, you need a way to stop looking at most of them quickly. ATS tools do this by scanning resumes for keyword matches against the job description - if the JD says "Python" and the resume says "Python," that's a match. If it doesn't, it isn't.</p>
+
+    <p>The problem is that keyword matching has almost nothing to do with whether someone can actually do the job. A candidate who spent three years building production ML pipelines in Python but wrote "machine learning engineering" on their CV instead of "Python developer" might score lower than a bootcamp graduate who keyword-stuffed their resume correctly. The ATS doesn't know the difference. It was never designed to.</p>
+
+    <div class="callout tip">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <strong>The ATS blind spot</strong>
+        <p>Studies consistently show that over 75% of qualified candidates are screened out by ATS systems before a human ever sees their resume - not because they're unqualified, but because their resume wasn't optimised for keyword matching. The system filters for resume writers, not for talent.</p>
+      </div>
+    </div>
+
+    <p>There's also no nuance in an ATS about <em>how much</em> a skill matters. "Must have Python" and "Nice to have SQL" carry equal weight in a keyword scan. There's no concept of weighting, no understanding of context, and no ability to distinguish between someone who used a tool once in a university project versus someone who's been deploying it in production for five years.</p>
+
+    <h3>ChatGPT / Generic LLMs: Contextual, But Dangerously Inconsistent</h3>
+
+    <p>The natural response to ATS limitations has been to reach for a large language model. Paste the job description and a CV into ChatGPT, ask it to assess the candidate, and you get back something that feels remarkably intelligent - nuanced observations, identification of genuine strengths and gaps, a recommendation. For the first CV you process this way, it feels like a revelation.</p>
+
+    <p>Then you process the second one. And the tenth. And you start to notice something uncomfortable: the same CV, processed twice, gives you slightly different results. The model's output is probabilistic - it's not anchored to a fixed evaluation framework, so it drifts. A CV processed on Monday might score a 7. The same CV on Friday, with slightly different phrasing in the prompt, might score a 5. You have no way of knowing which one is right, or whether either is.</p>
+
+    <div class="callout tip">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <strong>The hallucination and consistency problem</strong>
+        <p>Generic LLMs have no memory of your hiring standards, no enforced evaluation framework, and no consistency mechanism. Every prompt is stateless. The AI might praise a candidate for a skill that isn't in the JD, or miss a critical gap because it wasn't specifically instructed to look for it. At scale, this becomes a serious liability.</p>
+      </div>
+    </div>
+
+    <p>The deeper issue is that ChatGPT has no understanding of <em>your</em> hiring priorities. It doesn't know that for this particular role, stability matters more than raw technical skills. It doesn't know that you've decided education should be weighted at 15% while experience counts for 25%. It applies a generic, averaged sense of "good candidate" that reflects its training data - not your hiring philosophy. And when you're making decisions that affect people's careers and your company's future, "generic and averaged" is not a defensible standard.</p>
+
+    <h3>ProValuate: Structured, Consistent, and Built for Decisions</h3>
+
+    <p>ProValuate was designed with the explicit goal of keeping what's good about both approaches while eliminating what makes them dangerous at scale. It uses the contextual understanding of a large language model, but constrains it within a structured framework that you control - so the intelligence is consistently applied rather than randomly expressed.</p>
+
+    <p>The resolved JD means the AI is always working from the same structured understanding of the role, not re-reading and re-interpreting a raw text document each time. The criteria grid means every candidate is evaluated against the same weighted parameters that <em>you</em> defined - not a generic sense of what makes a good hire. The content hashing and caching means the same CV against the same criteria always produces the same score, full stop.</p>
+
+    <p>And none of this is a black box. Every score comes with a cited evidence excerpt from the actual CV. Every recommendation comes with a written rationale. Every interview answer is scored against the rubric you wrote. You can audit any decision, defend any shortlist, and explain to any candidate exactly why they received the evaluation they did.</p>
+
+    <!-- FULL COMPARISON TABLE -->
+    <h3>Side-by-Side: How the Three Approaches Stack Up</h3>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Evaluation Criteria</th>
+          <th>Traditional ATS</th>
+          <th>ChatGPT / Generic LLM</th>
+          <th>ProValuate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>JD Understanding</strong></td>
+          <td class="bad">Keyword-based parsing only</td>
+          <td class="med">Contextual but unstructured</td>
+          <td>Resolved &amp; structured first</td>
+        </tr>
+        <tr>
+          <td><strong>CV Assessment Method</strong></td>
+          <td class="bad">Keyword match percentage</td>
+          <td class="med">Narrative comparison</td>
+          <td>Criteria-weighted scoring with evidence</td>
+        </tr>
+        <tr>
+          <td><strong>Handles JD Ambiguity</strong></td>
+          <td class="bad">No</td>
+          <td class="med">Partially</td>
+          <td>Yes - core design principle</td>
+        </tr>
+        <tr>
+          <td><strong>Evaluation Consistency</strong></td>
+          <td class="med">Medium (rule-based)</td>
+          <td class="bad">Low - prompt-dependent drift</td>
+          <td>High &amp; repeatable (content-hashed)</td>
+        </tr>
+        <tr>
+          <td><strong>Custom Scoring Weights</strong></td>
+          <td class="bad">Not possible</td>
+          <td class="bad">Not possible</td>
+          <td>Fully configurable per role</td>
+        </tr>
+        <tr>
+          <td><strong>Explainable Scores</strong></td>
+          <td class="med">Limited</td>
+          <td class="bad">No - narrative only</td>
+          <td>Yes - evidence cited per parameter</td>
+        </tr>
+        <tr>
+          <td><strong>Risk of Hallucination</strong></td>
+          <td class="med">Low (shallow)</td>
+          <td class="bad">Medium–High</td>
+          <td>Curtailed via saved JD context</td>
+        </tr>
+        <tr>
+          <td><strong>Interview Capability</strong></td>
+          <td class="bad">None</td>
+          <td class="med">Static Q&amp;A only</td>
+          <td>Dynamic, context-aware AI interviews</td>
+        </tr>
+        <tr>
+          <td><strong>Speech &amp; Delivery Analysis</strong></td>
+          <td class="bad">None</td>
+          <td class="bad">None</td>
+          <td>Filler words, stress, pace, confidence</td>
+        </tr>
+        <tr>
+          <td><strong>Bias Reduction</strong></td>
+          <td class="med">Limited</td>
+          <td class="bad">Unpredictable</td>
+          <td>Structured &amp; explainable by design</td>
+        </tr>
+        <tr>
+          <td><strong>Email Plugin Integration</strong></td>
+          <td class="bad">No</td>
+          <td class="bad">No</td>
+          <td>Gmail, Outlook &amp; LinkedIn</td>
+        </tr>
+        <tr>
+          <td><strong>Career Portal</strong></td>
+          <td class="med">Basic job board only</td>
+          <td class="bad">No</td>
+          <td>Branded page with auto-screening</td>
+        </tr>
+        <tr>
+          <td><strong>Enterprise Readiness</strong></td>
+          <td class="med">Yes</td>
+          <td class="bad">No</td>
+          <td>Yes - auditable, consistent, scalable</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The table tells the story clearly, but the real point isn't about feature count. It's about what happens when you make a bad hire. A missed candidate costs you months of re-hiring. A wrong hire costs you performance, team morale, and often a lot of money. The tools you use to make those decisions deserve to be held to a higher standard than "it's better than nothing" - which is, candidly, where both traditional ATS and generic AI currently sit for most recruiting teams.</p>
+
+    <div class="pull-quote">
+      <p>"An ATS tells you who wrote the best resume. ChatGPT tells you who sounds good on paper that day. ProValuate tells you who is actually the best fit for the role - and shows you exactly why."</p>
+      <cite>- ProValuate Product Team</cite>
+    </div>
+
+  </div>
+
+  <div class="section-divider"><span>§</span></div>
+
+  <!-- CLOSING -->
+  <div id="closing" class="prose">
+    <h2><span class="h2-num">Final Thoughts</span>Why This Actually Changes Hiring</h2>
+
+    <p>Hiring has been running on gut feel dressed up in process for decades. Structured interviews help but are inconsistently applied. ATS tools filter resumes but filter the wrong ones. Reference checks verify almost nothing. And somewhere in this fog, people make decisions that affect entire careers based on a 45-minute conversation and a one-page document.</p>
+
+    <p>ProValuate doesn't eliminate human judgment - it shouldn't, and it doesn't try to. What it does is give that human judgment something real to work with. A structured scorecard built from criteria you designed. An AI interview transcript that surfaces exactly what the candidate knows and how confidently they know it. A speech analysis that adds a dimension of assessment that humans can't reliably do themselves at scale.</p>
+
+    <p>The goal was never to replace recruiters. It was to make every recruiter work as if they had a team of expert analysts behind them - one that's available at 3am, never gets tired, never gets biased by a firm handshake, and never misses a candidate because their resume used different vocabulary to describe the same skill.</p>
+
+    <p>That's what ProValuate is built to do. And based on everything described in this post - from JD resolution to real-time interview intelligence to inbox plugins - we think it's getting pretty close.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h3>Ready to see ProValuate in action?</h3>
+    <p>Get in touch and we'll walk you through a live demo tailored to your hiring workflow.</p>
+    <a href="mailto:sales@aitamate.com" class="cta-btn">Request a Demo →</a>
+    <a href="https://provaluate.aitamate.com" class="cta-btn">Quick sign up  →</a>
+    <span class="cta-email">sales@aitamate.com</span>
+  </div>
+
+  <!-- AUTHOR -->
+  <div class="author-box">
+    <div class="author-avatar">P</div>
+    <div>
+      <div class="author-name">The ProValuate Team</div>
+      <div class="author-role">Product &amp; Engineering · aitamate</div>
+      <p class="author-bio">We build AI-powered hiring infrastructure for modern recruiting teams. ProValuate is our flagship platform - combining structured JD analysis, intelligent resume screening, and conversational AI interviews into one unified workflow.</p>
+    </div>
+  </div>
+
+</article>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p class="footer-tagline">
+    <img src="src/ProValuate_Symbol.png" alt="ProValuate Logo" width="5%">
+  </p>
+  <div style="font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--ink2);margin-bottom:10px;">ProValuate</span></div>
+  <p class="footer-text">The intelligent hiring platform built by <strong><a href="https://aitamate.com" target="_blank" rel="noreferrer">aitamate</a></strong>.</p>
+  <a href="mailto:sales@aitamate.com" class="footer-email">sales@aitamate.com</a>
+  <div class="footer-tagline">Don't just evaluate. ProValuate!</div>
+</footer>
+
+</body>
+</html>
+
