@@ -1345,6 +1345,31 @@ footer {
   transform: scale(1.1);
 }
 
+.video-placeholder video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: none;
+  z-index: 2;
+}
+
+.video-placeholder.playing video {
+  display: block;
+}
+
+.video-placeholder.playing::before {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.video-placeholder.playing .vp-noise,
+.video-placeholder.playing .video-play-btn,
+.video-placeholder.playing .vp-label {
+  display: none;
+}
+
 .vp-label {
   position: relative;
   z-index: 2;
