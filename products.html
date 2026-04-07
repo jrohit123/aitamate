@@ -123,6 +123,7 @@
         </div>
       </div>
       <div class="video-placeholder" data-aos="fade-left" data-aos-delay="120">
+        <video class="product-video" src="src/HowProValuateWorks.mp4" preload="metadata" playsinline controls></video>
         <div class="vp-noise"></div>
         <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
         <span class="vp-label">Watch: How ProValuate Works</span>
@@ -290,6 +291,23 @@ function initNavToggle() {
 
 initNavToggle();
 AOS.init({once:true,offset:50,easing:'ease-out-cubic',duration:650});
+
+function initVideoPlaceholders() {
+  document.querySelectorAll('.video-placeholder').forEach(function (placeholder) {
+    const video = placeholder.querySelector('video');
+    if (!video) return;
+
+    placeholder.addEventListener('click', function () {
+      if (placeholder.classList.contains('playing')) return;
+      placeholder.classList.add('playing');
+      video.play().catch(function () {
+        // playback may be blocked until user interacts with the controls
+      });
+    });
+  });
+}
+
+initVideoPlaceholders();
 </script>
 </body>
 </html>
