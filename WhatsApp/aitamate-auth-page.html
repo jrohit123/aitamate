@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aitamate Solutions - Sign Up / Sign In</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         * {
             margin: 0;
@@ -15,6 +16,7 @@
             --primary: #1e3a8a;
             --primary-light: #3b82f6;
             --primary-dark: #1e40af;
+            --navy: #0A1628;
             --secondary: #f59e0b;
             --success: #10b981;
             --danger: #ef4444;
@@ -23,21 +25,134 @@
             --text-light: #6b7280;
             --border: #e5e7eb;
             --bg-light: #f9fafb;
+            --grid-line: #E1E8F5;
+        }
+
+        html, body {
+            height: 100%;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #F7F9FC;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 26px 26px;
             min-height: 100vh;
+        }
+
+        .site-nav {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 6%;
+            display: flex;
+            align-items: center;
+        }
+
+        .site-nav img {
+            height: 34px;
+            display: block;
+        }
+
+        .page-content {
+            min-height: calc(100vh - 64px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-blob.one {
+            width: 320px;
+            height: 320px;
+            background: #93c5fd;
+            top: -80px;
+            left: -100px;
+        }
+
+        .bg-blob.two {
+            width: 280px;
+            height: 280px;
+            background: #bbf7d0;
+            bottom: -60px;
+            right: -80px;
+        }
+
+        .chat-float {
+            position: absolute;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            z-index: 0;
+            pointer-events: none;
+            animation: float-bob 5s ease-in-out infinite;
+        }
+
+        .chat-float-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            background: white;
+            padding: 4px;
+            object-fit: contain;
+        }
+
+        .chat-float-bubble {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            border-bottom-left-radius: 2px;
+            padding: 8px 12px;
+            font-size: 11px;
+            line-height: 1.4;
+            color: var(--text-light);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+            max-width: 160px;
+        }
+
+        .chat-float-name {
+            display: block;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .chat-float-1 { top: 9%; left: 5%; animation-delay: 0s; }
+        .chat-float-2 { top: 64%; left: 3%; animation-delay: 0.6s; }
+        .chat-float-3 { top: 12%; right: 5%; animation-delay: 0.3s; }
+        .chat-float-4 { top: 62%; right: 4%; animation-delay: 0.9s; }
+
+        @keyframes float-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 1100px) {
+            .chat-float { display: none; }
         }
 
         .container {
             width: 100%;
             max-width: 420px;
+            position: relative;
+            z-index: 1;
         }
 
         .card {
@@ -54,10 +169,24 @@
             text-align: center;
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             margin-bottom: 8px;
+        }
+
+        .whatsapp-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
             letter-spacing: -0.5px;
         }
 
@@ -355,20 +484,60 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <header class="site-nav">
+        <img src="aitamate-logo.png" alt="aitamate">
+    </header>
+
+    <div class="page-content">
+        <div class="bg-blob one"></div>
+        <div class="bg-blob two"></div>
+
+        <div class="chat-float chat-float-1">
+            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
+            <div class="chat-float-bubble">
+                <span class="chat-float-name">Kavya R.</span>
+                Can you send the pricing PDF?
+            </div>
+        </div>
+        <div class="chat-float chat-float-2">
+            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
+            <div class="chat-float-bubble">
+                <span class="chat-float-name">Sana W.</span>
+                Loved the quick support, thanks! 🙌
+            </div>
+        </div>
+        <div class="chat-float chat-float-3">
+            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
+            <div class="chat-float-bubble">
+                <span class="chat-float-name">Devraj P.</span>
+                Booked a demo for 10 AM tomorrow
+            </div>
+        </div>
+        <div class="chat-float chat-float-4">
+            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
+            <div class="chat-float-bubble">
+                <span class="chat-float-name">Fatima H.</span>
+                Reminder: invoice due Friday 💳
+            </div>
+        </div>
+
+        <div class="container">
         <div class="card">
             <div class="header">
-                <div class="logo">aitamate</div>
-                <div class="tagline">AI-Driven Automation & Training</div>
+                <div class="logo-row">
+                    <img src="whatsapp-logo.png" alt="WhatsApp" class="whatsapp-icon">
+                    <div class="logo">WhatsApp automation</div>
+                </div>
+                <div class="tagline">By aitamate Solutions</div>
             </div>
 
             <div class="tabs">
-                <button class="tab-btn active" onclick="switchTab('signup')">Sign Up</button>
-                <button class="tab-btn" onclick="switchTab('signin')">Sign In</button>
+                <button class="tab-btn" onclick="switchTab('signup')">Sign Up</button>
+                <button class="tab-btn active" onclick="switchTab('signin')">Sign In</button>
             </div>
 
             <!-- SIGN UP TAB -->
-            <div id="signup" class="content active">
+            <div id="signup" class="content">
                 <div class="error-message" id="signupError"></div>
                 <div class="success-message" id="signupSuccess"></div>
 
@@ -439,7 +608,7 @@
             </div>
 
             <!-- SIGN IN TAB -->
-            <div id="signin" class="content">
+            <div id="signin" class="content active">
                 <div class="error-message" id="signinError"></div>
                 <div class="success-message" id="signinSuccess"></div>
 
@@ -473,6 +642,7 @@
                     Don't have an account yet? Click the "Sign Up" tab above to create one.
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
