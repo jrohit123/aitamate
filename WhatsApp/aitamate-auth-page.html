@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aitamate Solutions - Sign Up / Sign In</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e40af;
+            --secondary: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --bg-light: #f9fafb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-light);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .tab-btn:hover {
+            background: rgba(30, 58, 138, 0.05);
+            color: var(--primary);
+        }
+
+        .content {
+            padding: 30px;
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        input::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            text-transform: none;
+            font-weight: 400;
+            cursor: pointer;
+            color: var(--text-light);
+            text-transform: none;
+        }
+
+        .checkbox-group a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            margin-top: 12px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(30, 58, 138, 0.05);
+        }
+
+        .loader {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message, .success-message {
+            padding: 12px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+            word-break: break-word;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            color: #991b1b;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            color: #065f46;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .error-message.show, .success-message.show {
+            display: block;
+        }
+
+        .divider {
+            position: relative;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 12px;
+            color: var(--text-light);
+            font-size: 12px;
+            font-weight: 600;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .auth-link {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 20px;
+        }
+
+        .auth-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-size: 12px;
+            color: #1e40af;
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                border-radius: 8px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .timezone-note {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div class="logo">aitamate</div>
+                <div class="tagline">AI-Driven Automation & Training</div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('signup')">Sign Up</button>
+                <button class="tab-btn" onclick="switchTab('signin')">Sign In</button>
+            </div>
+
+            <!-- SIGN UP TAB -->
+            <div id="signup" class="content active">
+                <div class="error-message" id="signupError"></div>
+                <div class="success-message" id="signupSuccess"></div>
+
+                <form id="signupForm" onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signupName">Full Name *</label>
+                        <input type="text" id="signupName" name="name" required placeholder="e.g., Rohit Jain">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address *</label>
+                        <input type="email" id="signupEmail" name="email" required placeholder="you@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupPassword">Password *</label>
+                        <input type="password" id="signupPassword" name="password" required placeholder="Min 8 characters">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password *</label>
+                        <input type="password" id="signupConfirmPassword" name="confirmPassword" required placeholder="Repeat password">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signupPhone">Phone Number</label>
+                            <input type="tel" id="signupPhone" name="phone" placeholder="+91 9876543210">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupOrg">Organization Name</label>
+                            <input type="text" id="signupOrg" name="org_name" placeholder="Your company">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupTimezone">Timezone *</label>
+                        <select id="signupTimezone" name="timezone" required>
+                            <option value="">Select your timezone</option>
+                            <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+                            <option value="Asia/Dubai">Asia/Dubai (GST)</option>
+                            <option value="Asia/Bangkok">Asia/Bangkok (ICT)</option>
+                            <option value="America/New_York">America/New_York (EST/EDT)</option>
+                            <option value="America/Los_Angeles">America/Los_Angeles (PST/PDT)</option>
+                            <option value="America/Chicago">America/Chicago (CST/CDT)</option>
+                            <option value="Europe/London">Europe/London (GMT/BST)</option>
+                            <option value="Europe/Paris">Europe/Paris (CET/CEST)</option>
+                            <option value="Australia/Sydney">Australia/Sydney (AEDT/AEST)</option>
+                            <option value="UTC">UTC</option>
+                        </select>
+                        <div class="timezone-note">Used for scheduling and reporting</div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="signupTerms" name="terms" required>
+                        <label for="signupTerms">I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="signupBtn">
+                        <span id="signupBtnText">Create Account</span>
+                        <div class="loader" id="signupLoader"></div>
+                    </button>
+                </form>
+
+                <div class="info-box">
+                    Your account is created via our backend, which keeps the UpScaleUp API key server-side. After signup you'll be redirected to your UpScaleUp dashboard.
+                </div>
+            </div>
+
+            <!-- SIGN IN TAB -->
+            <div id="signin" class="content">
+                <div class="error-message" id="signinError"></div>
+                <div class="success-message" id="signinSuccess"></div>
+
+                <form id="signinForm" onsubmit="handleSignin(event)">
+                    <div class="form-group">
+                        <label for="signinEmail">Email Address *</label>
+                        <input type="email" id="signinEmail" name="email" required placeholder="you@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signinPassword">Password *</label>
+                        <input type="password" id="signinPassword" name="password" required placeholder="Enter your password">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="signinRemember" name="remember">
+                        <label for="signinRemember">Remember me</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="signinBtn">
+                        <span id="signinBtnText">Sign In</span>
+                        <div class="loader" id="signinLoader"></div>
+                    </button>
+
+                    <button type="button" class="btn btn-secondary" onclick="toggleForgotPassword()">
+                        Forgot Password?
+                    </button>
+                </form>
+
+                <div class="info-box">
+                    Don't have an account yet? Click the "Sign Up" tab above to create one.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ CONFIGURATION ============
+        // All API calls go through our own backend (server.js), which is
+        // served from the same origin as this page, so relative URLs work
+        // both locally and once deployed.
+        const BACKEND_URL = '';
+
+        // ============ TAB SWITCHING ============
+        function switchTab(tab) {
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+
+            // Clear messages when switching tabs
+            clearMessages();
+        }
+
+        // ============ MESSAGE DISPLAY ============
+        function showError(tabName, message) {
+            const errorEl = document.getElementById(`${tabName}Error`);
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+        }
+
+        function showSuccess(tabName, message) {
+            const successEl = document.getElementById(`${tabName}Success`);
+            successEl.textContent = message;
+            successEl.classList.add('show');
+        }
+
+        function clearMessages() {
+            document.querySelectorAll('.error-message, .success-message').forEach(el => {
+                el.classList.remove('show');
+                el.textContent = '';
+            });
+        }
+
+        function setLoading(tabName, isLoading) {
+            const btn = document.getElementById(`${tabName}Btn`);
+            const loader = document.getElementById(`${tabName}Loader`);
+            const btnText = document.getElementById(`${tabName}BtnText`);
+
+            if (isLoading) {
+                btn.disabled = true;
+                loader.style.display = 'block';
+                btnText.style.display = 'none';
+            } else {
+                btn.disabled = false;
+                loader.style.display = 'none';
+                btnText.style.display = 'inline';
+            }
+        }
+
+        // ============ FORM VALIDATION ============
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+
+        // ============ SIGNUP HANDLER ============
+        async function handleSignup(e) {
+            e.preventDefault();
+            clearMessages();
+            setLoading('signup', true);
+
+            try {
+                // Get form data
+                const name = document.getElementById('signupName').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+                const phone = document.getElementById('signupPhone').value.trim();
+                const org_name = document.getElementById('signupOrg').value.trim();
+                const timezone = document.getElementById('signupTimezone').value;
+
+                // Validation
+                if (!name) throw new Error('Name is required');
+                if (!validateEmail(email)) throw new Error('Valid email is required');
+                if (!validatePassword(password)) throw new Error('Password must be at least 8 characters');
+                if (password !== confirmPassword) throw new Error('Passwords do not match');
+                if (!timezone) throw new Error('Timezone is required');
+
+                // Create the account via our backend (keeps the UpScaleUp key server-side)
+                const response = await fetch(`${BACKEND_URL}/api/auth/signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ name, email, password, phone: phone || null, org_name: org_name || null, timezone })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    if (response.status === 409) {
+                        throw new Error('An account with this email already exists. Please sign in instead.');
+                    }
+                    throw new Error(data.message || 'Failed to create account');
+                }
+
+                showSuccess('signup', 'Account created successfully! Redirecting to login...');
+
+                // Auto sign-in with the credentials just entered
+                setTimeout(() => {
+                    signinAndRedirect('signup', email, password);
+                }, 1500);
+
+            } catch (error) {
+                showError('signup', error.message);
+                setLoading('signup', false);
+            }
+        }
+
+        // ============ SIGNIN HANDLER ============
+        async function handleSignin(e) {
+            e.preventDefault();
+            clearMessages();
+            setLoading('signin', true);
+
+            try {
+                const email = document.getElementById('signinEmail').value.trim();
+                const password = document.getElementById('signinPassword').value;
+
+                // Validation
+                if (!validateEmail(email)) throw new Error('Valid email is required');
+                if (!password) throw new Error('Password is required');
+
+                await signinAndRedirect('signin', email, password);
+
+            } catch (error) {
+                showError('signin', error.message);
+                setLoading('signin', false);
+            }
+        }
+
+        // ============ SIGNIN + SSO REDIRECT (shared by signup auto-login and signin form) ============
+        async function signinAndRedirect(tabName, email, password) {
+            try {
+                setLoading(tabName, true);
+
+                const response = await fetch(`${BACKEND_URL}/api/auth/signin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Email or password is incorrect');
+                }
+
+                showSuccess(tabName, 'Sign in successful! Redirecting to dashboard...');
+
+                if (!data.login_url) {
+                    throw new Error('No SSO URL returned from server');
+                }
+
+                window.location.href = data.login_url;
+
+            } catch (error) {
+                showError(tabName, error.message);
+                setLoading(tabName, false);
+            }
+        }
+
+        // ============ FORGOT PASSWORD ============
+        async function toggleForgotPassword() {
+            const email = document.getElementById('signinEmail').value.trim();
+            if (!email) {
+                showError('signin', 'Please enter your email address first');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/auth/forgot-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Failed to process password reset');
+                }
+
+                showSuccess('signin', data.message || 'If an account exists with this email, a reset link has been sent.');
+            } catch (error) {
+                showError('signin', error.message);
+            }
+        }
+
+        // ============ INITIALIZATION ============
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add tab click handlers
+            document.querySelectorAll('.tab-btn').forEach((btn, index) => {
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    const tabs = ['signup', 'signin'];
+                    switchTab(tabs[index]);
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                };
+            });
+
+        });
+
+        // Prevent form submission on enter in password field
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                const form = e.target.closest('form');
+                if (form) {
+                    form.dispatchEvent(new Event('submit'));
+                }
+            }
+        });
+    </script>
+</body>
+</html>
