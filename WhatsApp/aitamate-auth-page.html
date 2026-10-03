@@ -1,872 +1,979 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aitamate Solutions - Sign Up / Sign In</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #1e3a8a;
-            --primary-light: #3b82f6;
-            --primary-dark: #1e40af;
-            --navy: #0A1628;
-            --secondary: #f59e0b;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --border: #e5e7eb;
-            --bg-light: #f9fafb;
-            --grid-line: #E1E8F5;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background-color: #F7F9FC;
-            background-image:
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 26px 26px;
-            min-height: 100vh;
-        }
-
-        .site-nav {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(6px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 6%;
-            display: flex;
-            align-items: center;
-        }
-
-        .site-nav img {
-            height: 34px;
-            display: block;
-        }
-
-        .page-content {
-            min-height: calc(100vh - 64px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bg-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.35;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .bg-blob.one {
-            width: 320px;
-            height: 320px;
-            background: #93c5fd;
-            top: -80px;
-            left: -100px;
-        }
-
-        .bg-blob.two {
-            width: 280px;
-            height: 280px;
-            background: #bbf7d0;
-            bottom: -60px;
-            right: -80px;
-        }
-
-        .chat-float {
-            position: absolute;
-            display: flex;
-            align-items: flex-end;
-            gap: 8px;
-            z-index: 0;
-            pointer-events: none;
-            animation: float-bob 5s ease-in-out infinite;
-        }
-
-        .chat-float-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
-            background: white;
-            padding: 4px;
-            object-fit: contain;
-        }
-
-        .chat-float-bubble {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            border-bottom-left-radius: 2px;
-            padding: 8px 12px;
-            font-size: 11px;
-            line-height: 1.4;
-            color: var(--text-light);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
-            max-width: 160px;
-        }
-
-        .chat-float-name {
-            display: block;
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 11px;
-            margin-bottom: 2px;
-        }
-
-        .chat-float-1 { top: 9%; left: 5%; animation-delay: 0s; }
-        .chat-float-2 { top: 64%; left: 3%; animation-delay: 0.6s; }
-        .chat-float-3 { top: 12%; right: 5%; animation-delay: 0.3s; }
-        .chat-float-4 { top: 62%; right: 4%; animation-delay: 0.9s; }
-
-        @keyframes float-bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @media (max-width: 1100px) {
-            .chat-float { display: none; }
-        }
-
-        .container {
-            width: 100%;
-            max-width: 420px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .logo-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .whatsapp-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            object-fit: cover;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .tagline {
-            font-size: 13px;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border);
-            background: var(--bg-light);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 16px 20px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-light);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .tab-btn.active {
-            color: var(--primary);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .tab-btn:hover {
-            background: rgba(30, 58, 138, 0.05);
-            color: var(--primary);
-        }
-
-        .content {
-            padding: 30px;
-            display: none;
-        }
-
-        .content.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 11px 14px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.2s;
-            background: white;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        input::placeholder {
-            color: var(--text-light);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .form-row.full {
-            grid-template-columns: 1fr;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 16px;
-            font-size: 13px;
-        }
-
-        input[type="checkbox"] {
-            width: auto;
-            margin-top: 3px;
-            cursor: pointer;
-        }
-
-        .checkbox-group label {
-            margin: 0;
-            text-transform: none;
-            font-weight: 400;
-            cursor: pointer;
-            color: var(--text-light);
-            text-transform: none;
-        }
-
-        .checkbox-group a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .checkbox-group a:hover {
-            text-decoration: underline;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-secondary {
-            background: var(--bg-light);
-            color: var(--primary);
-            border: 1.5px solid var(--primary);
-            margin-top: 12px;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(30, 58, 138, 0.05);
-        }
-
-        .loader {
-            display: none;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .error-message, .success-message {
-            padding: 12px 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 16px;
-            display: none;
-            word-break: break-word;
-        }
-
-        .error-message {
-            background: rgba(239, 68, 68, 0.1);
-            color: #991b1b;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
-        .success-message {
-            background: rgba(16, 185, 129, 0.1);
-            color: #065f46;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .error-message.show, .success-message.show {
-            display: block;
-        }
-
-        .divider {
-            position: relative;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .divider span {
-            background: white;
-            padding: 0 12px;
-            color: var(--text-light);
-            font-size: 12px;
-            font-weight: 600;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .auth-link {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-light);
-            margin-top: 20px;
-        }
-
-        .auth-link a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .auth-link a:hover {
-            text-decoration: underline;
-        }
-
-        .info-box {
-            background: rgba(59, 130, 246, 0.05);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 6px;
-            padding: 12px 14px;
-            font-size: 12px;
-            color: #1e40af;
-            margin-top: 16px;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 480px) {
-            .card {
-                border-radius: 8px;
-            }
-
-            .header {
-                padding: 30px 20px;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .logo {
-                font-size: 24px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .timezone-note {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-top: 4px;
-            font-style: italic;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Automation by aitamate | Sign In or Sign Up</title>
+<meta name="description" content="Automate customer conversations on WhatsApp - broadcasts, auto-replies, shared team inbox and reminders. WhatsApp automation by aitamate Solutions.">
+<link rel="icon" type="image/png" href="favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ============================================================
+   PROTOTYPE - WhatsApp Automation landing page
+   Design tokens mirror src/aitamate.css so it matches the main site
+   ============================================================ */
+:root {
+  --navy: #0A1628;
+  --blue: #1A6FD4;
+  --blue-lt: #2E8CF0;
+  --blue-pale: #EBF4FF;
+  --blue-mid: #1a4a8a;
+  --white: #FFFFFF;
+  --bg: #F7F9FC;
+  --muted: #5A6A7E;
+  --border: #DDE4EE;
+  --text: #0A1628;
+  --wa-green: #25D366;
+  --wa-bubble: #DCF8C6;
+  --danger: #ef4444;
+  --success: #10b981;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+img, svg { max-width: 100%; height: auto; }
+input, select, textarea, button { font-family: inherit; font-size: 1rem; }
+
+/* ── NAV (same as main site) ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 999; min-height: 66px; padding: 0 6%;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 8px; }
+.nav-logo img { height: 36px; display: block; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: .875rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--navy); }
+.nav-cta { background: var(--blue); color: #fff; padding: 10px 22px; border-radius: 7px; font-size: .875rem; font-weight: 600; text-decoration: none; transition: all .2s; }
+.nav-cta:hover { background: var(--blue-lt); box-shadow: 0 6px 18px rgba(26,111,212,.3); }
+.nav-toggle { display: none; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border); background: #fff; cursor: pointer; margin-left: 12px; }
+.nav-toggle-bars, .nav-toggle-bars::before, .nav-toggle-bars::after { display: block; width: 18px; height: 2px; background: var(--navy); border-radius: 999px; position: relative; transition: all .2s; }
+.nav-toggle-bars::before, .nav-toggle-bars::after { content: ''; position: absolute; left: 0; }
+.nav-toggle-bars::before { top: -6px; }
+.nav-toggle-bars::after { bottom: -6px; }
+.nav-toggle.is-open .nav-toggle-bars { background: transparent; }
+.nav-toggle.is-open .nav-toggle-bars::before { top: 0; transform: rotate(45deg); }
+.nav-toggle.is-open .nav-toggle-bars::after { bottom: 0; transform: rotate(-45deg); }
+
+/* ── SHARED ── */
+.sec-label { font-size: .72rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; display: block; }
+.sec-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 900; color: var(--navy); line-height: 1.2; letter-spacing: -.6px; margin-bottom: 12px; }
+.sec-sub { color: var(--muted); font-size: .95rem; line-height: 1.7; max-width: 560px; margin: 0 auto; }
+.center { text-align: center; }
+.btn-primary-link { display: inline-block; background: var(--blue); color: #fff; padding: 13px 30px; border-radius: 7px; font-size: .9rem; font-weight: 700; text-decoration: none; transition: all .25s; }
+.btn-primary-link:hover { background: var(--blue-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,111,212,.3); }
+.btn-white { display: inline-block; background: #fff; color: var(--blue); padding: 13px 30px; border-radius: 7px; font-size: .9rem; font-weight: 700; text-decoration: none; border: 2px solid #fff; transition: all .25s; }
+.btn-white:hover { background: transparent; color: #fff; }
+.btn-outline-white { display: inline-block; background: transparent; color: #fff; padding: 12px 28px; border-radius: 7px; font-size: .9rem; font-weight: 600; text-decoration: none; border: 1.5px solid rgba(255,255,255,.35); transition: all .25s; }
+.btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); }
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-size: .875rem; font-weight: 700; text-decoration: none; transition: gap .2s; }
+.link-arrow:hover { gap: 13px; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── HERO (text left / auth card right) ── */
+.hero {
+  padding: 120px 6% 84px;
+  background: linear-gradient(160deg, #f0f6ff 0%, #f7f9fc 55%, #eef4fb 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(26,111,212,.10) 0%, transparent 65%),
+    radial-gradient(ellipse at 90% 90%, rgba(37,211,102,.08) 0%, transparent 55%);
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(26,111,212,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,111,212,.06) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 0%, transparent 75%);
+          mask-image: radial-gradient(ellipse at 50% 40%, #000 0%, transparent 75%);
+}
+.hero-grid {
+  position: relative; z-index: 1; max-width: 1120px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center;
+}
+.hero-label { font-size: .72rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px; }
+.hero-label img { width: 22px; height: 22px; border-radius: 6px; }
+.hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 4.2vw, 3.2rem); font-weight: 900; line-height: 1.12; letter-spacing: -1.3px; color: var(--navy); margin-bottom: 20px; }
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero-copy > p { font-size: 1.02rem; color: var(--muted); line-height: 1.75; max-width: 540px; margin-bottom: 26px; }
+.hero-points { list-style: none; display: grid; gap: 12px; margin-bottom: 34px; }
+.hero-points li { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: var(--navy); font-weight: 500; line-height: 1.5; }
+.hero-points .tick { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--blue-pale); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: .65rem; margin-top: 1px; }
+.hero-results { display: flex; gap: 40px; padding-top: 30px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.hr-item { display: flex; align-items: center; gap: 12px; }
+.hr-icon { width: 44px; height: 44px; background: var(--blue-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1rem; flex-shrink: 0; }
+.hr-item p { font-size: .78rem; color: var(--muted); line-height: 1.5; max-width: 120px; }
+
+.auth-wrap { position: relative; }
+@media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+
+/* ── FLOW STRIP ── */
+.flow { padding: 56px 6% 64px; background: #fff; border-bottom: 1px solid var(--border); }
+.flow-head { text-align: center; margin-bottom: 34px; }
+.flow-row { max-width: 1060px; margin: 0 auto; display: flex; align-items: stretch; justify-content: center; gap: 10px; }
+.flow-node { flex: 1; background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 22px 18px; text-align: center; transition: all .3s; }
+.flow-node:hover { border-color: var(--blue-lt); background: #fff; box-shadow: 0 6px 22px rgba(26,111,212,.08); }
+.flow-icon { width: 48px; height: 48px; margin: 0 auto 12px; background: var(--blue-pale); color: var(--blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; }
+.flow-node h3 { font-family: 'Montserrat', sans-serif; font-size: .88rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.flow-node p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+.flow-arrow { display: flex; align-items: center; color: var(--blue-lt); font-size: .85rem; flex-shrink: 0; }
+
+/* ── AUTH CARD (same structure / ids / behaviour as the live page) ── */
+.card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px rgba(26,111,212,.14); overflow: hidden; width: 100%; max-width: 440px; margin: 0 auto; position: relative; z-index: 2; }
+.card-header { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-lt) 100%); color: #fff; padding: 30px 28px; text-align: center; }
+.logo-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px; }
+.whatsapp-icon { width: 30px; height: 30px; border-radius: 7px; object-fit: cover; background: #fff; padding: 2px; }
+.logo { font-family: 'Montserrat', sans-serif; font-size: 1.35rem; font-weight: 800; letter-spacing: -.4px; }
+.tagline { font-size: .8rem; opacity: .92; font-weight: 500; }
+.tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--bg); }
+.tab-btn { flex: 1; padding: 15px 20px; border: none; background: transparent; cursor: pointer; font-size: .875rem; font-weight: 600; color: var(--muted); transition: all .25s; position: relative; }
+.tab-btn.active { color: var(--blue); }
+.tab-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 3px; background: var(--blue); }
+.tab-btn:hover { background: rgba(26,111,212,.05); color: var(--blue); }
+.content { padding: 26px 28px 28px; display: none; }
+.content.active { display: block; }
+.form-group { margin-bottom: 15px; }
+.card label { display: block; font-size: .72rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .4px; }
+.card input, .card select { width: 100%; min-height: 44px; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: .9rem; background: #fff; color: var(--navy); transition: all .2s; }
+.card input:focus, .card select:focus { outline: none; border-color: var(--blue-lt); box-shadow: 0 0 0 3px rgba(46,140,240,.15); }
+.card input::placeholder { color: #94a3b8; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; font-size: .8rem; }
+.card input[type="checkbox"] { width: auto; min-height: 0; margin-top: 3px; cursor: pointer; accent-color: var(--blue); }
+.checkbox-group label { margin: 0; text-transform: none; font-weight: 400; letter-spacing: 0; cursor: pointer; color: var(--muted); font-size: .8rem; }
+.checkbox-group a { color: var(--blue); text-decoration: none; font-weight: 600; }
+.checkbox-group a:hover { text-decoration: underline; }
+.btn { width: 100%; padding: 13px 20px; border: none; border-radius: 8px; font-size: .9rem; font-weight: 700; cursor: pointer; transition: all .25s; margin-top: 6px; }
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: var(--blue-lt); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(26,111,212,.3); }
+.btn-primary:disabled { opacity: .7; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-secondary { background: #fff; color: var(--blue); border: 1.5px solid var(--border); margin-top: 10px; }
+.btn-secondary:hover { border-color: var(--blue); background: var(--blue-pale); }
+.loader { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; margin: 0 auto; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-message, .success-message { padding: 11px 14px; border-radius: 8px; font-size: .8rem; margin-bottom: 14px; display: none; word-break: break-word; }
+.error-message { background: rgba(239,68,68,.08); color: #991b1b; border: 1px solid rgba(239,68,68,.3); }
+.success-message { background: rgba(16,185,129,.08); color: #065f46; border: 1px solid rgba(16,185,129,.3); }
+.error-message.show, .success-message.show { display: block; }
+.info-box { background: var(--blue-pale); border: 1px solid rgba(26,111,212,.2); border-radius: 8px; padding: 11px 14px; font-size: .76rem; color: var(--blue-mid); margin-top: 16px; line-height: 1.55; }
+.timezone-note { font-size: .72rem; color: var(--muted); margin-top: 4px; font-style: italic; }
+
+/* ── BANNER CTA ── */
+.banner-cta { background: var(--navy); padding: 48px 6%; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.banner-cta h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: #fff; max-width: 620px; line-height: 1.3; }
+.banner-cta h2 em { font-style: normal; color: var(--blue-lt); }
+
+/* ── FEATURES ── */
+.features { padding: 88px 6%; background: var(--bg); text-align: center; }
+.inner { max-width: 1060px; margin: 0 auto; }
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: left; margin-top: 48px; }
+.feat-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 28px 26px; transition: all .3s; }
+.feat-card:hover { border-color: var(--blue-lt); box-shadow: 0 6px 24px rgba(26,111,212,.08); transform: translateY(-3px); }
+.feat-icon { width: 54px; height: 54px; background: var(--blue-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1.15rem; margin-bottom: 16px; }
+.feat-card h3 { font-family: 'Montserrat', sans-serif; font-size: .95rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.feat-card p { font-size: .84rem; color: var(--muted); line-height: 1.68; }
+
+/* ── SHOWCASE (phone + copy) ── */
+.showcase { padding: 88px 6%; background: linear-gradient(160deg, #f0f6ff 0%, #f7f9fc 60%, #eef4fb 100%); }
+.showcase-grid { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: center; }
+.phone { width: 100%; max-width: 330px; margin: 0 auto; background: #fff; border: 9px solid var(--navy); border-radius: 38px; box-shadow: 0 28px 64px rgba(10,22,40,.22); overflow: hidden; }
+.phone-top { background: linear-gradient(135deg, var(--blue-mid), var(--blue)); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 11px; }
+.phone-top img { width: 36px; height: 36px; border-radius: 50%; background: #fff; padding: 3px; }
+.phone-top b { display: block; font-size: .86rem; font-family: 'Montserrat', sans-serif; font-weight: 800; }
+.phone-top span { font-size: .68rem; opacity: .85; }
+.chat { background: #E8EFFA; padding: 16px 12px 18px; display: flex; flex-direction: column; gap: 10px; min-height: 400px; }
+.chat > * { display: none; }
+.chat > .show, .chat > .typing { display: block; animation: pop .35s ease both; }
+.chat.static > * { display: block; animation: none; }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+.msg.typing { padding: 11px 14px; }
+.msg.typing i { display: inline-block; width: 6px; height: 6px; margin: 0 2px; border-radius: 50%; background: #94a3b8; animation: dot 1s infinite ease-in-out; }
+.msg.typing i:nth-child(2) { animation-delay: .15s; }
+.msg.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 0%,80%,100% { transform: translateY(0); opacity: .5; } 40% { transform: translateY(-4px); opacity: 1; } }
+.msg { max-width: 82%; padding: 9px 12px; border-radius: 12px; font-size: .78rem; line-height: 1.5; box-shadow: 0 1px 2px rgba(10,22,40,.08); }
+.msg small { display: block; font-size: .62rem; color: var(--muted); text-align: right; margin-top: 3px; }
+.msg.in { align-self: flex-start; background: #fff; border-top-left-radius: 3px; color: var(--navy); }
+.msg.out { align-self: flex-end; background: var(--wa-bubble); border-top-right-radius: 3px; color: #1f2937; }
+.msg .quick { display: inline-block; margin-top: 7px; padding: 5px 11px; border: 1.5px solid var(--border); border-radius: 999px; font-size: .68rem; font-weight: 700; color: var(--blue); background: #fff; }
+.handoff { align-self: center; font-size: .66rem; font-weight: 700; color: var(--blue); background: var(--blue-pale); border: 1px solid rgba(26,111,212,.2); padding: 5px 12px; border-radius: 999px; }
+.show-points { list-style: none; display: grid; gap: 14px; margin: 24px 0 28px; }
+.show-points li { display: flex; gap: 14px; align-items: flex-start; }
+.show-points .hr-icon { width: 40px; height: 40px; font-size: .9rem; }
+.show-points b { display: block; font-family: 'Montserrat', sans-serif; font-size: .9rem; color: var(--navy); margin-bottom: 2px; }
+.show-points span { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+.show-copy p.lead { color: var(--muted); font-size: .96rem; line-height: 1.75; }
+
+/* ── STEPS ── */
+.steps { padding: 88px 6%; background: #fff; text-align: center; }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 48px 0 0; }
+.step-card { padding: 32px 24px; border: 1.5px solid var(--border); border-radius: 14px; background: var(--bg); transition: all .3s; }
+.step-card:hover { border-color: var(--blue-lt); background: #fff; box-shadow: 0 6px 24px rgba(26,111,212,.08); }
+.step-icon { width: 54px; height: 54px; background: var(--blue-pale); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1.2rem; margin: 0 auto 18px; }
+.step-card h3 { font-family: 'Montserrat', sans-serif; font-size: .95rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.step-card p { font-size: .84rem; color: var(--muted); line-height: 1.68; }
+
+/* ── USE CASES ── */
+.usecases { padding: 88px 6%; background: var(--bg); text-align: center; }
+.uc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+.uc-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 28px 20px; transition: all .3s; }
+.uc-card:hover { border-color: var(--blue-lt); box-shadow: 0 6px 20px rgba(26,111,212,.07); }
+.uc-icon { width: 54px; height: 54px; background: var(--blue-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1rem; margin: 0 auto 16px; }
+.uc-card h3 { font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.uc-card p { font-size: .8rem; color: var(--muted); line-height: 1.62; }
+
+/* ── TRUST BAR ── */
+.trust-bar { background: var(--blue-mid); padding: 52px 6%; text-align: center; }
+.trust-bar h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 900; color: #fff; margin-bottom: 8px; }
+.trust-bar p { color: rgba(255,255,255,.65); font-size: .92rem; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+
+/* ── FAQ ── */
+.faq { padding: 88px 6%; background: #fff; }
+.faq-list { max-width: 760px; margin: 44px auto 0; display: grid; gap: 12px; }
+.faq-item { border: 1.5px solid var(--border); border-radius: 12px; background: var(--bg); transition: all .25s; }
+.faq-item[open] { background: #fff; border-color: var(--blue-lt); box-shadow: 0 6px 22px rgba(26,111,212,.07); }
+.faq-item summary { cursor: pointer; list-style: none; padding: 18px 22px; font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 800; color: var(--navy); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; color: var(--blue); font-size: 1.3rem; font-weight: 600; transition: transform .2s; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { padding: 0 22px 20px; font-size: .86rem; color: var(--muted); line-height: 1.72; }
+
+/* ── CTA BAND ── */
+.cta-band { background: var(--navy); padding: 80px 6%; text-align: center; }
+.cta-band h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.7rem, 3.5vw, 2.3rem); font-weight: 900; color: #fff; margin-bottom: 14px; letter-spacing: -.4px; }
+.cta-band p { color: rgba(255,255,255,.55); font-size: .95rem; max-width: 480px; margin: 0 auto 34px; line-height: 1.7; }
+.cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ── FOOTER (same as main site) ── */
+footer { background: var(--navy); padding: 56px 6% 0; border-top: 1px solid rgba(255,255,255,.07); }
+.footer-top { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; }
+.footer-brand p { font-size: .83rem; color: rgba(255,255,255,.38); line-height: 1.7; max-width: 230px; margin-top: 14px; }
+.footer-brand p span { color: #fff; }
+.footer-social { display: flex; gap: 12px; margin-top: 20px; }
+.footer-social a { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.07); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.45); font-size: .8rem; transition: all .2s; text-decoration: none; }
+.footer-social a:hover { background: var(--blue); color: #fff; }
+.footer-col h4 { font-size: .7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 16px; }
+.footer-col a { display: block; font-size: .84rem; color: rgba(255,255,255,.48); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { max-width: 1060px; margin: 0 auto; padding: 20px 0; border-top: 1px solid rgba(255,255,255,.07); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.footer-bottom p, .footer-bottom a { font-size: .75rem; color: rgba(255,255,255,.28); text-decoration: none; }
+.footer-bottom a:hover { color: rgba(255,255,255,.6); }
+.footer-legal { display: flex; gap: 20px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .hero-grid, .showcase-grid { grid-template-columns: 1fr; gap: 44px; }
+  .flow-row { flex-direction: column; }
+  .flow-arrow { justify-content: center; transform: rotate(90deg); padding: 2px 0; }
+  .feat-grid { grid-template-columns: 1fr 1fr; }
+  .uc-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  nav { padding: 0 5%; }
+  .nav-right { position: fixed; top: 66px; left: 0; right: 0; background: rgba(255,255,255,.98); border-bottom: 1px solid var(--border); padding: 16px 6% 20px; flex-direction: column; align-items: flex-start; gap: 12px; transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform .22s ease-out, opacity .22s ease-out; }
+  .nav-right.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  .nav-links { flex-direction: column; gap: 14px; }
+  .nav-links a { font-size: .95rem; padding: 4px 0; }
+  .nav-cta { width: 100%; text-align: center; }
+  .nav-toggle { display: inline-flex; }
+}
+@media (max-width: 640px) {
+  .hero { padding-top: 104px; }
+  .feat-grid, .steps-grid, .uc-grid { grid-template-columns: 1fr; }
+  .banner-cta { text-align: center; justify-content: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .content { padding: 22px 20px 24px; }
+  .footer-top { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    <header class="site-nav">
-        <img src="aitamate-logo.png" alt="aitamate">
-    </header>
 
-    <div class="page-content">
-        <div class="bg-blob one"></div>
-        <div class="bg-blob two"></div>
+<!-- NAV -->
+<nav>
+  <a href="https://www.aitamate.com/index.html" class="nav-logo">
+    <img src="aitamate-logo.png" alt="aitamate">
+  </a>
+  <button class="nav-toggle" aria-label="Toggle navigation"><span class="nav-toggle-bars"></span></button>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="https://www.aitamate.com/index.html">Home</a></li>
+      <li><a href="https://www.aitamate.com/products.html">Products</a></li>
+      <li><a href="https://www.aitamate.com/solutions.html">Solutions</a></li>
+      <li><a href="https://www.aitamate.com/resources.html">Resources</a></li>
+      <li><a href="https://www.aitamate.com/about.html">About</a></li>
+      <li><a href="https://www.aitamate.com/contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#auth">Sign In / Sign Up</a>
+  </div>
+</nav>
 
-        <div class="chat-float chat-float-1">
-            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
-            <div class="chat-float-bubble">
-                <span class="chat-float-name">Kavya R.</span>
-                Can you send the pricing PDF?
-            </div>
-        </div>
-        <div class="chat-float chat-float-2">
-            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
-            <div class="chat-float-bubble">
-                <span class="chat-float-name">Sana W.</span>
-                Loved the quick support, thanks! 🙌
-            </div>
-        </div>
-        <div class="chat-float chat-float-3">
-            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
-            <div class="chat-float-bubble">
-                <span class="chat-float-name">Devraj P.</span>
-                Booked a demo for 10 AM tomorrow
-            </div>
-        </div>
-        <div class="chat-float chat-float-4">
-            <img src="whatsapp-logo.png" alt="" class="chat-float-icon">
-            <div class="chat-float-bubble">
-                <span class="chat-float-name">Fatima H.</span>
-                Reminder: invoice due Friday 💳
-            </div>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid" id="heroGrid">
 
-        <div class="container">
-        <div class="card">
-            <div class="header">
-                <div class="logo-row">
-                    <img src="whatsapp-logo.png" alt="WhatsApp" class="whatsapp-icon">
-                    <div class="logo">WhatsApp automation</div>
-                </div>
-                <div class="tagline">By aitamate Solutions</div>
-            </div>
+    <div class="hero-copy">
+      <span class="hero-label"><img src="whatsapp-logo.png" alt="">WhatsApp Automation by aitamate</span>
+      <h1>Turn Every WhatsApp Conversation Into <em>Growth on Autopilot</em></h1>
+      <p>Send updates, answer questions and follow up with customers automatically, on the channel they already check every day. Your team stays focused on the conversations that truly need a human.</p>
 
-            <div class="tabs">
-                <button class="tab-btn" onclick="switchTab('signup')">Sign Up</button>
-                <button class="tab-btn active" onclick="switchTab('signin')">Sign In</button>
-            </div>
+      <ul class="hero-points">
+        <li><span class="tick"><i class="fa-solid fa-check"></i></span>Broadcast offers, reminders and updates to opted-in customers</li>
+        <li><span class="tick"><i class="fa-solid fa-check"></i></span>Auto-reply to common questions, even outside working hours</li>
+        <li><span class="tick"><i class="fa-solid fa-check"></i></span>One shared inbox so your whole team handles chats together</li>
+      </ul>
 
-            <!-- SIGN UP TAB -->
-            <div id="signup" class="content">
-                <div class="error-message" id="signupError"></div>
-                <div class="success-message" id="signupSuccess"></div>
-
-                <form id="signupForm" onsubmit="handleSignup(event)">
-                    <div class="form-group">
-                        <label for="signupName">Full Name *</label>
-                        <input type="text" id="signupName" name="name" required placeholder="e.g., Rohit Jain">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signupEmail">Email Address *</label>
-                        <input type="email" id="signupEmail" name="email" required placeholder="you@example.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signupPassword">Password *</label>
-                        <input type="password" id="signupPassword" name="password" required placeholder="Min 8 characters">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signupConfirmPassword">Confirm Password *</label>
-                        <input type="password" id="signupConfirmPassword" name="confirmPassword" required placeholder="Repeat password">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="signupPhone">Phone Number</label>
-                            <input type="tel" id="signupPhone" name="phone" placeholder="+91 9876543210">
-                        </div>
-                        <div class="form-group">
-                            <label for="signupOrg">Organization Name</label>
-                            <input type="text" id="signupOrg" name="org_name" placeholder="Your company">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signupTimezone">Timezone *</label>
-                        <select id="signupTimezone" name="timezone" required>
-                            <option value="">Select your timezone</option>
-                            <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
-                            <option value="Asia/Dubai">Asia/Dubai (GST)</option>
-                            <option value="Asia/Bangkok">Asia/Bangkok (ICT)</option>
-                            <option value="America/New_York">America/New_York (EST/EDT)</option>
-                            <option value="America/Los_Angeles">America/Los_Angeles (PST/PDT)</option>
-                            <option value="America/Chicago">America/Chicago (CST/CDT)</option>
-                            <option value="Europe/London">Europe/London (GMT/BST)</option>
-                            <option value="Europe/Paris">Europe/Paris (CET/CEST)</option>
-                            <option value="Australia/Sydney">Australia/Sydney (AEDT/AEST)</option>
-                            <option value="UTC">UTC</option>
-                        </select>
-                        <div class="timezone-note">Used for scheduling and reporting</div>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="signupTerms" name="terms" required>
-                        <label for="signupTerms">I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a></label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" id="signupBtn">
-                        <span id="signupBtnText">Create Account</span>
-                        <div class="loader" id="signupLoader"></div>
-                    </button>
-                </form>
-
-                <div class="info-box">
-                    Your account is created via our backend, which keeps the UpScaleUp API key server-side. After signup you'll be redirected to your UpScaleUp dashboard.
-                </div>
-            </div>
-
-            <!-- SIGN IN TAB -->
-            <div id="signin" class="content active">
-                <div class="error-message" id="signinError"></div>
-                <div class="success-message" id="signinSuccess"></div>
-
-                <form id="signinForm" onsubmit="handleSignin(event)">
-                    <div class="form-group">
-                        <label for="signinEmail">Email Address *</label>
-                        <input type="email" id="signinEmail" name="email" required placeholder="you@example.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signinPassword">Password *</label>
-                        <input type="password" id="signinPassword" name="password" required placeholder="Enter your password">
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="signinRemember" name="remember">
-                        <label for="signinRemember">Remember me</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" id="signinBtn">
-                        <span id="signinBtnText">Sign In</span>
-                        <div class="loader" id="signinLoader"></div>
-                    </button>
-
-                    <button type="button" class="btn btn-secondary" onclick="toggleForgotPassword()">
-                        Forgot Password?
-                    </button>
-                </form>
-
-                <div class="info-box">
-                    Don't have an account yet? Click the "Sign Up" tab above to create one.
-                </div>
-            </div>
-        </div>
-        </div>
+      <div class="hero-results">
+        <div class="hr-item"><div class="hr-icon"><i class="fa-solid fa-bolt"></i></div><p>Faster replies, round the clock</p></div>
+        <div class="hr-item"><div class="hr-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><p>Fewer repetitive tasks for your team</p></div>
+        <div class="hr-item"><div class="hr-icon"><i class="fa-solid fa-inbox"></i></div><p>Every chat in one place</p></div>
+      </div>
     </div>
 
-    <script>
-        // ============ CONFIGURATION ============
-        // All API calls go through our own backend (server.js), which is
-        // served from the same origin as this page, so relative URLs work
-        // both locally and once deployed.
-        const BACKEND_URL = '';
+    <div class="auth-wrap" id="auth">
+      <div class="card">
+        <div class="card-header">
+          <div class="logo-row">
+            <img src="whatsapp-logo.png" alt="WhatsApp" class="whatsapp-icon">
+            <div class="logo">WhatsApp automation</div>
+          </div>
+          <div class="tagline">By aitamate Solutions</div>
+        </div>
 
-        // ============ TAB SWITCHING ============
-        function switchTab(tab) {
-            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        <div class="tabs">
+          <button class="tab-btn" onclick="switchTab('signup')">Sign Up</button>
+          <button class="tab-btn active" onclick="switchTab('signin')">Sign In</button>
+        </div>
 
-            document.getElementById(tab).classList.add('active');
-            event.target.classList.add('active');
+        <!-- SIGN UP TAB -->
+        <div id="signup" class="content">
+          <div class="error-message" id="signupError"></div>
+          <div class="success-message" id="signupSuccess"></div>
 
-            // Clear messages when switching tabs
-            clearMessages();
+          <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="form-group">
+              <label for="signupName">Full Name *</label>
+              <input type="text" id="signupName" name="name" required placeholder="e.g., Rohit Jain">
+            </div>
+
+            <div class="form-group">
+              <label for="signupEmail">Email Address *</label>
+              <input type="email" id="signupEmail" name="email" required placeholder="you@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="signupPassword">Password *</label>
+              <input type="password" id="signupPassword" name="password" required placeholder="Min 8 characters">
+            </div>
+
+            <div class="form-group">
+              <label for="signupConfirmPassword">Confirm Password *</label>
+              <input type="password" id="signupConfirmPassword" name="confirmPassword" required placeholder="Repeat password">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signupPhone">Phone Number</label>
+                <input type="tel" id="signupPhone" name="phone" placeholder="+91 9876543210">
+              </div>
+              <div class="form-group">
+                <label for="signupOrg">Organization Name</label>
+                <input type="text" id="signupOrg" name="org_name" placeholder="Your company">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="signupTimezone">Timezone *</label>
+              <select id="signupTimezone" name="timezone" required>
+                <option value="">Select your timezone</option>
+                <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+                <option value="Asia/Dubai">Asia/Dubai (GST)</option>
+                <option value="Asia/Bangkok">Asia/Bangkok (ICT)</option>
+                <option value="America/New_York">America/New_York (EST/EDT)</option>
+                <option value="America/Los_Angeles">America/Los_Angeles (PST/PDT)</option>
+                <option value="America/Chicago">America/Chicago (CST/CDT)</option>
+                <option value="Europe/London">Europe/London (GMT/BST)</option>
+                <option value="Europe/Paris">Europe/Paris (CET/CEST)</option>
+                <option value="Australia/Sydney">Australia/Sydney (AEDT/AEST)</option>
+                <option value="UTC">UTC</option>
+              </select>
+              <div class="timezone-note">Used for scheduling and reporting</div>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="signupTerms" name="terms" required>
+              <label for="signupTerms">I agree to the <a href="https://www.aitamate.com/terms.html" target="_blank" rel="noopener">Terms of Service</a> and <a href="https://www.aitamate.com/privacy.html" target="_blank" rel="noopener">Privacy Policy</a></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="signupBtn">
+              <span id="signupBtnText">Create Account</span>
+              <div class="loader" id="signupLoader"></div>
+            </button>
+          </form>
+
+          <div class="info-box">
+            Your account is created securely. After signing up you'll be taken straight to your dashboard.
+          </div>
+        </div>
+
+        <!-- SIGN IN TAB -->
+        <div id="signin" class="content active">
+          <div class="error-message" id="signinError"></div>
+          <div class="success-message" id="signinSuccess"></div>
+
+          <form id="signinForm" onsubmit="handleSignin(event)">
+            <div class="form-group">
+              <label for="signinEmail">Email Address *</label>
+              <input type="email" id="signinEmail" name="email" required placeholder="you@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="signinPassword">Password *</label>
+              <input type="password" id="signinPassword" name="password" required placeholder="Enter your password">
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="signinRemember" name="remember">
+              <label for="signinRemember">Remember me</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="signinBtn">
+              <span id="signinBtnText">Sign In</span>
+              <div class="loader" id="signinLoader"></div>
+            </button>
+
+            <button type="button" class="btn btn-secondary" onclick="toggleForgotPassword()">
+              Forgot Password?
+            </button>
+          </form>
+
+          <div class="info-box">
+            Don't have an account yet? Click the "Sign Up" tab above to create one.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLOW STRIP -->
+<section class="flow">
+  <div class="flow-head reveal">
+    <p class="sec-label">How a Conversation Flows</p>
+    <h2 class="sec-title" style="font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:0;">From First Message to Follow-Up, Without the Manual Work</h2>
+  </div>
+  <div class="flow-row">
+    <div class="flow-node reveal">
+      <div class="flow-icon"><i class="fa-solid fa-comment-dots"></i></div>
+      <h3>Customer Messages</h3>
+      <p>A question, order or enquiry arrives on WhatsApp.</p>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-node reveal">
+      <div class="flow-icon"><i class="fa-solid fa-robot"></i></div>
+      <h3>Instant Auto-Reply</h3>
+      <p>Routine questions are answered in seconds, day or night.</p>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-node reveal">
+      <div class="flow-icon"><i class="fa-solid fa-user-check"></i></div>
+      <h3>Team Hand-Off</h3>
+      <p>Complex chats move to the right teammate with full history.</p>
+    </div>
+    <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="flow-node reveal">
+      <div class="flow-icon"><i class="fa-solid fa-bell"></i></div>
+      <h3>Updates &amp; Follow-Ups</h3>
+      <p>Order, payment and appointment messages go out automatically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER CTA -->
+<div class="banner-cta reveal">
+  <h2>Your Customers Are Already on WhatsApp. <em>Meet Them There, Automatically.</em></h2>
+  <a class="btn-white" href="#auth">Create Your Account</a>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="inner">
+    <p class="sec-label reveal">What You Can Automate</p>
+    <h2 class="sec-title reveal">Everything Your Business Says on WhatsApp, Handled</h2>
+    <p class="sec-sub reveal">From the first enquiry to the final payment reminder, put the repetitive conversations on autopilot.</p>
+
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fa-solid fa-bullhorn"></i></div>
+        <h3>Broadcast Campaigns</h3>
+        <p>Send offers, announcements and event invites to segmented, opted-in audiences in a few clicks.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fa-solid fa-robot"></i></div>
+        <h3>Smart Auto-Replies</h3>
+        <p>Answer FAQs, qualify leads and route chats instantly, so no customer waits for a first response.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fa-solid fa-people-group"></i></div>
+        <h3>Shared Team Inbox</h3>
+        <p>One number, one inbox. Assign chats, add notes and keep full context when conversations change hands.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fa-solid fa-box-open"></i></div>
+        <h3>Order &amp; Payment Updates</h3>
+        <p>Confirmations, delivery status, invoices and payment reminders sent automatically at the right moment.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <h3>Appointment Reminders</h3>
+        <p>Reduce no-shows with timely reminders, and nudge the leads who went quiet before they go cold.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fa-solid fa-plug"></i></div>
+        <h3>Connect Your Tools</h3>
+        <p>Link WhatsApp with your CRM, website or internal systems so information flows without copy-paste.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase">
+  <div class="showcase-grid">
+    <div class="reveal">
+      <div class="phone">
+        <div class="phone-top">
+          <img src="whatsapp-logo.png" alt="">
+          <div><b>Your Business</b><span>Typically replies instantly</span></div>
+        </div>
+        <div class="chat" id="chat">
+          <div class="msg out">Hi, where's my order #4521?<small>10:41</small></div>
+          <div class="msg in">Hi Priya! &#128075; Your order #4521 is out for delivery and will reach you by 6 PM today.
+            <br><span class="quick">Track order</span><small>10:41</small></div>
+          <div class="msg out">Can I change the delivery address?<small>10:42</small></div>
+          <div class="handoff"><i class="fa-solid fa-user-check"></i>&nbsp; Handed over to Anjali (Support)</div>
+          <div class="msg in">Sure Priya, I'll update that for you right now.<small>10:42</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="show-copy reveal">
+      <p class="sec-label">See It In Action</p>
+      <h2 class="sec-title">Conversations That Feel Personal, At Any Scale</h2>
+      <p class="lead">Let automation take the first reply, and bring your team in the moment a customer needs a person. Nothing gets lost in between.</p>
+
+      <ul class="show-points">
+        <li>
+          <div class="hr-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div><b>Instant answers to routine questions</b><span>Order status, timings, pricing and FAQs handled in seconds.</span></div>
+        </li>
+        <li>
+          <div class="hr-icon"><i class="fa-solid fa-people-arrows"></i></div>
+          <div><b>Smooth hand-off to a human</b><span>Complex or sensitive chats move to the right teammate with the full history.</span></div>
+        </li>
+        <li>
+          <div class="hr-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <div><b>A complete record of every customer</b><span>See past conversations at a glance and pick up exactly where you left off.</span></div>
+        </li>
+      </ul>
+
+      <a class="link-arrow" href="#auth">Create your account <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps">
+  <div class="inner">
+    <p class="sec-label reveal">How It Works</p>
+    <h2 class="sec-title reveal">From Sign-Up to Your First Automated Chat</h2>
+    <p class="sec-sub reveal">Three simple steps. No lengthy onboarding.</p>
+
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-icon"><i class="fa-solid fa-user-plus"></i></div>
+        <h3>Step 1: Create Your Account</h3>
+        <p>Sign up with your work email and you're taken straight to your dashboard. One sign-in, nothing extra to remember.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-icon"><i class="fa-solid fa-sliders"></i></div>
+        <h3>Step 2: Set Up Your Messages</h3>
+        <p>Prepare your templates, auto-replies and team access so every conversation starts the right way.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Step 3: Launch &amp; Improve</h3>
+        <p>Go live, watch what works and keep refining so your customers get faster, better answers every week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="usecases">
+  <div class="inner">
+    <p class="sec-label reveal">Who It's For</p>
+    <h2 class="sec-title reveal">Built for the Way Your Business Talks to Customers</h2>
+    <p class="sec-sub reveal">Wherever customers have questions and follow-ups pile up, WhatsApp automation helps.</p>
+
+    <div class="uc-grid">
+      <div class="uc-card reveal">
+        <div class="uc-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        <h3>Retail &amp; D2C</h3>
+        <p>Order updates, abandoned-cart nudges and offers that reach customers where they actually read.</p>
+      </div>
+      <div class="uc-card reveal">
+        <div class="uc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Education &amp; Training</h3>
+        <p>Admissions follow-ups, class reminders and fee alerts without chasing every student by phone.</p>
+      </div>
+      <div class="uc-card reveal">
+        <div class="uc-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+        <h3>Healthcare &amp; Clinics</h3>
+        <p>Appointment confirmations, reminders and follow-ups that cut down on missed visits.</p>
+      </div>
+      <div class="uc-card reveal">
+        <div class="uc-icon"><i class="fa-solid fa-building"></i></div>
+        <h3>Real Estate &amp; Services</h3>
+        <p>Enquiry follow-ups and site-visit scheduling so no lead is left waiting for a callback.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar reveal">
+  <h2>Backed by aitamate Solutions</h2>
+  <p>From the team behind ProValuate and Momentum. Practical AI and automation built by seasoned professionals, not a tech-lab hypothesis.</p>
+</div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="inner center">
+    <p class="sec-label reveal">Questions</p>
+    <h2 class="sec-title reveal">Good to Know Before You Start</h2>
+
+    <div class="faq-list" style="text-align:left;">
+      <details class="faq-item reveal">
+        <summary>How do I get started?</summary>
+        <p>Use the form at the top of this page. Create your account and you'll be signed in and taken straight to your dashboard.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Do I need a separate login for the dashboard?</summary>
+        <p>No. Signing in here takes you directly into your dashboard, so there's no second password to remember.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Do I need technical skills?</summary>
+        <p>No. Messages, auto-replies and campaigns are set up through a simple interface. If you want to connect other tools, just talk to us.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Who can I contact for help?</summary>
+        <p>Write to <a href="mailto:sales@aitamate.com" style="color:var(--blue);font-weight:600;text-decoration:none;">sales@aitamate.com</a> and our team will get back to you.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>Ready to Put WhatsApp to Work for Your Business?</h2>
+  <p>Sign in or create your account and start automating your customer conversations today.</p>
+  <div class="cta-btn-row">
+    <a class="btn-white" href="#auth">Sign In / Sign Up</a>
+    <a class="btn-outline-white" href="mailto:sales@aitamate.com">Talk to Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="aitamate-logo.png" alt="aitamate" style="height:34px;background:#fff;border-radius:6px;padding:2px 6px;">
+      <p><span>A</span>ugmented <span>I</span>ntelligence for the businesses that build tomorrow.</p>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/aitamate" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:sales@aitamate.com" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Products</h4><a href="http://provaluate.aitamate.com" target="_blank" rel="noopener">ProValuate</a><a href="http://momentum.aitamate.com" target="_blank" rel="noopener">Momentum</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="https://www.aitamate.com/solutions.html">Solutions</a><a href="https://www.aitamate.com/resources.html">Resources</a><a href="https://www.aitamate.com/about.html">About Us</a><a href="https://www.aitamate.com/contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="https://www.aitamate.com/privacy.html">Privacy Policy</a><a href="https://www.aitamate.com/terms.html">Terms of Service</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 aitamate Solutions. All rights reserved.</p>
+    <div class="footer-legal"><a href="https://www.aitamate.com/privacy.html">Privacy Policy</a><a href="https://www.aitamate.com/terms.html">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script>
+// ============ ANIMATED CHAT (plays when scrolled into view, loops) ============
+(function () {
+  var chat = document.getElementById('chat');
+  if (!chat) return;
+  var items = Array.prototype.slice.call(chat.children);
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { chat.classList.add('static'); return; }
+
+  function makeTyping() {
+    var t = document.createElement('div');
+    t.className = 'msg in typing';
+    t.innerHTML = '<i></i><i></i><i></i>';
+    return t;
+  }
+
+  async function play() {
+    while (true) {
+      items.forEach(function (i) { i.classList.remove('show'); });
+      await sleep(600);
+      for (var k = 0; k < items.length; k++) {
+        var el = items[k];
+        if (el.classList.contains('in')) {
+          var t = makeTyping();
+          chat.insertBefore(t, el);
+          await sleep(1100);
+          t.remove();
+        } else {
+          await sleep(900);
         }
+        el.classList.add('show');
+      }
+      await sleep(4500);
+    }
+  }
 
-        // ============ MESSAGE DISPLAY ============
-        function showError(tabName, message) {
-            const errorEl = document.getElementById(`${tabName}Error`);
-            errorEl.textContent = message;
-            errorEl.classList.add('show');
-        }
+  var started = false;
+  var io = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting && !started) { started = true; play(); io.disconnect(); }
+  }, { threshold: 0.3 });
+  io.observe(chat);
+})();
 
-        function showSuccess(tabName, message) {
-            const successEl = document.getElementById(`${tabName}Success`);
-            successEl.textContent = message;
-            successEl.classList.add('show');
-        }
+// ============ NAV TOGGLE (mobile) ============
+(function () {
+  var t = document.querySelector('.nav-toggle');
+  var n = document.querySelector('.nav-right');
+  if (!t || !n) return;
+  t.addEventListener('click', function () { t.classList.toggle('is-open'); n.classList.toggle('is-open'); });
+  n.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { t.classList.remove('is-open'); n.classList.remove('is-open'); });
+  });
+})();
 
-        function clearMessages() {
-            document.querySelectorAll('.error-message, .success-message').forEach(el => {
-                el.classList.remove('show');
-                el.textContent = '';
-            });
-        }
+// ============ SCROLL REVEAL ============
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(function (e) { io.observe(e); });
+})();
 
-        function setLoading(tabName, isLoading) {
-            const btn = document.getElementById(`${tabName}Btn`);
-            const loader = document.getElementById(`${tabName}Loader`);
-            const btnText = document.getElementById(`${tabName}BtnText`);
+// ============ AUTH (identical behaviour to aitamate-auth-page.html) ============
+// All API calls go through our own backend (server.js), served from the same origin as this page.
+const BACKEND_URL = '';
 
-            if (isLoading) {
-                btn.disabled = true;
-                loader.style.display = 'block';
-                btnText.style.display = 'none';
-            } else {
-                btn.disabled = false;
-                loader.style.display = 'none';
-                btnText.style.display = 'inline';
-            }
-        }
+function switchTab(tab) {
+  document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  event.target.classList.add('active');
+  clearMessages();
+}
 
-        // ============ FORM VALIDATION ============
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
+function showError(tabName, message) {
+  const errorEl = document.getElementById(`${tabName}Error`);
+  errorEl.textContent = message;
+  errorEl.classList.add('show');
+}
 
-        function validatePassword(password) {
-            return password.length >= 8;
-        }
+function showSuccess(tabName, message) {
+  const successEl = document.getElementById(`${tabName}Success`);
+  successEl.textContent = message;
+  successEl.classList.add('show');
+}
 
-        // ============ SIGNUP HANDLER ============
-        async function handleSignup(e) {
-            e.preventDefault();
-            clearMessages();
-            setLoading('signup', true);
+function clearMessages() {
+  document.querySelectorAll('.error-message, .success-message').forEach(el => {
+    el.classList.remove('show');
+    el.textContent = '';
+  });
+}
 
-            try {
-                // Get form data
-                const name = document.getElementById('signupName').value.trim();
-                const email = document.getElementById('signupEmail').value.trim();
-                const password = document.getElementById('signupPassword').value;
-                const confirmPassword = document.getElementById('signupConfirmPassword').value;
-                const phone = document.getElementById('signupPhone').value.trim();
-                const org_name = document.getElementById('signupOrg').value.trim();
-                const timezone = document.getElementById('signupTimezone').value;
+function setLoading(tabName, isLoading) {
+  const btn = document.getElementById(`${tabName}Btn`);
+  const loader = document.getElementById(`${tabName}Loader`);
+  const btnText = document.getElementById(`${tabName}BtnText`);
+  if (isLoading) {
+    btn.disabled = true;
+    loader.style.display = 'block';
+    btnText.style.display = 'none';
+  } else {
+    btn.disabled = false;
+    loader.style.display = 'none';
+    btnText.style.display = 'inline';
+  }
+}
 
-                // Validation
-                if (!name) throw new Error('Name is required');
-                if (!validateEmail(email)) throw new Error('Valid email is required');
-                if (!validatePassword(password)) throw new Error('Password must be at least 8 characters');
-                if (password !== confirmPassword) throw new Error('Passwords do not match');
-                if (!timezone) throw new Error('Timezone is required');
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
 
-                // Create the account via our backend (keeps the UpScaleUp key server-side)
-                const response = await fetch(`${BACKEND_URL}/api/auth/signup`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({ name, email, password, phone: phone || null, org_name: org_name || null, timezone })
-                });
+function validatePassword(password) {
+  return password.length >= 8;
+}
 
-                const data = await response.json();
+async function handleSignup(e) {
+  e.preventDefault();
+  clearMessages();
+  setLoading('signup', true);
 
-                if (!response.ok) {
-                    if (response.status === 409) {
-                        throw new Error('An account with this email already exists. Please sign in instead.');
-                    }
-                    throw new Error(data.message || 'Failed to create account');
-                }
+  try {
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('signupConfirmPassword').value;
+    const phone = document.getElementById('signupPhone').value.trim();
+    const org_name = document.getElementById('signupOrg').value.trim();
+    const timezone = document.getElementById('signupTimezone').value;
 
-                showSuccess('signup', 'Account created successfully! Redirecting to login...');
+    if (!name) throw new Error('Name is required');
+    if (!validateEmail(email)) throw new Error('Valid email is required');
+    if (!validatePassword(password)) throw new Error('Password must be at least 8 characters');
+    if (password !== confirmPassword) throw new Error('Passwords do not match');
+    if (!timezone) throw new Error('Timezone is required');
 
-                // Auto sign-in with the credentials just entered
-                setTimeout(() => {
-                    signinAndRedirect('signup', email, password);
-                }, 1500);
+    const response = await fetch(`${BACKEND_URL}/api/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, password, phone: phone || null, org_name: org_name || null, timezone })
+    });
 
-            } catch (error) {
-                showError('signup', error.message);
-                setLoading('signup', false);
-            }
-        }
+    const data = await response.json();
 
-        // ============ SIGNIN HANDLER ============
-        async function handleSignin(e) {
-            e.preventDefault();
-            clearMessages();
-            setLoading('signin', true);
+    if (!response.ok) {
+      if (response.status === 409) {
+        throw new Error('An account with this email already exists. Please sign in instead.');
+      }
+      throw new Error(data.message || 'Failed to create account');
+    }
 
-            try {
-                const email = document.getElementById('signinEmail').value.trim();
-                const password = document.getElementById('signinPassword').value;
+    showSuccess('signup', 'Account created successfully! Redirecting to login...');
 
-                // Validation
-                if (!validateEmail(email)) throw new Error('Valid email is required');
-                if (!password) throw new Error('Password is required');
+    setTimeout(() => {
+      signinAndRedirect('signup', email, password);
+    }, 1500);
 
-                await signinAndRedirect('signin', email, password);
+  } catch (error) {
+    showError('signup', error.message);
+    setLoading('signup', false);
+  }
+}
 
-            } catch (error) {
-                showError('signin', error.message);
-                setLoading('signin', false);
-            }
-        }
+async function handleSignin(e) {
+  e.preventDefault();
+  clearMessages();
+  setLoading('signin', true);
 
-        // ============ SIGNIN + SSO REDIRECT (shared by signup auto-login and signin form) ============
-        async function signinAndRedirect(tabName, email, password) {
-            try {
-                setLoading(tabName, true);
+  try {
+    const email = document.getElementById('signinEmail').value.trim();
+    const password = document.getElementById('signinPassword').value;
 
-                const response = await fetch(`${BACKEND_URL}/api/auth/signin`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
+    if (!validateEmail(email)) throw new Error('Valid email is required');
+    if (!password) throw new Error('Password is required');
 
-                const data = await response.json();
+    await signinAndRedirect('signin', email, password);
 
-                if (!response.ok) {
-                    throw new Error(data.message || 'Email or password is incorrect');
-                }
+  } catch (error) {
+    showError('signin', error.message);
+    setLoading('signin', false);
+  }
+}
 
-                showSuccess(tabName, 'Sign in successful! Redirecting to dashboard...');
+async function signinAndRedirect(tabName, email, password) {
+  try {
+    setLoading(tabName, true);
 
-                if (!data.login_url) {
-                    throw new Error('No SSO URL returned from server');
-                }
+    const response = await fetch(`${BACKEND_URL}/api/auth/signin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
 
-                window.location.href = data.login_url;
+    const data = await response.json();
 
-            } catch (error) {
-                showError(tabName, error.message);
-                setLoading(tabName, false);
-            }
-        }
+    if (!response.ok) {
+      throw new Error(data.message || 'Email or password is incorrect');
+    }
 
-        // ============ FORGOT PASSWORD ============
-        async function toggleForgotPassword() {
-            const email = document.getElementById('signinEmail').value.trim();
-            if (!email) {
-                showError('signin', 'Please enter your email address first');
-                return;
-            }
+    showSuccess(tabName, 'Sign in successful! Redirecting to dashboard...');
 
-            try {
-                const response = await fetch(`${BACKEND_URL}/api/auth/forgot-password`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({ email })
-                });
+    if (!data.login_url) {
+      throw new Error('No SSO URL returned from server');
+    }
 
-                const data = await response.json();
+    window.location.href = data.login_url;
 
-                if (!response.ok) {
-                    throw new Error(data.message || 'Failed to process password reset');
-                }
+  } catch (error) {
+    showError(tabName, error.message);
+    setLoading(tabName, false);
+  }
+}
 
-                showSuccess('signin', data.message || 'If an account exists with this email, a reset link has been sent.');
-            } catch (error) {
-                showError('signin', error.message);
-            }
-        }
+async function toggleForgotPassword() {
+  const email = document.getElementById('signinEmail').value.trim();
+  if (!email) {
+    showError('signin', 'Please enter your email address first');
+    return;
+  }
 
-        // ============ INITIALIZATION ============
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add tab click handlers
-            document.querySelectorAll('.tab-btn').forEach((btn, index) => {
-                btn.onclick = function(e) {
-                    e.preventDefault();
-                    const tabs = ['signup', 'signin'];
-                    switchTab(tabs[index]);
-                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                };
-            });
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/auth/forgot-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email })
+    });
 
-        });
+    const data = await response.json();
 
-        // Prevent form submission on enter in password field
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-                const form = e.target.closest('form');
-                if (form) {
-                    form.dispatchEvent(new Event('submit'));
-                }
-            }
-        });
-    </script>
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to process password reset');
+    }
+
+    showSuccess('signin', data.message || 'If an account exists with this email, a reset link has been sent.');
+  } catch (error) {
+    showError('signin', error.message);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.tab-btn').forEach((btn, index) => {
+    btn.onclick = function (e) {
+      e.preventDefault();
+      const tabs = ['signup', 'signin'];
+      switchTab(tabs[index]);
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    };
+  });
+});
+</script>
 </body>
 </html>
