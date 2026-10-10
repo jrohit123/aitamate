@@ -1,0 +1,13 @@
+# Send whatsapp.aitamate.com to the WhatsApp/ folder.
+# Any other host (the main aitamate.com site) is completely unaffected.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^whatsapp\.aitamate\.com$ [NC]
+RewriteCond %{REQUEST_URI} !^/WhatsApp/ [NC]
+RewriteRule ^(.*)$ /WhatsApp/$1 [L]
+</IfModule>
+
+# Tooling files must not be downloadable
+<FilesMatch "^(package(-lock)?\.json|server\.js|\.env.*|\.gitignore)$">
+    Require all denied
+</FilesMatch>

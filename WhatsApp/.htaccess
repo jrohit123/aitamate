@@ -1,0 +1,15 @@
+# Routing for whatsapp.aitamate.com (this folder is its web root)
+Options -Indexes
+DirectoryIndex aitamate-auth-page.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^api/ api/index.php [L]
+RewriteRule ^health/?$ api/index.php [L]
+RewriteRule ^auth/?$ aitamate-auth-page.html [L]
+</IfModule>
+
+# Never serve source/config files from here
+<FilesMatch "^(server\.js|config\.php|config\.example\.php|\.env.*)$">
+    Require all denied
+</FilesMatch>
